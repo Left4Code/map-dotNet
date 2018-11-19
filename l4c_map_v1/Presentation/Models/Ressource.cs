@@ -23,7 +23,8 @@ namespace Presentation.Models
         public string specialty { get; set; }
         public string typeContrat { get; set; }
         public virtual List<Skills> skills { get; set; }
-      
+        public virtual List<demand_time_offVM> listeDemandesTimeOff { get; set; }
+
 
 
     }

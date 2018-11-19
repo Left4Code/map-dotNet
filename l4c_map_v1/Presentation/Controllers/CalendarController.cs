@@ -48,6 +48,27 @@ namespace Presentation.Controllers
             return new JsonResult { Data = new { status = status } };
         }
 
+        [HttpPost]
+        public JsonResult Modify(demand_time_offVM e)
+        {
+            var status = false;
+            {
+                    HttpClient client = new HttpClient();
+                    client.BaseAddress = new Uri("http://localhost:18080");
+                    StringContent content = new StringContent(JsonConvert.SerializeObject(e), UTF8Encoding.UTF8, "application/json");
+                    client.PutAsJsonAsync<demand_time_offVM>("l4c_map-v2-web/rest/conge?idResponsable=7", e).ContinueWith((postTask) =>
+                    {
+                        postTask.Result.EnsureSuccessStatusCode();
+
+                    });
+                
+          
+
+                status = true;
+            }
+            return new JsonResult { Data = new { status = status } };
+        }
+
 
         public JsonResult GetEvents()
         {
@@ -82,5 +103,7 @@ namespace Presentation.Controllers
             return new JsonResult { Data = new { status = status } };
 
         }
+
+
     }
 }

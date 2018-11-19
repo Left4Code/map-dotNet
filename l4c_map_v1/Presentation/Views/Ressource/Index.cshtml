@@ -10,9 +10,57 @@
 </p>
 
 @Html.ActionLink("Add skills", "Create", "Skils", null, null)
+<div id="myModalSave" class="modal fade in" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Demande de congé</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <input type="hidden" id="hdEventID" value="0" />
 
-<div class="row">
-    <div class="col-12">
+                    <div class="form-group">
+                        <label>Start</label>
+                        <div class="input-group date" id="dtp1">
+                            <input type="text" id="txtStart" class="form-control" />
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group" id="divEndDate">
+                        <label>End</label>
+                        <div class="input-group date" id="dtp2">
+                            <input type="text" id="txtEnd" class="form-control" />
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Theme Color</label>
+                        <select id="ddThemeColor" class="form-control">
+                            <option value="">Waiting</option>
+                            <option value="red">Accepted</option>
+                            <option value="blue">Denied</option>
+
+                        </select>
+                    </div>
+
+                    <button type="button" id="btnSave" class="btn btn-success">Save</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div >
+    <div >
         <div class="box">
             <div class="box-header with-border">
                 <h3 class="box-title">Ressources list</h3>
@@ -27,7 +75,7 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body no-padding">
-                <div class="table-responsive">
+                <div ">
                     <table class="table table-hover">
                         <tr>
                             <th>
@@ -59,6 +107,9 @@
                             </th>
                             <th>
                                 Contract type
+                            </th>
+                            <th>
+                                Liste demandes
                             </th>
                             <th>
                                 Actions
@@ -94,48 +145,45 @@
                                 <td>@item.specialty</td>
 
                                 <td>@item.typeContrat</td>
+                                <td>
+                                    @foreach (var demande in item.listeDemandesTimeOff)
+                                    {
 
+                                        if (demande.StateDemande == "Waiting")
+                                        {
 
+                                            <div class="dropdown">
+                                                <button id=@demande.idDemandeTimeOff class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                                    @demande.StateDemande @demande.DateBegin.ToShortDateString() -> @demande.DateEnd.ToShortDateString()
+                                                    <span class="caret"></span>
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><span onclick='DOt(@Html.Raw(Json.Encode(@demande)))' value='Accepted'>Accepted</span></li>
+                                                    <li><span onclick='DOt(@Html.Raw(Json.Encode(@demande)))' value='Denied'>Denied</span></li>
+                                                </ul>
+                                            </div>
 
+                                        }
+                                        else
+                                        {
+                                        }
+                                    }
+
+                                </td>
                                 <td>
                                     <button type="button" class="btn btn-default btn-sm"><i class="ion ion-trash-a"></i></button>
-                                    <button type="button" class="btn btn-default btn-sm"><i class="ion ion-share">@Html.ActionLink("d" ,"Details", "Ressource", new { id = @item.id }, null)
-</i></button>
+                                    <button type="button" class="btn btn-default btn-sm">
+                                        <i class="ion ion-share">
+                                            @Html.ActionLink("d", "Details", "Ressource", new { id = @item.id }, null)
+                                        </i>
+                                    </button>
+                                </td>
 
                             </tr>
                         }
-                        @*<tr>
-                                <td><a href="javascript:void(0)">Order #458789</a></td>
-                                <td>Lorem Ipsum</td>
-                                <td><span class="text-muted"><i class="fa fa-clock-o"></i> Oct 16, 2017</span> </td>
-                                <td>$55.00</td>
-                                <td><span class="label label-warning">Shipped</span></td>
-                                <td>US</td>
-                            </tr>
-                            <tr>
-                                <td><a href="javascript:void(0)">Order #84532</a></td>
-                                <td>Lorem Ipsum</td>
-                                <td><span class="text-muted"><i class="fa fa-clock-o"></i> Oct 16, 2017</span> </td>
-                                <td>$845.00</td>
-                                <td><span class="label label-danger">Prossing</span></td>
-                                <td>IG</td>
-                            </tr>
-                            <tr>
-                                <td><a href="javascript:void(0)">Order #48956</a></td>
-                                <td>Lorem Ipsum</td>
-                                <td><span class="text-muted"><i class="fa fa-clock-o"></i> Oct 16, 2017</span> </td>
-                                <td>$145.00</td>
-                                <td><span class="label label-success">Paid</span></td>
-                                <td>EN</td>
-                            </tr>
-                            <tr>
-                                <td><a href="javascript:void(0)">Order #92154</a></td>
-                                <td>Lorem Ipsum</td>
-                                <td><span class="text-muted"><i class="fa fa-clock-o"></i> Oct 16, 2017</span> </td>
-                                <td>$450.00</td>
-                                <td><span class="label label-warning">Shipped</span></td>
-                                <td>UK</td>
-                            </tr>*@
+
+
+
                     </table>
                 </div>
             </div>
@@ -146,4 +194,34 @@
 </div>
 <!-- /.content -->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+@section Scripts{
 
+    <script>
+
+
+        function DOt(obj) {
+            obj.StateDemande = $('#' + obj.idDemandeTimeOff).val();
+
+
+            console.log(obj);
+            $.ajax({
+                type: "POST",
+                url: 'http://localhost:50717/Calendar/Modify',
+                data: obj,
+                success: function (data) {
+                    if (data.status) {
+                        $('#'+obj.idDemandeTimeOff).hide();
+
+                    }
+                },
+                error: function () {
+                    alert('Failed');
+                }
+            })
+        };
+
+
+
+
+    </script>
+}
