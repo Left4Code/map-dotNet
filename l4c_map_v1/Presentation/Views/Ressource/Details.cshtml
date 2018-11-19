@@ -1,0 +1,103 @@
+﻿@model Presentation.Models.Ressource
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Ressource</h4>
+    <hr />
+    <table class="table">
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Last Name
+            </th>
+            <th>
+                Salary
+            </th>
+            <th>
+                Started working
+            </th>
+            <th>
+                Working end
+            </th>
+            <th>
+                Score
+            </th>
+            <th>
+                Availability
+            </th>
+            <th>
+                Seniority
+            </th>
+            <th>
+                Specialty
+            </th>
+            <th>
+                Contract type
+            </th>
+            <th>
+               Skills
+            </th>
+            <th>
+                Actions
+            </th>
+        </tr>
+
+  
+            <tr>
+                <td>
+                    @ViewBag.result.Name
+                </td>
+                <td>
+                    @ViewBag.result.LastName
+                </td>
+                <td>
+                   @ViewBag.result.cost
+                </td>
+                <td>
+                    @ViewBag.result.dateDebut.ToShortDateString()
+                </td>
+                <td>
+                    @ViewBag.result.dateFin.ToShortDateString()
+                </td>
+                <td>
+                    @ViewBag.result.note
+                </td>
+                <td>
+                    @ViewBag.result.cv
+                </td>
+                <td>
+                   @ViewBag.result.seniority
+                </td>
+                <td>
+                    @ViewBag.result.specialty
+                </td>
+                <td>
+                   @ViewBag.result.typeContrat
+                </td>
+
+                <td>
+                    @Html.DropDownListFor(model=>ViewBag, new SelectList(ViewBag.result.skills,"idSkills","name"))
+                </td>
+                <td>
+                    @Html.ActionLink("Delete", "Delete", "Ressource", new { id = @ViewBag.result.id }, null)
+
+
+
+
+
+
+                </td>
+
+            </tr>
+
+    </table>
+</div>
+
+

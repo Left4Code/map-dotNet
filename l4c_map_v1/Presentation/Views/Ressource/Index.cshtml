@@ -1,0 +1,93 @@
+﻿@model IEnumerable<Presentation.Models.Ressource>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            Last Name
+        </th>
+        <th>
+            Salary
+        </th>
+        <th>
+            Started working
+        </th>
+        <th>
+            Working end
+        </th>
+        <th>
+            Score
+        </th>
+        <th>
+            Availability
+        </th>
+        <th>
+           Seniority
+        </th>
+        <th>
+            Specialty
+        </th>
+        <th>
+            Contract type
+        </th>
+        <th>
+            Actions
+        </th>
+    </tr>
+
+@foreach (var item in ViewBag.result) {
+    <tr>
+
+     
+        <td>
+            @item.Name
+        </td>
+        <td>
+            @item.LastName
+        </td>
+        <td>
+            @item.cost
+        </td>
+        <td>
+            @item.dateDebut.ToShortDateString()
+        </td>
+        <td>
+            @item.dateFin.ToShortDateString()
+        </td>
+        <td>
+            @item.note
+        </td>
+        <td>
+            @item.cv
+        </td>
+        <td>
+           @item.seniority
+        </td>
+        <td>
+            @item.specialty
+        </td>
+        <td>
+            @item.typeContrat
+        </td>
+      
+        <td>
+            @Html.ActionLink("Details","Details", "Ressource", new { id = @item.id },null) <br />
+        </td>
+        
+    </tr>
+}
+    @Html.ActionLink("Add skills", "Create", "Skils", null , null)
+
+
+</table>
