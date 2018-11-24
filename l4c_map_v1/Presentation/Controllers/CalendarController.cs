@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Presentation.Models;
+using Presentation.Utils;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -61,8 +62,18 @@ namespace Presentation.Controllers
                         postTask.Result.EnsureSuccessStatusCode();
 
                     });
+                Gmailer.GmailUsername = "mysoulmatepi@gmail.com";
+                Gmailer.GmailPassword = "mysoulmatePI*";
+
+                Gmailer mailer = new Gmailer();
+                mailer.ToEmail = "mohamedbadis.maalej@esprit.tn";
+                mailer.Subject = "Etat de congé";
+                mailer.Body = "Etat de votre demande : <br>" + e.StateDemande;
+                mailer.IsHtml = true;
+                mailer.Send();
                 
-          
+
+
 
                 status = true;
             }

@@ -10,58 +10,12 @@
 </p>
 
 @Html.ActionLink("Add skills", "Create", "Skils", null, null)
-<div id="myModalSave" class="modal fade in" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Demande de congé</h4>
-            </div>
-            <div class="modal-body">
-                <form class="form-horizontal">
-                    <input type="hidden" id="hdEventID" value="0" />
-
-                    <div class="form-group">
-                        <label>Start</label>
-                        <div class="input-group date" id="dtp1">
-                            <input type="text" id="txtStart" class="form-control" />
-                            <span class="input-group-addon">
-                                <span class="glyphicon glyphicon-calendar"></span>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="form-group" id="divEndDate">
-                        <label>End</label>
-                        <div class="input-group date" id="dtp2">
-                            <input type="text" id="txtEnd" class="form-control" />
-                            <span class="input-group-addon">
-                                <span class="glyphicon glyphicon-calendar"></span>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Theme Color</label>
-                        <select id="ddThemeColor" class="form-control">
-                            <option value="">Waiting</option>
-                            <option value="red">Accepted</option>
-                            <option value="blue">Denied</option>
-
-                        </select>
-                    </div>
-
-                    <button type="button" id="btnSave" class="btn btn-success">Save</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
 
 
 
 <div >
     <div >
-        <div class="box">
+        <div >
             <div class="box-header with-border">
                 <h3 class="box-title">Ressources list</h3>
                 <div class="box-tools">
@@ -75,27 +29,20 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body no-padding">
-                <div ">
+                <div >
                     <table class="table table-hover">
                         <tr>
                             <th>
                                 Name
                             </th>
-                            <th>
-                                Last Name
-                            </th>
-                            <th>
-                                Salary
-                            </th>
+                         
                             <th>
                                 Started working
                             </th>
                             <th>
                                 Working end
                             </th>
-                            <th>
-                                Score
-                            </th>
+                         
                             <th>
                                 Availability
                             </th>
@@ -105,9 +52,7 @@
                             <th>
                                 Specialty
                             </th>
-                            <th>
-                                Contract type
-                            </th>
+
                             <th>
                                 Liste demandes
                             </th>
@@ -117,69 +62,70 @@
                         </tr>
                         @foreach (var item in ViewBag.result)
                         {
-                            <tr>
+                           
+                                <tr >
 
 
-                                <td>@item.Name</td>
-                                <td>@item.LastName</td>
-                                <td>@item.cost DT </td>
-                                <td><span class="text-muted"><i class="fa fa-clock-o"></i> @item.dateDebut.ToShortDateString()</span> </td>
-                                <td><span class="text-muted"><i class="fa fa-clock-o"></i> @item.dateFin.ToShortDateString()</span> </td>
+                                    <td>@item.Name @item.LastName</td>
+                                    <td><span class="text-muted"><i class="fa fa-clock-o"></i> @item.dateDebut.ToShortDateString()</span></td>
+                                    <td><span class="text-muted"><i class="fa fa-clock-o"></i> @item.dateFin.ToShortDateString()</span></td>
 
-                                <td>@item.note</td>
-                                @if (item.cv != "Available")
-                                {
-                                    <td>
-                                        <span class="label label-danger">@item.cv</span>
-                                    </td>
-                                }
-                                else
-                                {
-                                    <td>
-                                        <span class="label label-success">@item.cv</span>
-                                    </td>
-
-                                }
-
-                                <td>@item.seniority</td>
-                                <td>@item.specialty</td>
-
-                                <td>@item.typeContrat</td>
-                                <td>
-                                    @foreach (var demande in item.listeDemandesTimeOff)
+                                    @if (item.cv != "Available")
                                     {
+                                        <td>
+                                            <span class="label label-danger">@item.cv</span>
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td>
+                                            <span class="label label-success">@item.cv</span>
+                                        </td>
 
-                                        if (demande.StateDemande == "Waiting")
-                                        {
-
-                                            <div class="dropdown">
-                                                <button id=@demande.idDemandeTimeOff class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-                                                    @demande.StateDemande @demande.DateBegin.ToShortDateString() -> @demande.DateEnd.ToShortDateString()
-                                                    <span class="caret"></span>
-                                                </button>
-                                                <ul class="dropdown-menu">
-                                                    <li><span onclick='DOt(@Html.Raw(Json.Encode(@demande)))' value='Accepted'>Accepted</span></li>
-                                                    <li><span onclick='DOt(@Html.Raw(Json.Encode(@demande)))' value='Denied'>Denied</span></li>
-                                                </ul>
-                                            </div>
-
-                                        }
-                                        else
-                                        {
-                                        }
                                     }
 
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-default btn-sm"><i class="ion ion-trash-a"></i></button>
-                                    <button type="button" class="btn btn-default btn-sm">
-                                        <i class="ion ion-share">
-                                            @Html.ActionLink("d", "Details", "Ressource", new { id = @item.id }, null)
-                                        </i>
-                                    </button>
-                                </td>
+                                    <td>@item.seniority</td>
+                                    <td>@item.businessSector</td>
 
-                            </tr>
+                                    <td id="conges">
+
+                                        @foreach (var demande in item.listeDemandesTimeOff)
+                                        {
+
+                                            if (demande.StateDemande == "Waiting")
+                                            {
+
+                                                <div class="dropdown">
+                                                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                                        @demande.StateDemande @demande.DateBegin.ToShortDateString() -> @demande.DateEnd.ToShortDateString()
+                                                        <span class="caret"></span>
+                                                    </button>
+                                                    <ul class="dropdown-menu">
+                                                        <li><span type="button" style="width:100px" class="btn btn-success" onclick='DOt(@Html.Raw(Json.Encode(@demande)))' value='Accepted' id=_@demande.idDemandeTimeOff>Accepted</span></li>
+                                                        <li><span type="button" style="width:100px" class="btn btn-danger" onclick='DOt2(@Html.Raw(Json.Encode(@demande)))' value='Denied' id=-@demande.idDemandeTimeOff>Denied</span></li>
+
+                                                    </ul>
+                                                </div>
+
+                                            }
+                                            else
+                                            {
+
+                                            }
+                                        }
+
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-danger " id="delete" value=@item.id><i class="ion ion-trash-a"></i></button>
+                                        <button  type="button" class="btn btn-success " id="details" value=@item.id>
+                                            <i class="ion ion-share" >
+                                                
+                                            </i>
+                                           
+                                        </button>
+                                    </td>
+
+                                </tr>
                         }
 
 
@@ -194,34 +140,81 @@
 </div>
 <!-- /.content -->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-@section Scripts{
-
+@section scripts{
     <script>
+        
+        $(document).ready(function(){
 
+            if($.trim($('#conges').html()).length===0){
+                $('#conges').html('None');
+            }
+        });
+       
+            function DOt(obj) {
 
-        function DOt(obj) {
-            obj.StateDemande = $('#' + obj.idDemandeTimeOff).val();
-
-
-            console.log(obj);
-            $.ajax({
-                type: "POST",
-                url: 'http://localhost:50717/Calendar/Modify',
-                data: obj,
-                success: function (data) {
-                    if (data.status) {
-                        $('#'+obj.idDemandeTimeOff).hide();
-
+            
+                obj.StateDemande = $('span[id^="_"]').html();
+                
+                $.ajax({
+                    type: "POST",
+                    url: 'http://localhost:50717/Calendar/Modify',
+                    data:obj,
+                    success: function (data) {
+                        if (data.status) {
+                            $('span[id^="_"]').parentsUntil("td").hide();
+                        }
+                    },
+                    error: function () {
+                        alert('Failed');
                     }
-                },
-                error: function () {
-                    alert('Failed');
-                }
-            })
-        };
+                })
+            };
+            function DOt2(obj) {
 
 
+                obj.StateDemande = $('span[id^="-"]').html();
+                $.ajax({
+                    type: "POST",
+                    url: 'http://localhost:50717/Calendar/Modify',
+                    data: obj,
+                    success: function (data) {
+                        if (data.status) {
+                            $('span[id^="-"]').parentsUntil("td").hide();
+
+                        }
+                    },
+                    error: function () {
+                        alert('Failed');
+                    }
+                })
+            };
+
+            $('#delete').click(function(){
+                id= $('#delete').val();
+                $('#delete').closest('tr').remove();
+                $.ajax({
+                    type: "POST",
+                    url: 'http://localhost:50717/Ressource/Delete',
+                    data:{ 'id': id },
+                    success: function (data) {
+                        if (data.status) {
+                            $('#delete').parentsUntil("tr").hide();
+
+                        }
+                    },
+                    error: function () {
+                        alert('Failed');
+                    }
+                })
+
+            });
+
+            $('#details').click(function(){
+                var actionurl  = "http://localhost:50717/Ressource/Details/"+ $('#details').val();
+                window.open(actionurl);
+
+            });
 
 
-    </script>
-}
+</script>
+    }

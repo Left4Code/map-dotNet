@@ -26,9 +26,7 @@
                         <tr>
                             <th>
                                 Name
-                            </th>
-                            <th>
-                                Last Name
+
                             </th>
                             <th>
                                 Salary
@@ -55,16 +53,9 @@
                                 Contract type
                             </th>
                             <th>Skills</th>
-                            <th>
-                                Actions
-                            </th>
                         </tr>
-
                         <tr>
-
-
-                            <td>@ViewBag.result.Name</td>
-                            <td>@ViewBag.result.LastName</td>
+                            <td>@ViewBag.result.Name @ViewBag.result.LastName</td>
                             <td>@ViewBag.result.cost DT </td>
                             <td><span class="text-muted"><i class="fa fa-clock-o"></i> @ViewBag.result.dateDebut.ToShortDateString()</span> </td>
                             <td><span class="text-muted"><i class="fa fa-clock-o"></i> @ViewBag.result.dateFin.ToShortDateString()</span> </td>
@@ -89,17 +80,14 @@
 
                             <td>@ViewBag.result.typeContrat</td>
                             <td>
-                                @Html.DropDownListFor(model => ViewBag, new SelectList(ViewBag.result.skills, "idSkills", "name"))
+
+                                @foreach (var item in ViewBag.result.skills)
+                                {
+                                    <span style="width:75px" class="btn btn-success">@item.name</span><br />
+                                }
                             </td>
-
-
-
                             <td>
-                                <button type="button" class="btn btn-default btn-sm">
-                                    <i class="ion ion-trash-a">
-                                        @Html.ActionLink("Delete", "Delete", "Ressource", new { id = @ViewBag.result.id }, null)
-                                    </i>
-                                </button>
+                                <button id="delete" value=@ViewBag.result.id type="button" class="btn btn-danger "><i class="ion ion-trash-a"></i></button>
                         </tr>
 
 
@@ -111,3 +99,27 @@
         <!-- /.box -->
     </div>
 </div>
+@section Scripts{
+<script type="text/javascript">
+
+    $('#delete').click(function () {
+        id = $('#delete').val();
+        $('#delete').closest('tr').remove();
+        $.ajax({
+            type: "POST",
+            url: 'http://localhost:50717/Ressource/Delete',
+            data: { 'id': id },
+            success: function (data) {
+                if (data.status) {
+                    $('#delete').parentsUntil("tr").hide();
+
+                }
+            },
+            error: function () {
+                alert('Failed');
+            }
+        })
+    });
+
+</script>
+    }
