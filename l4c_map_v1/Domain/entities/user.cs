@@ -29,12 +29,12 @@ namespace Domain.entities
         [StringLength(255)]
         public string username { get; set; }
 
-        public virtual applicant applicant { get; set; }
+        /*public virtual applicant applicant { get; set; }
 
         public virtual client client { get; set; }
 
         public virtual responsable responsable { get; set; }
 
-        public virtual ressource ressource { get; set; }
+        public virtual ressource ressource { get; set; }*/
     }
 }

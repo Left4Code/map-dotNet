@@ -1,0 +1,150 @@
+﻿@model Presentation.Models.ApplicantVm
+
+@{
+    ViewBag.Title = "Profile";
+}
+@if (Model != null)
+{
+    string path = "~/images/" + @Model.picture;
+    <div class="row">
+        <div class="col-xl-3 col-12">
+            <div class="box bg-dark">
+                <div class="box-body box-profile">
+                    <img src="@Url.Content(path)" class="profile-user-img rounded-circle img-fluid mx-auto d-block" />
+                    <h3>@Model.lastname @Model.name</h3>
+                    @if (Model.applicantState.Equals("Waiting"))
+                    {
+                        <p>Register as <span class="badge badge-cyan">Applicant</span> State : <span class="badge badge-warning">@Model.applicantState</span></p>
+                    }
+                    else
+                    {
+                        <p>Register as <span class="badge badge-cyan">Applicant</span> State : <span class="badge badge-success">@Model.applicantState</span></p>
+                    }
+                    <div class="row social-states">
+                        <div class="col-6 text-right"><a href="#" class="link text-white"><i class="icon-doc"></i> 254</a></div>
+                        <div class="col-6 text-left"><a href="#" class="link text-white"><i class="ion ion-images"></i> @Model.chanceOfSuccess</a></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="profile-user-info">
+                                <p class="text-white"><span class="badge badge-info">Username</span> </p>
+                                <h6 class="margin-bottom">@Model.username</h6>
+                                <p class="text-white"><span class="badge badge-info">Age</span></p>
+                                <h6 class="margin-bottom">@Model.age</h6>
+                                <p class="text-white"><span class="badge badge-info">Country</span></p>
+                                <h6 class="margin-bottom">@Model.country</h6>
+                                <div class="map-box">
+                                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2805244.1745767146!2d-86.32675167439648!3d29.383165774894163!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88c1766591562abf%3A0xf72e13d35bc74ed0!2sFlorida%2C+USA!5e0!3m2!1sen!2sin!4v1501665415329" height="150" class="w-p100 b-0" allowfullscreen></iframe>
+                                </div>
+                                <p class="margin-bottom text-white">Social Profile</p>
+                                <div class="user-social-acount">
+                                    <button class="btn btn-circle btn-social-icon btn-facebook"><i class="icon-facebook-squared"></i></button>
+                                    <button class="btn btn-circle btn-social-icon btn-twitter"><i class="icon-twitter-squared"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-9 col-12">
+            <div class="nav-tabs-custom">
+                <ul class="nav nav-tabs">
+                    <li><a class="active" href="#information" data-toggle="tab">Information</a></li>
+                    <li><a href="#test" data-toggle="tab">Test</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="active tab-pane" id="information">
+                        <ul class="timeline">                                              
+                            <li>
+                                <i class="icon-folder" style="font-size:35px;color:cornflowerblue"></i>
+                                <div class="timeline-item">
+                                    <span class="time"><i class="icon-clock"></i> @Model.demand.dateDemand</span>
+                                    <h3 class="timeline-header"><a href="#">Demand</a> Created At </h3>
+                                    <div class="timeline-body">
+                                        <h3>@Model.lastname @Model.name</h3>
+                                        @if (Model.applicantState.Equals("Waiting"))
+                                        {
+                                            <p>Register as <span class="badge badge-cyan">Applicant</span> State : <span class="badge badge-warning">@Model.applicantState</span></p>
+                                        }
+                                        else
+                                        {
+                                            <p>Register as <span class="badge badge-cyan">Applicant</span> State : <span class="badge badge-success">@Model.applicantState</span></p>
+                                        }
+                                        <span class="badge badge-dark">Speciality :</span>
+
+                                        @if (Model.demand.specialty.Equals(""))
+                                        {
+                                            <span class="badge badge-pink">None</span><i class="icon-cancel" style="color:orangered;font-size:17px"></i>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge badge-success">@Model.demand.specialty</span>
+                                        }
+                                        <div class="progress">
+                                            <div class="progress-bar-animated progress-bar-yellow" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:@Model.chanceOfSuccess%">
+                                                <span class="sr-only">@Model.chanceOfSuccess % Chance Of Success</span>
+                                            </div>
+                                        </div>
+                                        <button class="btn btn-block btn-outline btn-primary btn-flat" type="button">
+                                            <a href="@Url.Action("","")" style="color:black">Modify/Update</a>
+                                        </button>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="icon-login" style="font-size:35px;color:cornflowerblue"></i>
+                                <div class="timeline-item">
+                                    <span class="time"><i class="icon-clock"></i> @Model.demand.dateDemand</span>
+                                    <h3 class="timeline-header"><a href="#">Registred</a> At </h3>
+                                    <div class="timeline-body">
+                                        Welcome in Levio ,you registred as Applicant ,please ,make some tests to make sure you will be accepted !
+                                        Each Week a responsable will check your Demand and if it's accepted ,you will be notified ...
+                                        Don't forget to update your Demand.
+                                        Good luck @Model.name @Model.lastname
+                                    </div>
+                                </div>
+                            </li>
+                            @foreach (var passed in Model.testpassed)
+                            {
+                                <li>
+                                    <i class="icon-get-pocket" style="font-size:35px;color:cornflowerblue"></i>
+                                    <div class="timeline-item">
+                                        <span class="time"><i class="icon-clock"></i> @passed.dateOfPassing</span>
+                                        <h3 class="timeline-header"><a href="#">Test : @passed.name </a> At </h3>
+                                        <div class="timeline-body">
+                                            Congratulation ! You have passed the test @passed.name with a mark of @passed.mark/60
+                                            at @passed.dateOfPassing .
+                                        </div>
+                                    </div>
+                                </li>                               
+                            }
+                        </ul>
+                    </div>    
+                    <div class="tab-pane" id="test">
+                        <div class="box box-outline-gray bg-light">
+                            <div class="media-list media-list-divided media-list-hover">
+                                @{
+                                   
+                                        foreach (var passed in Model.testpassed)
+                                        {
+                                            @Html.Partial("_DisplayInfoPassed", passed);                     
+                                        }
+                                        foreach (var test in Model.tests)
+                                        {
+                                            @Html.Partial("_DisplayInfo", test);
+                                        }
+                                    
+                                }
+                                
+                            </div>
+                        </div>
+                    </div>              
+                </div>
+            </div>
+        </div>
+    </div>
+}else
+{
+    <p>Not Connected ! Please Login ...</p>
+}

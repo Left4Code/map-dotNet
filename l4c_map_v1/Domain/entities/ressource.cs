@@ -6,13 +6,12 @@ namespace Domain.entities
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("mapds.ressource")]
+    [Table("map.ressource")]
     public partial class ressource
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ressource()
         {
-            demand_time_off = new HashSet<demand_time_off>();
             mandates = new HashSet<mandate>();
             sponsors = new HashSet<sponsor>();
             skills = new HashSet<skill>();
@@ -49,9 +48,6 @@ namespace Domain.entities
 
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int id { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<demand_time_off> demand_time_off { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<mandate> mandates { get; set; }
