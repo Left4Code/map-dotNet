@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@{ 
+    var user = (Domain.entities.user)HttpContext.Current.Session["user"];
+
+}
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -32,7 +36,7 @@
             <nav class="navbar navbar-static-top">
                 <!-- Sidebar toggle button-->
                 <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-                    <span class="sr-only">Toggle navigation</span>
+                    <img src="../images/svg/baseline-list-24px.svg"/>
                 </a>
 
                 <div class="navbar-custom-menu">
@@ -148,22 +152,40 @@
                             <span class="text-white"><b>Levio </b>Admin</span>
                         </a>
                     </div>
-                    <div class="image">
-                        <img src="../images/2.jpg" class="rounded-circle" alt="User Image">
-                    </div>
-                    <div class="info text-white">
-                        <p>Admin Session</p>
-                        <a href="#" class="link text-white" data-toggle="tooltip" title="" data-original-title="Settings"><i class="ion ion-gear-b"></i></a>
-                        <a href="#" class="link text-white" data-toggle="tooltip" title="" data-original-title="Email"><i class="ion ion-android-mail"></i></a>
-                        <a href="#" class="link text-white" data-toggle="tooltip" title="" data-original-title="Logout"><i class="ion ion-power"></i></a>
-                    </div>
-                </div>
-                <!-- sidebar menu -->
-                <ul class="sidebar-menu" data-widget="tree">
 
+                    @if (Session["user"] != null)
+                    {
+                        
+                        string path = "~/images/" + user.picture;
+                        <div class="image">
+                            <img src="@Url.Content(path)" class="rounded-circle" alt="User Image">
+                        </div>
+                        <div class="info text-white">
+                            <p>@user.name @user.lastname</p>
+                            <a href="@Url.Action("Profile","Applicant")" class="link text-white" data-toggle="tooltip" title="" data-original-title="Settings"><img src="../images/svg/baseline-settings-20px_white.svg" /></a>
+                            <a href="#" class="link text-white" data-toggle="tooltip" title="" data-original-title="Email"><i class="ion ion-android-mail"></i></a>
+                            <a href="@Url.Action("LogOut","User")" class="link text-white" data-toggle="tooltip" title="" data-original-title="Logout"><img src="../images/svg/baseline-power_settings_new-24px_white.svg" /></a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="image">
+                            <img src="../images/default.png" class="rounded-circle" alt="User Image">
+                        </div>
+                        <div class="info text-white">
+                            <p>Admin Session</p>                        
+                            <a href="@Url.Action("Login","User")" class="link text-white" data-toggle="tooltip" title="" data-original-title="Login"><img src="../images/svg/baseline-input-24px.svg" /></a>
+                        </div>
+                    }
+
+                </div>
+                <!-- sidebar menu -->                 
+                <ul class="sidebar-menu" data-widget="tree">
+                @if (Session["user"] != null)
+                {
                     <li class="treeview active">
                         <a href="#">
-                            <img src="../images/svg/baseline-dashboard-24px.svg"/>
+                            <img src="../images/svg/baseline-dashboard-24px.svg" />
                             <span>Dashboard</span>
                             <span class="pull-right-container">
                             </span>
@@ -173,66 +195,24 @@
                     <!-- Lahné talka example taa partie taa crud wala ay zok om haja theb taamlha -->
                     <li class="treeview">
                         <a href="#">
-                            <img src="../images/svg/baseline-menu-24px.svg"/>
+                            <img src="../images/svg/baseline-menu-24px.svg" />
                             <span>App</span>
                             <span class="pull-right-container">
-                                <img src="../images/svg/baseline-keyboard_arrow_right-24px.svg"/>
+                                <img src="../images/svg/baseline-keyboard_arrow_right-24px.svg" />
                             </span>
                         </a>
                         <ul class="treeview-menu">
                             <li><a href="pages/app/app-chat.html">Chat app</a></li>
                         </ul>
                     </li>
-                    <!-- toufa lahné -->
+                     <!-- toufa lahné -->
                     <!----------------------------------------------------------------------------------------->
                     <!-----------------------------------BLOCK------------------------------------------------->
                     <!-- Lahné talka example taa partie taa crud wala ay zok om haja theb taamlha -->
-                    <li class="treeview">
-                        <a href="#">
-                            <img src="../images/svg/baseline-mail-24px.svg"/> <span>Mailbox</span>
-                            <span class="pull-right-container">
-                                <img src="../images/svg/baseline-keyboard_arrow_right-24px.svg" />
-                            </span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="pages/mailbox/mailbox.html">Inbox</a></li>
-                        </ul>
-                    </li>
-                    <!-- toufa lahné -->
-                    <!----------------------------------------------------------------------------------------->
-                    <!-----------------------------------BLOCK------------------------------------------------->
-                    <li class="treeview">
-                        <a href="#">
-                            <img src="../images/svg/baseline-recent_actors-24px.svg"/> <span>INTERNATIONAL</span>
-                            <span class="pull-right-container">
-                                <img src="../images/svg/baseline-keyboard_arrow_right-24px.svg" />
-                            </span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="pages/mailbox/mailbox.html">Inbox</a></li>
-                        </ul>
-                    </li>
-
-                    <!-- TNAJEM THOT CRUD TEEK WALA METIE TEEK LAHNE bien sur taba3 nayek el template ya bhim-->
-                    <!----------------------------------------------------------------------------------------->
-                    <!-----------------------------------BLOCK------------------------------------------------->
-                    <li class="treeview">
-                        <a href="#">
-                            <img src="../images/svg/baseline-queue-24px.svg"/> <span>REQUEST MANAGEMENT</span>
-                            <span class="pull-right-container">
-                                <img src="../images/svg/baseline-keyboard_arrow_right-24px.svg" />
-                            </span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="pages/mailbox/mailbox.html">Inbox</a></li>
-                        </ul>
-                    </li>
-                    <!-- TNAJEM THOT CRUD TEEK WALA METIE TEEK LAHNE bien sur taba3 nayek el template ya bhim-->
-                    <!----------------------------------------------------------------------------------------->
 
                     <li class="treeview">
                         <a href="#">
-                            <img src="../images/svg/baseline-transfer_within_a_station-24px.svg"/> <span>RESSOURCE</span>
+                            <img src="../images/svg/baseline-mail-24px.svg" /> <span>Mailbox</span>
                             <span class="pull-right-container">
                                 <img src="../images/svg/baseline-keyboard_arrow_right-24px.svg" />
                             </span>
@@ -241,12 +221,26 @@
                             <li><a href="pages/mailbox/mailbox.html">Inbox</a></li>
                         </ul>
                     </li>
-                    <!-- TNAJEM THOT CRUD TEEK WALA METIE TEEK LAHNE bien sur taba3 nayek el template ya bhim-->
-                    <!----------------------------------------------------------------------------------------->
-
+                    if (user.role.Equals("Applicant") || user.role.Equals("Responsable"))
+                    {
+                        <li class="treeview">
+                            <a href="#">
+                                <img src="../images/svg/baseline-recent_actors-24px.svg" /> <span>INTERNATIONAL</span>
+                                <span class="pull-right-container">
+                                    <img src="../images/svg/baseline-keyboard_arrow_right-24px.svg" />
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="@Url.Action("Index","Applicant")">All applicant</a></li>
+                            </ul>
+                            <ul class="treeview-menu">
+                                <li><a href="@Url.Action("Index","Test")">Tests</a></li>
+                            </ul>                     
+                        </li>
+                    }
                     <li class="treeview">
                         <a href="#">
-                            <img src="../images/svg/baseline-business_center-24px.svg"/> <span>PROJECT/CLIENT</span>
+                            <img src="../images/svg/baseline-queue-24px.svg" /> <span>REQUEST MANAGEMENT</span>
                             <span class="pull-right-container">
                                 <img src="../images/svg/baseline-keyboard_arrow_right-24px.svg" />
                             </span>
@@ -255,12 +249,9 @@
                             <li><a href="pages/mailbox/mailbox.html">Inbox</a></li>
                         </ul>
                     </li>
-                    <!-- TNAJEM THOT CRUD TEEK WALA METIE TEEK LAHNE bien sur taba3 nayek el template ya bhim-->
-                    <!----------------------------------------------------------------------------------------->
-
                     <li class="treeview">
                         <a href="#">
-                            <img src="../images/svg/baseline-supervisor_account-24px.svg"/> <span>MANDATE</span>
+                            <img src="../images/svg/baseline-transfer_within_a_station-24px.svg" /> <span>RESSOURCE</span>
                             <span class="pull-right-container">
                                 <img src="../images/svg/baseline-keyboard_arrow_right-24px.svg" />
                             </span>
@@ -269,10 +260,30 @@
                             <li><a href="pages/mailbox/mailbox.html">Inbox</a></li>
                         </ul>
                     </li>
-                    <!-- TNAJEM THOT CRUD TEEK WALA METIE TEEK LAHNE bien sur taba3 nayek el template ya bhim-->
-                    <!----------------------------------------------------------------------------------------->
-
-                </ul>
+                    <li class="treeview">
+                        <a href="#">
+                            <img src="../images/svg/baseline-business_center-24px.svg" /> <span>PROJECT/CLIENT</span>
+                            <span class="pull-right-container">
+                                <img src="../images/svg/baseline-keyboard_arrow_right-24px.svg" />
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="pages/mailbox/mailbox.html">Inbox</a></li>
+                        </ul>
+                    </li>
+                    <li class="treeview">
+                        <a href="#">
+                            <img src="../images/svg/baseline-supervisor_account-24px.svg" /> <span>MANDATE</span>
+                            <span class="pull-right-container">
+                                <img src="../images/svg/baseline-keyboard_arrow_right-24px.svg" />
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="pages/mailbox/mailbox.html">Inbox</a></li>
+                        </ul>
+                    </li>
+                }
+                </ul>            
             </section>
         </aside>
 
@@ -289,15 +300,11 @@
                     <li class="breadcrumb-item active">Dashboard</li>
                 </ol>
             </section>
-
-            <!-- Main content -->
             <section class="content">
-
+                <!-- Main content -->
                 @RenderBody()
-
-
+                <!-- /.content -->
             </section>
-            <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
 
