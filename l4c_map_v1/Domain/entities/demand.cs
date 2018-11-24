@@ -12,8 +12,8 @@ namespace Domain.entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public demand()
         {
-            applicants = new HashSet<applicant>();
-            meetings = new HashSet<meeting>();
+            //applicants = new HashSet<applicant>();
+            //meetings = new HashSet<meeting>();
         }
 
         [Key]
@@ -28,14 +28,14 @@ namespace Domain.entities
         [StringLength(255)]
         public string specialty { get; set; }
 
-        public int? idFile { get; set; }
+        //public int? idFile { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<applicant> applicants { get; set; }
+        /*[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<applicant> applicants { get; set; }*/
 
         public virtual file file { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<meeting> meetings { get; set; }
+        /*[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<meeting> meetings { get; set; }*/
     }
 }

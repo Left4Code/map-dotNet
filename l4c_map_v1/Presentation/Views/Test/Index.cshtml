@@ -1,0 +1,72 @@
+﻿@model IEnumerable<Presentation.Models.TestVm>
+@{
+    ViewBag.Title = "All tests";
+    var user = (Domain.entities.user)HttpContext.Current.Session["user"];
+}
+
+@if (user != null && (user.role.Equals("Applicant")))
+{
+    <h2>All tests</h2>
+    using (Html.BeginForm())
+    {
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                Search By Name : @Html.TextBox("searchstring")
+
+                <input type="submit" value="Search" class="btn btn-danger" />
+            </div>
+        </div>
+    }
+    <div class="box-body">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr class="bg-gray">
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Speciality</th>
+                        <th scope="col">Difficulty</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var test in Model)
+                {
+                    if (test.difficulty < 4)
+                    {
+                            <tr class="bg-primary">
+                                <th scope="row">@test.idTest</th>
+                                <td>@test.name</td>
+                                <td>@test.specialty</td>
+                                <td>@test.difficulty</td>
+                            </tr>
+                        }
+                        if (test.difficulty >= 4 && test.difficulty <= 7)
+                        {
+                            <tr class="bg-warning">
+                                <th scope="row">@test.idTest</th>
+                                <td>@test.name</td>
+                                <td>@test.specialty</td>
+                                <td>@test.difficulty</td>
+                            </tr>
+                        }
+                        else
+                        {
+                            <tr class="bg-danger">
+                                <th scope="row">@test.idTest</th>
+                                <td>@test.name</td>
+                                <td>@test.specialty</td>
+                                <td>@test.difficulty</td>
+                            </tr>
+                        }
+
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+@if(user == null)
+{
+    <p>Nope</p>
+}

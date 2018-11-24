@@ -1,0 +1,61 @@
+﻿@model Presentation.Models.Credential
+
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>
+<section class="h-p100">
+    <div class="container h-p100">
+        <div class="row h-p100 align-items-center justify-content-md-center">
+            <div class="col-lg-4 col-md-8 col-12">
+                <div class="box box-body rounded">
+                    <h3 class="login-box-msg">Sign in to start your session</h3>
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.username, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.username, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.username, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.password, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="checkbox text-center">
+                                    <input type="checkbox" id="basic_checkbox_12">
+                                    <label for="basic_checkbox_12">Remember Me</label>
+                                </div>
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-12 text-center">
+                                <button type="submit" class="btn btn-primary btn-block mb-15">SIGN IN</button>
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-12 text-center">
+                                <div class="fog-pwd">
+                                    <a href="javascript:void(0)"><img src="../images/svg/baseline-lock-24px.svg" /> Forgot pwd?</a><br>
+                                </div>
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                    }
+                </div>
+                <!-- /.social-auth-links -->
+
+                <div class="margin-top-30 text-center text-white">
+                    <p style="color:black">Don't have an account? <a href="@Url.Action("Create","Applicant")" class="text-info m-l-5">Sign Up</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

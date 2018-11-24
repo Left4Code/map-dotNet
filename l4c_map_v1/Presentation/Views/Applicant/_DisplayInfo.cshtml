@@ -1,0 +1,30 @@
+﻿@model Presentation.Models.TestVm
+
+<div class="media bg-white">
+    <a class="avatar avatar-lg status-success" href="#">
+        <img />
+    </a>
+    <div class="media-body">
+        <a href="#">
+            <strong>@Model.name</strong>
+        </a>
+        <small class="sidetitle">
+            @Model.specialty
+        </small>
+        <div>
+            <p>Defficulty : @Model.difficulty</p>
+            <p>Time : 20minute</p>
+        </div>
+        <nav class="nav mt-2">     
+                <i class="icon-clock">---Not passed-----</i> <i class="icon*-cancel" style="color:red"></i>      
+        </nav>
+        <div>
+            <a href="@Url.Action("Create","Question", new {number=0 })">
+            @{ 
+              Session["test"] = Model;
+            }
+            Make
+            </a>
+        </div>
+    </div>
+</div>
