@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Presentation.Models;
+using Presentation.Utils;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -48,6 +49,37 @@ namespace Presentation.Controllers
             return new JsonResult { Data = new { status = status } };
         }
 
+        [HttpPost]
+        public JsonResult Modify(demand_time_offVM e)
+        {
+            var status = false;
+            {
+                    HttpClient client = new HttpClient();
+                    client.BaseAddress = new Uri("http://localhost:18080");
+                    StringContent content = new StringContent(JsonConvert.SerializeObject(e), UTF8Encoding.UTF8, "application/json");
+                    client.PutAsJsonAsync<demand_time_offVM>("l4c_map-v2-web/rest/conge?idResponsable=7", e).ContinueWith((postTask) =>
+                    {
+                        postTask.Result.EnsureSuccessStatusCode();
+
+                    });
+                Gmailer.GmailUsername = "mysoulmatepi@gmail.com";
+                Gmailer.GmailPassword = "mysoulmatePI*";
+
+                Gmailer mailer = new Gmailer();
+                mailer.ToEmail = "mohamedbadis.maalej@esprit.tn";
+                mailer.Subject = "Etat de congé";
+                mailer.Body = "Etat de votre demande : <br>" + e.StateDemande;
+                mailer.IsHtml = true;
+                mailer.Send();
+                
+
+
+
+                status = true;
+            }
+            return new JsonResult { Data = new { status = status } };
+        }
+
 
         public JsonResult GetEvents()
         {
@@ -82,5 +114,7 @@ namespace Presentation.Controllers
             return new JsonResult { Data = new { status = status } };
 
         }
+
+
     }
 }

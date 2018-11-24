@@ -4,90 +4,217 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            Name
-        </th>
-        <th>
-            Last Name
-        </th>
-        <th>
-            Salary
-        </th>
-        <th>
-            Started working
-        </th>
-        <th>
-            Working end
-        </th>
-        <th>
-            Score
-        </th>
-        <th>
-            Availability
-        </th>
-        <th>
-           Seniority
-        </th>
-        <th>
-            Specialty
-        </th>
-        <th>
-            Contract type
-        </th>
-        <th>
-            Actions
-        </th>
-    </tr>
 
-@foreach (var item in ViewBag.result) {
-    <tr>
+@Html.ActionLink("Add skills", "Create", "Skils", null, null)
 
-     
-        <td>
-            @item.Name
-        </td>
-        <td>
-            @item.LastName
-        </td>
-        <td>
-            @item.cost
-        </td>
-        <td>
-            @item.dateDebut.ToShortDateString()
-        </td>
-        <td>
-            @item.dateFin.ToShortDateString()
-        </td>
-        <td>
-            @item.note
-        </td>
-        <td>
-            @item.cv
-        </td>
-        <td>
-           @item.seniority
-        </td>
-        <td>
-            @item.specialty
-        </td>
-        <td>
-            @item.typeContrat
-        </td>
-      
-        <td>
-            @Html.ActionLink("Details","Details", "Ressource", new { id = @item.id },null) <br />
-        </td>
+
+
+<div >
+    <div >
+        <div >
+            <div class="box-header with-border">
+                <h3 class="box-title">Ressources list</h3>
+                <div class="box-tools">
+                    <div class="input-group input-group-sm" style="width: 150px;">
+                        <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+                        <div class="input-group-btn">
+                            <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body no-padding">
+                <div >
+                    <table class="table table-hover">
+                        <tr>
+                            <th>
+                                Name
+                            </th>
+                         
+                            <th>
+                                Started working
+                            </th>
+                            <th>
+                                Working end
+                            </th>
+                         
+                            <th>
+                                Availability
+                            </th>
+                            <th>
+                                Seniority
+                            </th>
+                            <th>
+                                Specialty
+                            </th>
+
+                            <th>
+                                Liste demandes
+                            </th>
+                            <th>
+                                Actions
+                            </th>
+                        </tr>
+                        @foreach (var item in ViewBag.result)
+                        {
+                           
+                                <tr >
+
+
+                                    <td>@item.Name @item.LastName</td>
+                                    <td><span class="text-muted"><i class="fa fa-clock-o"></i> @item.dateDebut.ToShortDateString()</span></td>
+                                    <td><span class="text-muted"><i class="fa fa-clock-o"></i> @item.dateFin.ToShortDateString()</span></td>
+
+                                    @if (item.cv != "Available")
+                                    {
+                                        <td>
+                                            <span class="label label-danger">@item.cv</span>
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td>
+                                            <span class="label label-success">@item.cv</span>
+                                        </td>
+
+                                    }
+
+                                    <td>@item.seniority</td>
+                                    <td>@item.businessSector</td>
+
+                                    <td id="conges">
+
+                                        @foreach (var demande in item.listeDemandesTimeOff)
+                                        {
+
+                                            if (demande.StateDemande == "Waiting")
+                                            {
+
+                                                <div class="dropdown">
+                                                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                                        @demande.StateDemande @demande.DateBegin.ToShortDateString() -> @demande.DateEnd.ToShortDateString()
+                                                        <span class="caret"></span>
+                                                    </button>
+                                                    <ul class="dropdown-menu">
+                                                        <li><span type="button" style="width:100px" class="btn btn-success" onclick='DOt(@Html.Raw(Json.Encode(@demande)))' value='Accepted' id=_@demande.idDemandeTimeOff>Accepted</span></li>
+                                                        <li><span type="button" style="width:100px" class="btn btn-danger" onclick='DOt2(@Html.Raw(Json.Encode(@demande)))' value='Denied' id=-@demande.idDemandeTimeOff>Denied</span></li>
+
+                                                    </ul>
+                                                </div>
+
+                                            }
+                                            else
+                                            {
+
+                                            }
+                                        }
+
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-danger " id="delete" value=@item.id><i class="ion ion-trash-a"></i></button>
+                                        <button  type="button" class="btn btn-success " id="details" value=@item.id>
+                                            <i class="ion ion-share" >
+                                                
+                                            </i>
+                                           
+                                        </button>
+                                    </td>
+
+                                </tr>
+                        }
+
+
+
+                    </table>
+                </div>
+            </div>
+            <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+    </div>
+</div>
+<!-- /.content -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+@section scripts{
+    <script>
         
-    </tr>
-}
-    @Html.ActionLink("Add skills", "Create", "Skils", null , null)
+        $(document).ready(function(){
+
+            if($.trim($('#conges').html()).length===0){
+                $('#conges').html('None');
+            }
+        });
+       
+            function DOt(obj) {
+
+            
+                obj.StateDemande = $('span[id^="_"]').html();
+                
+                $.ajax({
+                    type: "POST",
+                    url: 'http://localhost:50717/Calendar/Modify',
+                    data:obj,
+                    success: function (data) {
+                        if (data.status) {
+                            $('span[id^="_"]').parentsUntil("td").hide();
+                        }
+                    },
+                    error: function () {
+                        alert('Failed');
+                    }
+                })
+            };
+            function DOt2(obj) {
 
 
-</table>
+                obj.StateDemande = $('span[id^="-"]').html();
+                $.ajax({
+                    type: "POST",
+                    url: 'http://localhost:50717/Calendar/Modify',
+                    data: obj,
+                    success: function (data) {
+                        if (data.status) {
+                            $('span[id^="-"]').parentsUntil("td").hide();
+
+                        }
+                    },
+                    error: function () {
+                        alert('Failed');
+                    }
+                })
+            };
+
+            $('#delete').click(function(){
+                id= $('#delete').val();
+                $('#delete').closest('tr').remove();
+                $.ajax({
+                    type: "POST",
+                    url: 'http://localhost:50717/Ressource/Delete',
+                    data:{ 'id': id },
+                    success: function (data) {
+                        if (data.status) {
+                            $('#delete').parentsUntil("tr").hide();
+
+                        }
+                    },
+                    error: function () {
+                        alert('Failed');
+                    }
+                })
+
+            });
+
+            $('#details').click(function(){
+                var actionurl  = "http://localhost:50717/Ressource/Details/"+ $('#details').val();
+                window.open(actionurl);
+
+            });
+
+
+</script>
+    }

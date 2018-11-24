@@ -156,14 +156,17 @@ namespace Presentation.Controllers
 
         // POST: Ressource/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id)
+        public JsonResult Delete(int id)
         {
 
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri("http://localhost:18080");
             client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
             HttpResponseMessage response1 = client.DeleteAsync("l4c_map-v2-web/rest/badis/" + id).Result;
-            return RedirectToAction("Index");
+            var status = true;
+
+            return new JsonResult { Data = new { status = status } };
+
 
         }
     }
