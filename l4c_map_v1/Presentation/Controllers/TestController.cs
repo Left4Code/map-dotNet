@@ -23,17 +23,37 @@ namespace Presentation.Controllers
             var testsvm = new List<TestVm>();
             if (response.IsSuccessStatusCode)
             {
-                var tests =response.Content.ReadAsAsync<IEnumerable<test>>().Result;
-                foreach(test test in tests)
+                var tests = response.Content.ReadAsAsync<IEnumerable<test>>().Result;
+                foreach (test test in tests)
                 {
-                    testsvm.Add(new TestVm()
+                    TestVm tvm = new TestVm()
                     {
                         dateOfPassing = test.dateOfPassing,
                         difficulty = test.difficulty,
+                        //files = test.files,
+                        //idResponsable = test.idResponsable,
                         idTest = test.idTest,
+                        mark = test.mark,
                         name = test.name,
-                        specialty = test.specialty
-                    });
+                        specialty = test.specialty,
+                    };
+                    Client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                    HttpResponseMessage response_question = Client.GetAsync("/l4c_map-v2-web/rest/question/" + test.idTest).Result;
+                    ICollection<QuestionVm> allquestion = (ICollection<QuestionVm>)response_question.Content.ReadAsAsync<IEnumerable<QuestionVm>>().Result;
+                    foreach (QuestionVm question in allquestion)
+                    {
+                        tvm.questions.Add(new QuestionVm()
+                        {
+                            correct = question.correct,
+                            idQuestion = question.idQuestion,
+                            syn1 = question.syn1,
+                            syn2 = question.syn2,
+                            syn3 = question.syn3,
+                            task = question.task,
+                            test = question.test
+                        });
+                    }
+                    testsvm.Add(tvm);
                 }
             }
             Session["alltest"] = testsvm;
@@ -43,7 +63,7 @@ namespace Presentation.Controllers
         public ActionResult Index(string searchstring)
         {
             List<TestVm> tests = Session["alltest"] as List<TestVm>;
-          
+
             if (!String.IsNullOrEmpty(searchstring))
             {
                 tests = tests.Where(m => m.name.ToLower().Contains(searchstring.ToLower())).ToList();
@@ -76,7 +96,7 @@ namespace Presentation.Controllers
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri("http://localhost:18080");
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            client.PutAsJsonAsync<test>("/l4c_map-v2-web/rest/applicant/"+ user.id, newtest).ContinueWith((postTask) => postTask.Result.EnsureSuccessStatusCode());
+            client.PutAsJsonAsync<test>("/l4c_map-v2-web/rest/applicant/" + user.id, newtest).ContinueWith((postTask) => postTask.Result.EnsureSuccessStatusCode());
             return RedirectToAction("Profile", "Applicant");
         }
 
@@ -84,12 +104,12 @@ namespace Presentation.Controllers
         [HttpPost]
         public ActionResult Create(TestVm test)
         {
-            TestVm testvm = (TestVm) Session["test"];
-            if(test != null)
+            TestVm testvm = (TestVm)Session["test"];
+            if (test != null)
             {
-                foreach(var question in test.questions)
+                foreach (var question in test.questions)
                 {
-                    if(question.numberChosed.Equals("first"))
+                    if (question.numberChosed.Equals("first"))
                     {
                         if (question.correct.Equals(question.syn1))
                         {
@@ -112,7 +132,7 @@ namespace Presentation.Controllers
                     }
                 }
             }
-            return RedirectToAction("Profile","Applicant");
+            return RedirectToAction("Profile", "Applicant");
         }
 
         // GET: Test/Edit/5
@@ -167,7 +187,7 @@ namespace Presentation.Controllers
         public async Task<ActionResult> Add(TestVm testvm)
         {
             user user = (user)Session["user"];
-            if (ModelState.IsValid && user!= null && user.role.Equals("Responsable"))
+            if (ModelState.IsValid && user != null && user.role.Equals("Responsable"))
             {
                 test test = new test()
                 {
@@ -181,8 +201,8 @@ namespace Presentation.Controllers
                 HttpResponseMessage response = await client.PostAsJsonAsync<test>("/l4c_map-v2-web/rest/responsable/" + user.id, test).ContinueWith((postTask) => postTask.Result.EnsureSuccessStatusCode());
                 string id = response.Content.ReadAsStringAsync().Result.ToString();
                 testvm.idTest = System.Convert.ToInt32(id);
-                return RedirectToAction("Add","Question",testvm);
-            }  
+                return RedirectToAction("Add", "Question", testvm);
+            }
             return RedirectToAction("Index", "Applicant", testvm);
         }
     }

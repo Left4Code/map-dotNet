@@ -34,14 +34,14 @@
             <nav class="navbar navbar-static-top">
                 <!-- Sidebar toggle button-->
                 <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-                    <img src="../images/svg/baseline-list-24px.svg"/>
+                    <i class="icon-th-list"></i>
                 </a>
 
                 <div class="navbar-custom-menu">
                     <ul class="nav navbar-nav">
 
                         <li class="search-box">
-                            <a class="nav-link hidden-sm-down" href="javascript:void(0)"><img src="../../images/svg/baseline-search-24px.svg"/></a>
+                            <a class="nav-link hidden-sm-down" href="javascript:void(0)"><i class="icon-search"></i></a>
                             <form class="app-search" style="display: none;">
                                 <input type="text" class="form-control" placeholder="Search &amp; enter"> <a class="srh-btn"><i class="ti-close"></i></a>
                             </form>
@@ -50,7 +50,7 @@
                         <!-- Messages -->
                         <li class="dropdown messages-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <img src="../../images/svg/baseline-email-24px.svg">
+                                <i class="icon-mail-alt"></i>
                             </a>
                             <ul class="dropdown-menu scale-up">
                                 <li class="header bg-primary text-white">You have 5 messages</li>
@@ -82,7 +82,7 @@
                         <!-- Notifications -->
                         <li class="dropdown notifications-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <img src="../../images/svg/baseline-notification_important-24px.svg"/>
+                                <i class="icon-bell-alt"></i>
                             </a>
                             <ul class="dropdown-menu scale-up">
                                 <li class="header bg-primary text-white">You have 7 notifications</li>
@@ -131,7 +131,7 @@
                         </li>
                         <!-- Control Sidebar Toggle Button -->
                         <li>
-                            <a href="#" data-toggle="control-sidebar"><img src="../../images/svg/baseline-settings-20px.svg"/></a>
+                            <a href="#" data-toggle="control-sidebar"><i class="icon-cog"></i></a>
                         </li>
                     </ul>
                 </div>
@@ -160,9 +160,9 @@
                         </div>
                         <div class="info text-white">
                             <p>@user.name @user.lastname</p>
-                            <a href="@Url.Action("Profile","Applicant")" class="link text-white" data-toggle="tooltip" title="" data-original-title="Settings"><img src="../images/svg/baseline-settings-20px_white.svg" /></a>
-                            <a href="#" class="link text-white" data-toggle="tooltip" title="" data-original-title="Email"><i class="ion ion-android-mail"></i></a>
-                            <a href="@Url.Action("LogOut","User")" class="link text-white" data-toggle="tooltip" title="" data-original-title="Logout"><img src="../images/svg/baseline-power_settings_new-24px_white.svg" /></a>
+                            <a href="@Url.Action("Profile","Applicant")" class="link text-white" data-toggle="tooltip" title="" data-original-title="Settings"><i class="icon-cog" style="font-size:25px"></i></a>
+                            <a></a>
+                            <a href="@Url.Action("LogOut","User")" class="link text-white" data-toggle="tooltip" title="" data-original-title="Logout"><i class="icon-logout" style="font-size:20px"></i></a>
                         </div>
                     }
                     else
@@ -172,7 +172,7 @@
                         </div>
                         <div class="info text-white">
                             <p>Admin Session</p>                        
-                            <a href="@Url.Action("Login","User")" class="link text-white" data-toggle="tooltip" title="" data-original-title="Login"><img src="../images/svg/baseline-input-24px.svg" /></a>
+                            <a href="@Url.Action("Login","User")" class="link text-white" data-toggle="tooltip" title="" data-original-title="Login"><i class="icon-login" style="font-size:25px"></i></a>
                         </div>
                     }
                 </div>
@@ -182,7 +182,7 @@
                     <li class="treeview active">
                         <a href="#">
 
-                            <img src="../images/svg/baseline-dashboard-24px.svg" />
+                            <i class="icon-th"></i>
                             <span>Dashboard</span>
                             <span class="pull-right-container">
                             </span>
@@ -192,10 +192,10 @@
                     <!-- Lahné talka example taa partie taa crud wala ay zok om haja theb taamlha -->
                     <li class="treeview">
                         <a href="#">
-                            <img src="../images/svg/baseline-menu-24px.svg" />
+                            <i class="icon-sliders"></i>
                             <span>App</span>
                             <span class="pull-right-container">
-                                <img src="../images/svg/baseline-keyboard_arrow_right-24px.svg" />
+                                <i class="icon-right-open-mini" style="font-size:20px"></i>
                             </span>
                         </a>
                         <ul class="treeview-menu">
@@ -209,9 +209,9 @@
 
                     <li class="treeview">
                         <a href="#">
-                            <img src="../../images/svg/baseline-mail-24px.svg"/> <span>Mailbox</span>
+                            <i class="icon-mail-alt"></i> <span>Mailbox</span>
                             <span class="pull-right-container">
-                                <img src="../../images/svg/baseline-keyboard_arrow_right-24px.svg" />
+                                <i class="icon-right-open-mini" style="font-size:20px"></i>
                             </span>
                         </a>
                         <ul class="treeview-menu">
@@ -225,9 +225,9 @@
                     {
                         <li class="treeview">
                             <a href="#">
-                                <img src="../images/svg/baseline-recent_actors-24px.svg" /> <span>INTERNATIONAL</span>
+                                <i class="icon-globe"></i> <span>INTERNATIONAL</span>
                                 <span class="pull-right-container">
-                                    <img src="../images/svg/baseline-keyboard_arrow_right-24px.svg" />
+                                    <i class="icon-right-open-mini" style="font-size:20px"></i>
                                 </span>
                             </a>
                             <ul class="treeview-menu">
@@ -238,51 +238,62 @@
                             </ul>
                         </li>
                     }
-                                         
-                    <li class="treeview">
-                        <a href="#">
-                            <img src="../images/svg/baseline-queue-24px.svg" /> <span>REQUEST MANAGEMENT</span>
-                            <span class="pull-right-container">
-                                <img src="../../images/svg/baseline-keyboard_arrow_right-24px.svg" />
-                            </span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="pages/mailbox/mailbox.html">Inbox</a></li>
-                        </ul>
-                    </li>
-                    <li class="treeview">
-                        <a href="#">
-                            <img src="../images/svg/baseline-transfer_within_a_station-24px.svg" /> <span>RESSOURCE</span>
-                            <span class="pull-right-container">
-                                <img src="../../images/svg/baseline-keyboard_arrow_right-24px.svg" />
-                            </span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="pages/mailbox/mailbox.html">Inbox</a></li>
-                        </ul>
-                    </li>
-                    <li class="treeview">
-                        <a href="#">
-                            <img src="../images/svg/baseline-business_center-24px.svg" /> <span>PROJECT/CLIENT</span>
-                            <span class="pull-right-container">
-                                <img src="../../images/svg/baseline-keyboard_arrow_right-24px.svg" />
-                            </span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="pages/mailbox/mailbox.html">Inbox</a></li>
-                        </ul>
-                    </li>
-                    <li class="treeview">
-                        <a href="#">
-                            <img src="../images/svg/baseline-supervisor_account-24px.svg" /> <span>MANDATE</span>
-                            <span class="pull-right-container">
-                                <img src="../../images/svg/baseline-keyboard_arrow_right-24px.svg" />
-                            </span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="pages/mailbox/mailbox.html">Inbox</a></li>
-                        </ul>
-                    </li>
+                    @if (user != null && user.role.Equals("Responsable"))
+                    {
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="icon-comment"></i> <span>REQUEST MANAGEMENT</span>
+                                <span class="pull-right-container">
+                                    <i class="icon-right-open-mini" style="font-size:20px"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="pages/mailbox/mailbox.html">Inbox</a></li>
+                            </ul>
+                        </li>
+                    }
+                    @if (user != null && ((user.role.Equals("Responsable") || user.role.Equals("Ressource"))))
+                    {
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="icon-person"></i> <span>RESSOURCE</span>
+                                <span class="pull-right-container">
+                                    <i class="icon-right-open-mini" style="font-size:20px"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="pages/mailbox/mailbox.html">Inbox</a></li>
+                            </ul>
+                        </li>
+                    }
+                    @if (user != null && (user.role.Equals("Responsable") || user.role.Equals("Client")))
+                    {
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="icon-briefcase"></i> <span>PROJECT/CLIENT</span>
+                                <span class="pull-right-container">
+                                    <i class="icon-right-open-mini" style="font-size:20px"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="pages/mailbox/mailbox.html">Inbox</a></li>
+                            </ul>
+                        </li>
+                    }
+                    @if (user != null && (user.role.Equals("Responsable") || user.role.Equals("Ressource")))
+                    {
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="icon-doc-text"></i> <span>MANDATE</span>
+                                <span class="pull-right-container">
+                                    <i class="icon-right-open-mini" style="font-size:20px"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="pages/mailbox/mailbox.html">Inbox</a></li>
+                            </ul>
+                        </li>
+                    }    
                 }
                 </ul>            
             </section>
@@ -293,7 +304,7 @@
             <!-- Content Header (Page header) -->
             <section class="content-header">
                 <h1>
-                    Dashboard
+                    Levio Dashboard
                     <small>Control panel</small>
                 </h1>
                 <ol class="breadcrumb">

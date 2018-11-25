@@ -102,27 +102,31 @@ namespace Presentation.Controllers
         public async Task<ActionResult> Login(Credential uvm)
         {
             if (ModelState.IsValid)
-            {        
+            {
                 user user = Session["user"] as user;
                 HttpClient client = new HttpClient();
-                client.BaseAddress = new Uri("http://localhost:18080");         
+                client.BaseAddress = new Uri("http://localhost:18080");
                 StringContent content = new StringContent(JsonConvert.SerializeObject(uvm), UTF8Encoding.UTF8, "application/json");
                 HttpResponseMessage response = await client.PostAsJsonAsync("/l4c_map-v2-web/rest/authentication", uvm);
-                Session["token"] =  response.Content.ReadAsStringAsync().Result.ToString();
+                Session["token"] = response.Content.ReadAsStringAsync().Result.ToString();
                 HttpResponseMessage response1 = client.GetAsync("/l4c_map-v2-web/rest/user/" + uvm.username).Result;
                 if (response.IsSuccessStatusCode && response1.IsSuccessStatusCode)
                 {
                     Session["user"] = response1.Content.ReadAsAsync<user>().Result;
                 }
+                user = (user)Session["user"];
+                if (user.role.Equals("Applicant"))
+                    return RedirectToAction("Profile", "Applicant");
+                else
+                    return RedirectToAction("Index", "Home");
             }
-            var u = Session["user"];
-            return RedirectToAction("Index","Applicant");
+            return View();
         }
         public ActionResult LogOut()
         {
             Session["user"] = null;
             Session["token"] = null;
-            return RedirectToAction("Index","Home");
+            return RedirectToAction("Index", "Home");
         }
     }
 }
