@@ -60,15 +60,15 @@
                                 Actions
                             </th>
                         </tr>
-                        @foreach (var item in ViewBag.result)
+                        @foreach (Presentation.Models.Ressource item in ViewBag.result)
                         {
                            
                                 <tr >
 
 
-                                    <td>@item.Name @item.LastName</td>
-                                    <td><span class="text-muted"><i class="fa fa-clock-o"></i> @item.dateDebut.ToShortDateString()</span></td>
-                                    <td><span class="text-muted"><i class="fa fa-clock-o"></i> @item.dateFin.ToShortDateString()</span></td>
+                                    <td>@item.name @item.lastname</td>
+                                    <td><span class="text-muted"><i class="fa fa-clock-o"></i> @item.dateDebut</span></td>
+                                    <td><span class="text-muted"><i class="fa fa-clock-o"></i> @item.dateFin</span></td>
 
                                     @if (item.cv != "Available")
                                     {
@@ -97,7 +97,7 @@
 
                                                 <div class="dropdown">
                                                     <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-                                                        @demande.StateDemande @demande.DateBegin.ToShortDateString() -> @demande.DateEnd.ToShortDateString()
+                                                        @demande.StateDemande @demande.DateBegin -> @demande.DateEnd
                                                         <span class="caret"></span>
                                                     </button>
                                                     <ul class="dropdown-menu">
@@ -105,6 +105,8 @@
                                                         <li><span type="button" style="width:100px" class="btn btn-danger" onclick='DOt2(@Html.Raw(Json.Encode(@demande)))' value='Denied' id=-@demande.idDemandeTimeOff>Denied</span></li>
 
                                                     </ul>
+                                                    
+
                                                 </div>
 
                                             }

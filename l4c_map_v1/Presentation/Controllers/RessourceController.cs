@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Domain.entities;
+using Newtonsoft.Json;
 using Presentation.Models;
 using System;
 using System.Collections.Generic;
@@ -16,19 +17,24 @@ namespace Presentation.Controllers
         // GET: Ressource
         public ActionResult Index()
         {
-            HttpClient httpClient = new HttpClient();
-            httpClient.BaseAddress = new Uri("http://localhost:18080");
-            httpClient.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-            HttpResponseMessage response = httpClient.GetAsync("l4c_map-v2-web/rest/badis/0").Result;
-            if (response.IsSuccessStatusCode)
+            user user = (user)Session["user"]; 
+            if(user != null && user.role.Equals("Responsable"))
             {
-                ViewBag.result = response.Content.ReadAsAsync<IEnumerable<Ressource>>().Result;
-            }
-            else
-            {
-                ViewBag.result = "error";
-            }
-            return View();
+                HttpClient httpClient = new HttpClient();
+                httpClient.BaseAddress = new Uri("http://localhost:18080");
+                httpClient.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+                HttpResponseMessage response = httpClient.GetAsync("l4c_map-v2-web/rest/badis/0").Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    ViewBag.result = response.Content.ReadAsAsync<IEnumerable<Ressource>>().Result;
+                }
+                else
+                {
+                    ViewBag.result = "error";
+                }
+                return View();
+            }       
+            return RedirectToAction("Error","Shared");
         }
 
         // GET: Ressource/Details/5
@@ -118,6 +124,8 @@ namespace Presentation.Controllers
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri("http://localhost:18080");
             StringContent content = new StringContent(JsonConvert.SerializeObject(rs), UTF8Encoding.UTF8, "application/json");
+            rs.username = res.ressource.name;
+            rs.password = "12345678";
             client.PostAsJsonAsync<Ressource>("l4c_map-v2-web/rest/badis", rs).ContinueWith((postTask) =>
             {
                 postTask.Result.EnsureSuccessStatusCode();

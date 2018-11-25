@@ -9,10 +9,10 @@ namespace Presentation.Models
     public class Ressource
     {
         public int id { get; set; }
-        public String Name { get; set; }
+        public String name { get; set; }
         public String cv { get; set; }
 
-        public String LastName { get; set; }
+        public String lastname { get; set; }
         public float cost { get; set; }
         [DataType(DataType.Date)]
         public DateTime? dateDebut { get; set; }
@@ -27,7 +27,7 @@ namespace Presentation.Models
         public virtual List<Skills> skills { get; set; }
         public virtual List<demand_time_offVM> listeDemandesTimeOff { get; set; }
 
-
-
+        public string username { get; set; }
+        public string password { get; set; }
     }
 }

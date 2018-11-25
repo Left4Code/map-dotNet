@@ -73,6 +73,7 @@
       <HintPath>..\packages\System.Net.Http.2.0.20126.16343\lib\net40\System.Net.Http.WebRequest.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -186,9 +187,12 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ApplicantController.cs" />
+    <Compile Include="Controllers\CalendarController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\QuestionController.cs" />
+    <Compile Include="Controllers\RessourceController.cs" />
+    <Compile Include="Controllers\SkilsController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
@@ -197,10 +201,14 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicantVm.cs" />
     <Compile Include="Models\Credential.cs" />
+    <Compile Include="Models\demand_time_offVM.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ProducerVM.cs" />
     <Compile Include="Models\QuestionVm.cs" />
+    <Compile Include="Models\Ressource.cs" />
+    <Compile Include="Models\RessourceSkills.cs" />
+    <Compile Include="Models\Skills.cs" />
     <Compile Include="Models\TestVm.cs" />
     <Compile Include="Models\UserVm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -275,6 +283,15 @@
     <Content Include="Views\Test\Index.cshtml" />
     <Content Include="Views\Test\Add.cshtml" />
     <Content Include="Views\Question\Add.cshtml" />
+    <Content Include="Views\Calendar\Index.cshtml" />
+    <Content Include="Views\Ressource\Create.cshtml" />
+    <Content Include="Views\Ressource\Delete.cshtml" />
+    <Content Include="Views\Ressource\Details.cshtml" />
+    <Content Include="Views\Ressource\Index.cshtml" />
+    <Content Include="Views\Ressource\_Skill.cshtml" />
+    <Content Include="Views\Ressource\_Skill1.cshtml" />
+    <Content Include="Views\Ressource\_Skill2.cshtml" />
+    <Content Include="Views\Skils\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

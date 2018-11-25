@@ -1,6 +1,5 @@
 ﻿@{ 
     var user = (Domain.entities.user)HttpContext.Current.Session["user"];
-
 }
 <!DOCTYPE html>
 <html>
@@ -17,7 +16,6 @@
 </head>
 <body class="hold-transition skin-blue-light sidebar-mini">
     <div class="wrapper">
-
         <header class="main-header">
             <!-- Logo -->
             <a href="index-2.html" class="logo">
@@ -180,8 +178,7 @@
                 </div>
                 <!-- sidebar menu -->                 
                 <ul class="sidebar-menu" data-widget="tree">
-                @if (Session["user"] != null)
-                {
+             
                     <li class="treeview active">
                         <a href="#">
 
@@ -224,18 +221,7 @@
                     <!-- toufa lahné -->
                     <!----------------------------------------------------------------------------------------->
                     <!-----------------------------------BLOCK------------------------------------------------->
-                    <li class="treeview">
-                        <a href="#">
-                            <img src="../../images/svg/baseline-recent_actors-24px.svg"/> <span>INTERNATIONAL</span>
-                            <span class="pull-right-container">
-                                <img src="../../images/svg/baseline-keyboard_arrow_right-24px.svg" />
-                            </span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="pages/mailbox/mailbox.html">Inbox</a></li>
-                        </ul>
-                    </li>
-                    if (user.role.Equals("Applicant") || user.role.Equals("Responsable"))
+                    @if (user != null && (user.role.Equals("Responsable") || user.role.Equals("Applicant")))
                     {
                         <li class="treeview">
                             <a href="#">
@@ -249,9 +235,10 @@
                             </ul>
                             <ul class="treeview-menu">
                                 <li><a href="@Url.Action("Index","Test")">Tests</a></li>
-                            </ul>                     
+                            </ul>
                         </li>
                     }
+                                         
                     <li class="treeview">
                         <a href="#">
                             <img src="../images/svg/baseline-queue-24px.svg" /> <span>REQUEST MANAGEMENT</span>
