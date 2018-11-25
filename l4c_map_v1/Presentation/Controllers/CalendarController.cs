@@ -27,7 +27,7 @@ namespace Presentation.Controllers
                     HttpClient client = new HttpClient();
                     client.BaseAddress = new Uri("http://localhost:18080");
                     StringContent content = new StringContent(JsonConvert.SerializeObject(e), UTF8Encoding.UTF8, "application/json");
-                    client.PutAsJsonAsync<demand_time_offVM>("l4c_map-v2-web/rest/conge?idRessource=6", e).ContinueWith((postTask) =>
+                    client.PutAsJsonAsync<demand_time_offVM>("l4c_map-v2-web/rest/conge?idRessource=1", e).ContinueWith((postTask) =>
                     {
                         postTask.Result.EnsureSuccessStatusCode();
                        
@@ -38,7 +38,7 @@ namespace Presentation.Controllers
                     HttpClient client = new HttpClient();
                     client.BaseAddress = new Uri("http://localhost:18080");
                     StringContent content = new StringContent(JsonConvert.SerializeObject(e), UTF8Encoding.UTF8, "application/json");
-                    client.PostAsJsonAsync<demand_time_offVM>("l4c_map-v2-web/rest/conge?idRessource=6", e).ContinueWith((postTask) =>
+                    client.PostAsJsonAsync<demand_time_offVM>("l4c_map-v2-web/rest/conge?idRessource=1", e).ContinueWith((postTask) =>
                     {
                         postTask.Result.EnsureSuccessStatusCode();
                     });
@@ -88,7 +88,7 @@ namespace Presentation.Controllers
                 HttpClient httpClient = new HttpClient();
                 httpClient.BaseAddress = new Uri("http://localhost:18080");
                 httpClient.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-                HttpResponseMessage response = httpClient.GetAsync("l4c_map-v2-web/rest/conge?id=6").Result;
+                HttpResponseMessage response = httpClient.GetAsync("l4c_map-v2-web/rest/conge?id=1").Result;
                 if (response.IsSuccessStatusCode)
                 {
                     List<demand_time_offVM> ld =(List<demand_time_offVM>) response.Content.ReadAsAsync<IEnumerable<demand_time_offVM>>().Result;
