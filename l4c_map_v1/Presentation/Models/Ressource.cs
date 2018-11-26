@@ -22,6 +22,8 @@ namespace Presentation.Models
         public int seniority { get; set; }
         public string specialty { get; set; }
         public string typeContrat { get; set; }
+        public string picture { get; set; }
+
 
         public string businessSector { get; set; }
         public virtual List<Skills> skills { get; set; }

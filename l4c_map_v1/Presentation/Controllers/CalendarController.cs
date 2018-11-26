@@ -61,7 +61,7 @@ namespace Presentation.Controllers
 
         [HttpPost]
         public JsonResult Modify(demand_time_offVM e)
-        {
+        { string rep; 
             user user = (user)Session["user"];
             if (user != null && user.role.Equals("Responsable"))
             {
@@ -75,12 +75,20 @@ namespace Presentation.Controllers
                         postTask.Result.EnsureSuccessStatusCode();
 
                     });
+                    if (e.StateDemande == "Accepted") { 
+                     rep = "Votre demande de congée datée du :" + e.DateBegin.Value.ToShortDateString() + " jusqu'au : " + e.DateEnd.Value.ToShortDateString() + " a été : <br> Acceptée" ;
+                    }else
+                    {
+                        rep = "Votre demande de congée datée du :" + e.DateBegin.Value.ToShortDateString() + " jusqu'au : " + e.DateEnd.Value.ToShortDateString() + " a été : <br> Refusée";
+
+                    }
+                    var ss = Session["email"].ToString();
                     Gmailer.GmailUsername = "mysoulmatepi@gmail.com";
                     Gmailer.GmailPassword = "mysoulmatePI*";
                     Gmailer mailer = new Gmailer();
-                    mailer.ToEmail = "mohamedbadis.maalej@esprit.tn";
+                    mailer.ToEmail = ss;
                     mailer.Subject = "Etat de congé";
-                    mailer.Body = "Etat de votre demande : <br>" + e.StateDemande;
+                    mailer.Body = rep;
                     mailer.IsHtml = true;
                     mailer.Send();
                     status = true;

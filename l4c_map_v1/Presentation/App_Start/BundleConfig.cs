@@ -42,9 +42,12 @@ namespace Presentation
                       "~/Content/document/fontello-ie7-codes.css"
                 ));
             bundles.Add(new ScriptBundle("~/bundles/template").Include(
-                      "~/Scripts/jquery.js",
-                      "~/Scripts/popper.min.js",
+                     "~/Scripts/jquery-3.3.1.min.js",
+                      "~/Scripts/jquery-3.3.1.js",
+                                            "~/Scripts/bootstrap.min.js",
+
                       "~/Scripts/bootstrap.js",
+                      "~/Scripts/popper.min.js",
                       "~/Scripts/echarts-en.min.js",
                       "~/Scripts/echarts-liquidfill.min.js",
                       "~/Scripts/ecStat.min.js",
@@ -54,9 +57,7 @@ namespace Presentation
                       "~/Scripts/fastclick.js",
                       "~/Scripts/template.js",
                       "~/Scripts/dashboard.js",
-                      "~/Scripts/demo.js",
-                      "~/Scripts/jquery.min.js",
-                      "~/Scripts/bootstrap.min.js"
+                      "~/Scripts/demo.js"
                 ));
         }
     }

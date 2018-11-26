@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
-using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 
@@ -17,9 +16,7 @@ namespace Presentation.Controllers
         // GET: Ressource
         public ActionResult Index()
         {
-            user user = (user)Session["user"]; 
-            if(user != null && user.role.Equals("Responsable"))
-            {
+
                 HttpClient httpClient = new HttpClient();
                 httpClient.BaseAddress = new Uri("http://localhost:18080");
                 httpClient.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
@@ -33,8 +30,7 @@ namespace Presentation.Controllers
                     ViewBag.result = "error";
                 }
                 return View();
-            }       
-            return RedirectToAction("Error","Shared");
+       
         }
 
         // GET: Ressource/Details/5
