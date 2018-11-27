@@ -1,6 +1,5 @@
 ﻿@{ 
     var user = (Domain.entities.user)HttpContext.Current.Session["user"];
-
 }
 <!DOCTYPE html>
 <html>
@@ -17,7 +16,6 @@
 </head>
 <body class="hold-transition skin-blue-light sidebar-mini">
     <div class="wrapper">
-
         <header class="main-header">
             <!-- Logo -->
             <a href="index-2.html" class="logo">
@@ -35,7 +33,7 @@
             <!-- Header Navbar -->
             <nav class="navbar navbar-static-top">
                 <!-- Sidebar toggle button-->
-                <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                <a href="javascript:;" class="sidebar-toggle" data-toggle="push-menu" role="button">
                     <img src="../images/svg/baseline-list-24px.svg"/>
                 </a>
 
@@ -51,7 +49,7 @@
 
                         <!-- Messages -->
                         <li class="dropdown messages-menu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
                                 <img src="../../images/svg/baseline-email-24px.svg">
                             </a>
                             <ul class="dropdown-menu scale-up">
@@ -61,7 +59,7 @@
                                     <ul class="menu inner-content-div">
                                         <!-- start message -->
                                         <li>
-                                            <a href="#">
+                                            <a href="javascript:;">
                                                 <div class="pull-left">
                                                     <img src="../../images/user2-160x160.jpg" class="rounded-circle" alt="User Image">
                                                 </div>
@@ -77,13 +75,13 @@
                                         <!-- end message -->
                                     </ul>
                                 </li>
-                                <li class="footer"><a href="#" class="bg-primary text-white">See all e-Mails</a></li>
+                                <li class="footer"><a href="javascript:;" class="bg-primary text-white">See all e-Mails</a></li>
                             </ul>
                         </li>
                         <!-- End Message -->
                         <!-- Notifications -->
                         <li class="dropdown notifications-menu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
                                 <img src="../../images/svg/baseline-notification_important-24px.svg"/>
                             </a>
                             <ul class="dropdown-menu scale-up">
@@ -92,48 +90,48 @@
                                     <!-- inner menu: contains the actual data -->
                                     <ul class="menu inner-content-div">
                                         <li>
-                                            <a href="#">
+                                            <a href="javascript:;">
                                                 <i class="fa fa-users text-aqua"></i> Curabitur id eros quis nunc suscipit blandit.
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#">
+                                            <a href="javascript:;">
                                                 <i class="fa fa-warning text-yellow"></i> Duis malesuada justo eu sapien elementum, in semper diam posuere.
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#">
+                                            <a href="javascript:;">
                                                 <i class="fa fa-users text-red"></i> Donec at nisi sit amet tortor commodo porttitor pretium a erat.
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#">
+                                            <a href="javascript:;">
                                                 <i class="fa fa-shopping-cart text-green"></i> In gravida mauris et nisi
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#">
+                                            <a href="javascript:;">
                                                 <i class="fa fa-user text-red"></i> Praesent eu lacus in libero dictum fermentum.
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#">
+                                            <a href="javascript:;">
                                                 <i class="fa fa-user text-red"></i> Nunc fringilla lorem
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#">
+                                            <a href="javascript:;">
                                                 <i class="fa fa-user text-red"></i> Nullam euismod dolor ut quam interdum, at scelerisque ipsum imperdiet.
                                             </a>
                                         </li>
                                     </ul>
                                 </li>
-                                <li class="footer"><a href="#" class="bg-primary text-white">View all</a></li>
+                                <li class="footer"><a href="javascript:;" class="bg-primary text-white">View all</a></li>
                             </ul>
                         </li>
                         <!-- Control Sidebar Toggle Button -->
                         <li>
-                            <a href="#" data-toggle="control-sidebar"><img src="../../images/svg/baseline-settings-20px.svg"/></a>
+                            <a href="javascript:;" data-toggle="control-sidebar"><img src="../../images/svg/baseline-settings-20px.svg"/></a>
                         </li>
                     </ul>
                 </div>
@@ -163,7 +161,7 @@
                         <div class="info text-white">
                             <p>@user.name @user.lastname</p>
                             <a href="@Url.Action("Profile","Applicant")" class="link text-white" data-toggle="tooltip" title="" data-original-title="Settings"><img src="../images/svg/baseline-settings-20px_white.svg" /></a>
-                            <a href="#" class="link text-white" data-toggle="tooltip" title="" data-original-title="Email"><i class="ion ion-android-mail"></i></a>
+                            <a href="javascript:;" class="link text-white" data-toggle="tooltip" title="" data-original-title="Email"><i class="ion ion-android-mail"></i></a>
                             <a href="@Url.Action("LogOut","User")" class="link text-white" data-toggle="tooltip" title="" data-original-title="Logout"><img src="../images/svg/baseline-power_settings_new-24px_white.svg" /></a>
                         </div>
                     }
@@ -180,10 +178,9 @@
                 </div>
                 <!-- sidebar menu -->                 
                 <ul class="sidebar-menu" data-widget="tree">
-                @if (Session["user"] != null)
-                {
+             
                     <li class="treeview active">
-                        <a href="#">
+                        <a href="javascript:;">
 
                             <img src="../images/svg/baseline-dashboard-24px.svg" />
                             <span>Dashboard</span>
@@ -194,7 +191,7 @@
                     <!-----------------------------------BLOCK------------------------------------------------->
                     <!-- Lahné talka example taa partie taa crud wala ay zok om haja theb taamlha -->
                     <li class="treeview">
-                        <a href="#">
+                        <a href="javascript:;">
                             <img src="../images/svg/baseline-menu-24px.svg" />
                             <span>App</span>
                             <span class="pull-right-container">
@@ -211,7 +208,7 @@
                     <!-- Lahné talka example taa partie taa crud wala ay zok om haja theb taamlha -->
 
                     <li class="treeview">
-                        <a href="#">
+                        <a href="javascript:;">
                             <img src="../../images/svg/baseline-mail-24px.svg"/> <span>Mailbox</span>
                             <span class="pull-right-container">
                                 <img src="../../images/svg/baseline-keyboard_arrow_right-24px.svg" />
@@ -224,21 +221,10 @@
                     <!-- toufa lahné -->
                     <!----------------------------------------------------------------------------------------->
                     <!-----------------------------------BLOCK------------------------------------------------->
-                    <li class="treeview">
-                        <a href="#">
-                            <img src="../../images/svg/baseline-recent_actors-24px.svg"/> <span>INTERNATIONAL</span>
-                            <span class="pull-right-container">
-                                <img src="../../images/svg/baseline-keyboard_arrow_right-24px.svg" />
-                            </span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="pages/mailbox/mailbox.html">Inbox</a></li>
-                        </ul>
-                    </li>
-                    if (user.role.Equals("Applicant") || user.role.Equals("Responsable"))
+                    @if (user != null && (user.role.Equals("Responsable") || user.role.Equals("Applicant")))
                     {
                         <li class="treeview">
-                            <a href="#">
+                            <a href="javascript:;">
                                 <img src="../images/svg/baseline-recent_actors-24px.svg" /> <span>INTERNATIONAL</span>
                                 <span class="pull-right-container">
                                     <img src="../images/svg/baseline-keyboard_arrow_right-24px.svg" />
@@ -249,11 +235,12 @@
                             </ul>
                             <ul class="treeview-menu">
                                 <li><a href="@Url.Action("Index","Test")">Tests</a></li>
-                            </ul>                     
+                            </ul>
                         </li>
                     }
+                                         
                     <li class="treeview">
-                        <a href="#">
+                        <a href="javascript:;">
                             <img src="../images/svg/baseline-queue-24px.svg" /> <span>REQUEST MANAGEMENT</span>
                             <span class="pull-right-container">
                                 <img src="../../images/svg/baseline-keyboard_arrow_right-24px.svg" />
@@ -264,7 +251,7 @@
                         </ul>
                     </li>
                     <li class="treeview">
-                        <a href="#">
+                        <a href="javascript:;">
                             <img src="../images/svg/baseline-transfer_within_a_station-24px.svg" /> <span>RESSOURCE</span>
                             <span class="pull-right-container">
                                 <img src="../../images/svg/baseline-keyboard_arrow_right-24px.svg" />
@@ -275,7 +262,7 @@
                         </ul>
                     </li>
                     <li class="treeview">
-                        <a href="#">
+                        <a href="javascript:;">
                             <img src="../images/svg/baseline-business_center-24px.svg" /> <span>PROJECT/CLIENT</span>
                             <span class="pull-right-container">
                                 <img src="../../images/svg/baseline-keyboard_arrow_right-24px.svg" />
@@ -286,7 +273,7 @@
                         </ul>
                     </li>
                     <li class="treeview">
-                        <a href="#">
+                        <a href="javascript:;">
                             <img src="../images/svg/baseline-supervisor_account-24px.svg" /> <span>MANDATE</span>
                             <span class="pull-right-container">
                                 <img src="../../images/svg/baseline-keyboard_arrow_right-24px.svg" />
@@ -310,7 +297,7 @@
                     <small>Control panel</small>
                 </h1>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#"><img src="../../images/svg/baseline-dashboard-24px.svg" /> Home</a></li>
+                    <li class="breadcrumb-item"><a href="javascript:;"><img src="../../images/svg/baseline-dashboard-24px.svg" /> Home</a></li>
                     <li class="breadcrumb-item active">Dashboard</li>
                 </ol>
             </section>
@@ -325,7 +312,7 @@
         <footer class="main-footer">
             <div class="pull-right d-none d-sm-inline-block">
             </div>
-            &copy; 2018 <a href="#">Left 4 Code Team</a>. All Rights Reserved.
+            &copy; 2018 <a href="javascript:;">Left 4 Code Team</a>. All Rights Reserved.
         </footer>
 
         <!-- Control Sidebar -->

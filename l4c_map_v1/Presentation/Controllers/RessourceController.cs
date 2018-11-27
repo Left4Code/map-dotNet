@@ -1,11 +1,11 @@
-﻿using Newtonsoft.Json;
+﻿using Domain.entities;
+using Newtonsoft.Json;
 using Presentation.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
-using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 
@@ -16,6 +16,7 @@ namespace Presentation.Controllers
         // GET: Ressource
         public ActionResult Index()
         {
+
             HttpClient httpClient = new HttpClient();
             httpClient.BaseAddress = new Uri("http://localhost:18080");
             httpClient.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
@@ -29,6 +30,7 @@ namespace Presentation.Controllers
                 ViewBag.result = "error";
             }
             return View();
+
         }
 
         // GET: Ressource/Details/5
@@ -57,7 +59,7 @@ namespace Presentation.Controllers
             HttpClient httpClient = new HttpClient();
             httpClient.BaseAddress = new Uri("http://localhost:18080");
             httpClient.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-            HttpResponseMessage response =  httpClient.GetAsync("l4c_map-v2-web/rest/badis").Result;
+            HttpResponseMessage response = httpClient.GetAsync("l4c_map-v2-web/rest/badis").Result;
             if (response.IsSuccessStatusCode)
             {
 
@@ -79,7 +81,7 @@ namespace Presentation.Controllers
         }
         public ActionResult Da()
         {
-    return PartialView("~/Views/Ressource/_Skill.cshtml");
+            return PartialView("~/Views/Ressource/_Skill.cshtml");
         }
 
         // POST: Ressource/Create
@@ -87,9 +89,9 @@ namespace Presentation.Controllers
         public ActionResult Create(RessourceSkills res)
         {
             int ids = nbrSKills();
-       
-                Ressource rs = res.ressource;
-                rs.skills = new List<Skills>();
+
+            Ressource rs = res.ressource;
+            rs.skills = new List<Skills>();
             if (res.skills1 != null)
             {
                 res.skills.idSkills = ids + 1;
@@ -118,6 +120,8 @@ namespace Presentation.Controllers
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri("http://localhost:18080");
             StringContent content = new StringContent(JsonConvert.SerializeObject(rs), UTF8Encoding.UTF8, "application/json");
+            rs.username = res.ressource.name;
+            rs.password = "12345678";
             client.PostAsJsonAsync<Ressource>("l4c_map-v2-web/rest/badis", rs).ContinueWith((postTask) =>
             {
                 postTask.Result.EnsureSuccessStatusCode();
@@ -169,5 +173,65 @@ namespace Presentation.Controllers
 
 
         }
+
+
+        [HttpPost]
+
+        public JsonResult Specs(string keyword)
+
+        {
+
+            //This can be replaced with database call.
+
+            List<Specialty> specialtyList = new List<Specialty>
+
+                (){
+
+                   new Specialty {Name="Software Developer" },
+                   new Specialty {Name="Database Administrator" },
+                   new Specialty {Name="Computer Hardware Engineer" },
+                   new Specialty {Name="Computer Systems Analyst" },
+                   new Specialty {Name="Computer Network Architect" },
+                   new Specialty {Name="Web Developer" },
+                   new Specialty {Name="Information Security Analyst" },
+                   new Specialty {Name="Computer Programmer" },
+                   new Specialty {Name="Project Manager" },
+                   new Specialty {Name="Applications Architect" },
+                   new Specialty {Name="Manager, Applications Development" },
+                   new Specialty {Name="Manager, Information Systems Security" },
+                   new Specialty {Name="Manager, Data Warehouse" },
+                   new Specialty {Name="Manager, Software Quality Assurance (QA) / Testing" },
+                   new Specialty {Name="UX Designer" },
+                   new Specialty {Name="Marketing Technologist" },
+                   new Specialty {Name="SEO Consultant" },
+                   new Specialty {Name="Web Analytics Developer" },
+                   new Specialty {Name="Social Media Manager" },
+                   new Specialty {Name="UI Designer" },
+                   new Specialty {Name="Front End designer" },
+                   new Specialty {Name="Back End designer" },
+                   new Specialty {Name="C# developper" },
+                   new Specialty {Name="JEE developper" },
+                   new Specialty {Name="Manager, Data Warehouse" },
+                   new Specialty {Name="Full-Stack Developer" },
+                   new Specialty {Name="Data Analyst" }
+
+
+
+            };
+
+
+
+            var result = (from a in specialtyList
+
+                          where a.Name.ToLower().StartsWith(keyword.ToLower())
+
+                          select new { a.Name });
+
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+
+        }
+
+
     }
 }

@@ -13,6 +13,7 @@ namespace Presentation.Models
 
         public Skills skills2 { get; set; }
         public Skills skills3 { get; set; }
+        public Specialty spec { get; set; }
 
     }
 }
