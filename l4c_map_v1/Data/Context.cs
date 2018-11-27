@@ -225,8 +225,8 @@ namespace Data
 
             modelBuilder.Entity<responsable>()
                 .HasMany(e => e.arrivals)
-                .WithOptional(e => e.responsable)
-                .HasForeignKey(e => e.responsable_id);
+                /*.WithOptional(e => e.responsable)
+                .HasForeignKey(e => e.responsable_id)*/;
 
             modelBuilder.Entity<responsable>()
                 .HasMany(e => e.employement_letter)

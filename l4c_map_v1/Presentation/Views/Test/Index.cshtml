@@ -18,6 +18,10 @@
             </div>
         </div>
     }
+    if (user.role.Equals("Responsable"))
+    {
+        <a href="@Url.Action("Add","Test")">Add Test</a>
+    }
     <div class="box-body">
         <div class="table-responsive">
             <table class="table">
@@ -50,7 +54,7 @@
                                 <td>@test.difficulty</td>
                             </tr>
                         }
-                        else
+                        else if(test.difficulty > 7)
                         {
                             <tr class="bg-danger">
                                 <th scope="row">@test.idTest</th>

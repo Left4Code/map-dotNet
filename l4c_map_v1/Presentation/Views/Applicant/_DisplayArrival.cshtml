@@ -1,0 +1,29 @@
+﻿@model Presentation.Models.ArrivalVm
+
+@{ 
+    var user = (Domain.entities.user)HttpContext.Current.Session["user"];
+}
+
+<div class="box-body">
+    <div class="callout callout-success">
+        <h4>
+            <i class="icon-ok-circled"></i> Congratulation !
+        </h4>
+        You have been accepted in LEVIO team !
+        @if (String.IsNullOrEmpty(Model.arrivalDate.ToString()))
+        {
+            <p> A responsable will confirm your arrival Soon !</p>
+        }
+        else
+        {
+            <p> Your arrival is programmed for the : @Model.arrivalDate</p>
+            <p> Your flight number is : @Model.flightNumber</p>
+        }
+        @if (user.role.Equals("Responsable"))
+        {
+            <a href="@Url.Action("Edit","Arrival",new { id = Model.idArrival})" class="text-purple">Update</a>
+        }
+    </div>
+</div>
+
+

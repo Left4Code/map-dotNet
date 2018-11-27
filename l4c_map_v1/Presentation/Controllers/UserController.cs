@@ -14,6 +14,7 @@ using System.Web.Mvc;
 
 namespace Presentation.Controllers
 {
+    [HandleError]
     public class UserController : Controller
     {
         // GET: User
@@ -102,6 +103,7 @@ namespace Presentation.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(Credential uvm)
         {
+  
             if (ModelState.IsValid)
             {
                 user user = Session["user"] as user;
@@ -116,7 +118,7 @@ namespace Presentation.Controllers
                     Session["user"] = response1.Content.ReadAsAsync<user>().Result;
                 }
                 user = (user)Session["user"];
-                if (user.role.Equals("Applicant"))
+                if (user != null && user.role.Equals("Applicant"))
                     return RedirectToAction("Profile", "Applicant");
                 else
                     return RedirectToAction("Index", "Home");

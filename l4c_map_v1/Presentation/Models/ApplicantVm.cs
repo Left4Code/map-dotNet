@@ -241,5 +241,6 @@ namespace Presentation.Models
         public virtual demand demand { get; set; }
         public virtual Collection<TestVm> tests { get; set; }
         public virtual Collection<TestVm> testpassed { get; set; }
+        public ArrivalVm arrivalvm { get; set; }
     }
 }
