@@ -1,10 +1,12 @@
 ﻿@using Presentation.Models;
 @model RessourceSkills
+
 <head>
 
-    @Scripts.Render("~/bundles/jquery")
+
    
 </head>
+
 
 @{
     ViewBag.Title = "Create";
@@ -28,24 +30,24 @@
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.ressource.cv, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ressource.cv, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ressource.cv, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ressource.lastname, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Last name", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.ressource.lastname, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ressource.lastname, "", new { @class = "text-danger" })
             </div>
         </div>
+        <div class="form-group">
+            @Html.Label("Email", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ressource.lastname, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ressource.businessSector, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ressource.cost, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Cost", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.ressource.cost, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ressource.cost, "", new { @class = "text-danger" })
@@ -53,7 +55,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ressource.dateDebut, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Started working", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.ressource.dateDebut, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ressource.dateDebut, "", new { @class = "text-danger" })
@@ -61,23 +63,16 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ressource.dateFin, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("End of contract", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.ressource.dateFin, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ressource.dateFin, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.ressource.note, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ressource.note, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ressource.note, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ressource.seniority, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Seniority", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.ressource.seniority, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ressource.seniority, "", new { @class = "text-danger" })
@@ -85,23 +80,29 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ressource.specialty, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Specialty", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.ressource.specialty, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ressource.specialty, "", new { @class = "text-danger" })
             </div>
         </div>
 
+    
+
         <div class="form-group">
-            @Html.LabelFor(model => model.ressource.typeContrat, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Contrat type", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ressource.typeContrat, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ressource.typeContrat, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(model => model.ressource.typeContrat,
+                  new List<SelectListItem> {
+                       new SelectListItem { Value = "Employee" , Text = "Employee" },
+                       new SelectListItem { Value = "Freelancer" , Text = "Freelancer" }
+                    },
+                new { @class = "form-control" })
             </div>
         </div>
    
-            <input type="button" value="Add skill" id="ss"  class="btn btn-default" />
-        <table>
+            <input type="button" value="Add skill" id="ss"  class="btn btn-info" />
+        <table style="margin-left:15px">
             <tr>
                 <td>
                     Name
@@ -151,7 +152,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Create" class="btn btn-success" />
             </div>
         </div>
     </div>
@@ -168,6 +169,63 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+@section scripts{
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+
+<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"> </script>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $("#ressource_specialty").autocomplete({
+
+            source: function (request, response) {
+
+                $.ajax({
+
+                    url: "/Ressource/Specs",
+
+                    type: "POST",
+
+                    dataType: "json",
+
+                    data: { keyword: request.term },
+
+                    success: function (data) {
+
+                        response($.map(data, function (item) {
+
+                            return { label: item.Name, value: item.Name };
+
+                        }))
+
+                    },
+
+                    error: function () {
+
+                        alert('something went wrong !');
+
+                    }
+
+                })
+
+            },
+
+            messages: {
+
+                noResults: "", results: ""
+
+            }
+
+        });
+
+    })
+
+</script>
+
 <script type="text/javascript">
     $(document).ready(function () {
 
@@ -193,4 +251,4 @@
         });
     });
 
-</script>
+</script>}

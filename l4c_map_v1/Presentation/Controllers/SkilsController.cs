@@ -37,7 +37,7 @@ namespace Presentation.Controllers
                 ViewBag.result = response.Content.ReadAsAsync<IEnumerable<Models.Ressource>>().Result;
             }
 
-                return View();
+            return View();
         }
         public int nbrSKills()
         {
@@ -70,12 +70,12 @@ namespace Presentation.Controllers
                 HttpClient client = new HttpClient();
                 client.BaseAddress = new Uri("http://localhost:18080");
                 StringContent content = new StringContent(JsonConvert.SerializeObject(skills), UTF8Encoding.UTF8, "application/json");
-                client.PostAsJsonAsync<Skills> ("l4c_map-v2-web/rest/skills?id="+skills.idP, skills).ContinueWith((postTask) =>
+                client.PostAsJsonAsync<Skills>("l4c_map-v2-web/rest/skills?id=" + skills.idP, skills).ContinueWith((postTask) =>
                 {
                     postTask.Result.EnsureSuccessStatusCode();
                     System.Console.WriteLine(postTask.Result.ToString());
                 });
-                return RedirectToAction("Index","Ressource");
+                return RedirectToAction("Index", "Ressource");
             }
             catch
             {
