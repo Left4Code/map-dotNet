@@ -295,12 +295,8 @@
     <Content Include="Views\Question\Add.cshtml" />
     <Content Include="Views\Calendar\Index.cshtml" />
     <Content Include="Views\Ressource\Create.cshtml" />
-    <Content Include="Views\Ressource\Delete.cshtml" />
     <Content Include="Views\Ressource\Details.cshtml" />
     <Content Include="Views\Ressource\Index.cshtml" />
-    <Content Include="Views\Ressource\_Skill.cshtml" />
-    <Content Include="Views\Ressource\_Skill1.cshtml" />
-    <Content Include="Views\Ressource\_Skill2.cshtml" />
     <Content Include="Views\Project\Assign.cshtml" />
     <Content Include="Views\Project\Create.cshtml" />
     <Content Include="Views\Project\Delete.cshtml" />
@@ -312,6 +308,10 @@
     <Content Include="Views\Client\Edit.cshtml" />
     <Content Include="Views\Client\Index.cshtml" />
     <Content Include="Views\Skils\Create.cshtml" />
+    <Content Include="Views\Ressource\Delete.cshtml" />
+    <Content Include="Views\Ressource\_Skill.cshtml" />
+    <Content Include="Views\Ressource\_Skill1.cshtml" />
+    <Content Include="Views\Ressource\_Skill2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
