@@ -185,10 +185,10 @@
     <script>
 
         $(document).ready(function(){
-
-            if($.trim($('td[id^="conges"]').html()).length===0){
-                $('td[id^="conges"]').html('<button class="btn btn-warning"> None </button>');
-            }
+           
+                if ( $.trim($('#conges').html()).length === 0 )
+                    $('#conges').html('<button class="btn btn-warning"> None </button>');
+            
             $('button[id^="bt1"]').click(function(){
                 $(this).parent().addClass('show');
                 var x = $(this).parent();
@@ -272,7 +272,6 @@
                 success: function (data) {
                     if (data.status) {
                         $('#delete').parentsUntil("tr").hide();
-
                     }
                 },
                 error: function () {
