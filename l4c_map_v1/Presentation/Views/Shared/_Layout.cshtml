@@ -156,11 +156,21 @@
                         
                         string path = "~/images/" + user.picture;
                         <div class="image">
-                            <img src="@Url.Content(path)" class="rounded-circle" alt="User Image">
+                            @if (user.role.Equals("Responsable"))
+                            {
+                                <img src="../images/default.png" class="rounded-circle" alt="User Image">
+                            }
+                            else
+                            {
+                                <img src="@Url.Content(path)" class="rounded-circle" alt="User Image">
+                            }                      
                         </div>
                         <div class="info text-white">
                             <p>@user.name @user.lastname</p>
-                            <a href="@Url.Action("Profile","Applicant")" class="link text-white" data-toggle="tooltip" title="" data-original-title="Settings"><i class="icon-cog" style="font-size:25px"></i></a>
+                            @if (!user.role.Equals("Responsable"))
+                            {
+                                <a href="@Url.Action("Profile","Applicant")" class="link text-white" data-toggle="tooltip" title="" data-original-title="Settings"><i class="icon-cog" style="font-size:25px"></i></a>
+                            }
                             <a></a>
                             <a href="@Url.Action("LogOut","User")" class="link text-white" data-toggle="tooltip" title="" data-original-title="Logout"><i class="icon-logout" style="font-size:20px"></i></a>
                         </div>

@@ -5,7 +5,9 @@ namespace Data
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
     using Domain.entities;
+    using MySql.Data.Entity;
 
+    [DbConfigurationType(typeof(MySqlEFConfiguration))]
     public partial class Context : DbContext
     {
         public Context()

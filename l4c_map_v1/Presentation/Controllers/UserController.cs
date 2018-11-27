@@ -1,6 +1,7 @@
 ﻿using Domain.entities;
 using Newtonsoft.Json;
 using Presentation.Models;
+using Service.Pattern;
 using System;
 using System.Collections.Generic;
 using System.Linq;

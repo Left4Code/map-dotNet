@@ -32,6 +32,8 @@ namespace Presentation.Controllers
             if (Session["test"] != null)
             {
                 TestVm test = (TestVm)Session["test"];
+                ViewBag.numberOfQuestion = test.questions.Count();
+                ViewBag.number = number;
                 if (number < test.questions.Count())
                 {
                     Session["question"] = test.questions.ElementAt(number);
@@ -150,9 +152,9 @@ namespace Presentation.Controllers
         {
             TestVm test = (TestVm)Session["testSelected"];
             user user = (user)Session["user"];
-            if (questionvm.numberChosed.Equals("first"))
+            if (questionvm.numberChosed.ToString().Equals("first"))
                 questionvm.correct = questionvm.syn1;
-            else if (questionvm.numberChosed.Equals("second"))
+            else if (questionvm.numberChosed.ToString().Equals("second"))
                 questionvm.correct = questionvm.syn2;
             else
                 questionvm.correct = questionvm.syn3;
