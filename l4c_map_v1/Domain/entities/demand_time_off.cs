@@ -1,45 +1,35 @@
 namespace Domain.entities
 {
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Runtime.Serialization;
+    using System.Data.Entity.Spatial;
 
-    [Table("mapds.demand_time_off")]
+    [Table("map.demand_time_off")]
     public partial class demand_time_off
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public demand_time_off()
+        {
+            time_off = new HashSet<time_off>();
+        }
+
         [Key]
-        [DataMember(Name = "idDemandeTimeOff")]
         public int idDemandTimeOff { get; set; }
-        [IgnoreDataMember]
 
         public int Duration { get; set; }
 
         [Column(TypeName = "date")]
-        [DataMember(Name = "DateBegin")]
-
         public DateTime? dateBegin { get; set; }
 
         [Column(TypeName = "date")]
-        [DataMember(Name = "DateEnd")]
-
         public DateTime? dateEnd { get; set; }
 
         [StringLength(255)]
-        [DataMember(Name = "StateDemande")]
-
         public string stateDemandTimeOff { get; set; }
-        [DataMember(Name = "idresponsable")]
 
-        public int? responsable_id { get; set; }
-        [IgnoreDataMember]
-
-        public int? ressource_id { get; set; }
-        [IgnoreDataMember]
-
-        public virtual ressource ressource { get; set; }
-        [IgnoreDataMember]
-
-        public virtual responsable responsable { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<time_off> time_off { get; set; }
     }
 }

@@ -47,7 +47,8 @@ namespace Presentation
                       "~/Scripts/fastclick.js",
                       "~/Scripts/template.js",
                       "~/Scripts/dashboard.js",
-                      "~/Scripts/demo.js"
+                      "~/Scripts/demo.js",
+					  "~/Scripts/widget-charts2.js"
                 ));
         }
     }

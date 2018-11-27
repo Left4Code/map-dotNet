@@ -100,10 +100,10 @@ namespace Data
                 .Property(e => e.stateDemandTimeOff)
                 .IsUnicode(false);
 
-            //modelBuilder.Entity<demand_time_off>()
-            //    .HasMany(e => e.time_off)
-            //    .WithRequired(e => e.demand_time_off)
-            //    .WillCascadeOnDelete(false);
+            modelBuilder.Entity<demand_time_off>()
+                .HasMany(e => e.time_off)
+                .WithRequired(e => e.demand_time_off)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<document>()
                 .Property(e => e.documentType)
