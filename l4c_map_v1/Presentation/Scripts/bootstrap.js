@@ -1587,9 +1587,11 @@
 
         this._element.setAttribute('aria-expanded', true);
 
-        $$$1(this._menu).toggleClass(ClassName.SHOW);
-        $$$1(parent).toggleClass(ClassName.SHOW).trigger($$$1.Event(Event.SHOWN, relatedTarget));
-      };
+
+    var $parent ;
+	if (selector && selector !== '#') {
+  $parent = $(selector)
+  }
 
       _proto.dispose = function dispose() {
         $$$1.removeData(this._element, DATA_KEY);
