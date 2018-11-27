@@ -28,7 +28,7 @@ namespace Presentation.Controllers
             else
             {
 
-                ViewBag.result = "error";
+                ViewBag.result = "error zeze";
             }
 
             
