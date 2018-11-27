@@ -38,7 +38,7 @@
                             <span class="sr-only">@Model.chanceOfSuccess % Chance Of Success</span>
                         </div>
                     </div>
-                    @if (user.role.Equals("Responsable"))
+                    @if (user != null && user.role.Equals("Responsable"))
                     {
                         <a class="text-info" href="@Url.Action("Profile","Applicant",Model)">View Profile</a>
                     }
