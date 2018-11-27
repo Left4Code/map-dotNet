@@ -16,7 +16,6 @@ namespace Presentation.Models
     public class QuestionVm
     {
         [Key]
-        [JsonIgnore]
         public int idQuestion { get; set; }
         [Required(ErrorMessage = "this field is required")]
         [StringLength(255)]

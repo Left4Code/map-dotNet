@@ -523,10 +523,10 @@ $( document ).ready(function() {
 	if( $('#chart_8').length > 0 ){
 		var ctx2 = document.getElementById("chart_8").getContext("2d");
 		var data2 = {
-			labels: ["January", "February", "March", "April", "May", "June", "July"],
+			labels: ["", "February", "March", "April", "May", "June", "July"],
 			datasets: [
 				{
-					label: "My First dataset",
+					label: "My First dsqqsqs",
 					backgroundColor: "rgba(0, 194, 146, 1)",
 					borderColor: "rgba(0, 194, 146, 1)",
 					data: [15, 20, 70, 51, 36, 85, 50]

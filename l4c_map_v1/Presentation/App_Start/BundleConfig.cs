@@ -47,8 +47,6 @@ namespace Presentation
 					  "~/Scripts/jquery-3.3.1.min.js",
 					  "~/Scripts/bootstrap.js",
                        "~/Scripts/bootstrap.min.js",
-
-                      
                       "~/Scripts/popper.min.js",
                       "~/Scripts/echarts-en.min.js",
                       "~/Scripts/echarts-liquidfill.min.js",
@@ -60,6 +58,7 @@ namespace Presentation
                       "~/Scripts/template.js",
                       "~/Scripts/dashboard.js",
                       "~/Scripts/demo.js"
+
                 ));
         }
     }

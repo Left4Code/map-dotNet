@@ -35,18 +35,32 @@ namespace Presentation.Controllers
                         age = applicant.age,
                         applicantState = applicant.applicantState,
                         chanceOfSuccess = applicant.chanceOfSuccess,
-                        country = (PaysVm)Enum.Parse(typeof(PaysVm),applicant.country),
+                        country = (PaysVm)Enum.Parse(typeof(PaysVm), applicant.country),
                         lastname = applicant.lastname,
                         name = applicant.name,
-                        role = applicant.role ,
-                        username = applicant.username ,
-                        picture = applicant.picture
+                        role = applicant.role,
+                        username = applicant.username,
+                        picture = applicant.picture,
+                        id = applicant.id                        
                     });
                 }
             }
             else
             {
                 applicants = null;
+            }
+            Session["applicants"] = applicants;
+            return View(applicants);
+        }
+
+        [HttpPost]
+        public ActionResult Index(string searchstring)
+        {
+            List<ApplicantVm> applicants = Session["applicants"] as List<ApplicantVm>;
+
+            if (!String.IsNullOrEmpty(searchstring))
+            {
+                applicants = applicants.Where(m => m.name.ToLower().Contains(searchstring.ToLower())).ToList();
             }
             return View(applicants);
         }
@@ -140,9 +154,13 @@ namespace Presentation.Controllers
             }
         }
 
-        public new ActionResult Profile()
+        public new ActionResult Profile(ApplicantVm applicantvm)
         {
             var user = (user)Session["user"];
+            if (user.role.Equals("Responsable"))
+            {
+                user.id = applicantvm.id;
+            }      
             if(user != null)
             {
                 HttpClient Client = new HttpClient();

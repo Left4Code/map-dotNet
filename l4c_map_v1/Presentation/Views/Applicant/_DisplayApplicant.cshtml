@@ -1,24 +1,47 @@
 ﻿@model Presentation.Models.ApplicantVm
+@{
+    var user = (Domain.entities.user)HttpContext.Current.Session["user"];
+}
 @{string path = "~/images/" + @Model.picture;}
 <div class="box">
-    <div class="box-header with-border">
-        <h3 class="box-title">@Model.name @Model.lastname</h3>
+    <div class="box-header with-border bg-pale-primary">
+        <h3 class="box-title  text-primary">@Model.name.ToUpper() @Model.lastname.ToUpper()</h3>
     </div>
-    <div class="box-body">
+    <div class="box-body bg-light">
         <div id="slimtest2">
             <div class="row">
                 <div class="col-sm-3"><img src="@Url.Content(path)" class="img-responsive" alt="" /></div>
                 <div class="col-sm-9">
-                    <p>Country : @Model.country</p>
+                    <div class="bg-pale-success">
+                        <p><label class="text-success" style="font-size:20px">Country : </label> @Model.country</p>
+                    </div>
+                    
                     @if (Model.applicantState.Equals("Waiting"))
                     {
-                        <p>State : <span class="badge badge-pill badge-default">@Model.applicantState</span></p>
+                        <div class="bg-pale-success" style="font-size:20px">
+                            <p><label class="text-success">State : </label><span class="badge badge-pill badge-default">@Model.applicantState</span></p>
+                        </div>
                     }else
                     {
-                        <p>State : <span class="badge badge-pill badge-success">@Model.applicantState</span></p>
+                        <div class="bg-pale-success" style="font-size:20px">
+                            <p><label class="text-success">State : </label><span class="badge badge-pill badge-success">@Model.applicantState</span></p>
+                        </div>
                     }
-                    <p>Age : @Model.age</p>
-                    <p>Chances : @Model.chanceOfSuccess %</p>
+                    <div class="bg-pale-success" style="font-size:20px">
+                        <p><label class="text-success">Age : </label> @Model.age</p>
+                    </div>
+                    <div class="bg-pale-success" style="font-size:20px">
+                        <p><label class="text-success">Chances : </label> @Model.chanceOfSuccess %</p>
+                    </div>               
+                    <div class="progress">
+                        <div class="progress-bar-animated progress-bar-yellow" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:@Model.chanceOfSuccess%">
+                            <span class="sr-only">@Model.chanceOfSuccess % Chance Of Success</span>
+                        </div>
+                    </div>
+                    @if (user.role.Equals("Responsable"))
+                    {
+                        <a class="text-info" href="@Url.Action("Profile","Applicant",Model)">View Profile</a>
+                    }
                 </div>
              </div>
         </div>
