@@ -188,8 +188,11 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ApplicantController.cs" />
     <Compile Include="Controllers\CalendarController.cs" />
+    <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ProjectController.cs" />
+    <Compile Include="Controllers\ProjectStatController.cs" />
     <Compile Include="Controllers\QuestionController.cs" />
     <Compile Include="Controllers\RessourceController.cs" />
     <Compile Include="Controllers\SkilsController.cs" />
@@ -200,16 +203,22 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicantVm.cs" />
+    <Compile Include="Models\Client.cs" />
     <Compile Include="Models\Credential.cs" />
     <Compile Include="Models\demand_time_offVM.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ProducerVM.cs" />
+    <Compile Include="Models\projectStat.cs" />
+    <Compile Include="Models\projet.cs" />
+    <Compile Include="Models\ProjetMv.cs" />
     <Compile Include="Models\Question.cs" />
     <Compile Include="Models\QuestionVm.cs" />
     <Compile Include="Models\Ressource.cs" />
     <Compile Include="Models\RessourceSkills.cs" />
     <Compile Include="Models\Skills.cs" />
+    <Compile Include="Models\skillsMv.cs" />
+    <Compile Include="Models\Specialty.cs" />
     <Compile Include="Models\TestVm.cs" />
     <Compile Include="Models\UserVm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -292,6 +301,16 @@
     <Content Include="Views\Ressource\_Skill.cshtml" />
     <Content Include="Views\Ressource\_Skill1.cshtml" />
     <Content Include="Views\Ressource\_Skill2.cshtml" />
+    <Content Include="Views\Project\Assign.cshtml" />
+    <Content Include="Views\Project\Create.cshtml" />
+    <Content Include="Views\Project\Delete.cshtml" />
+    <Content Include="Views\Project\Edit.cshtml" />
+    <Content Include="Views\Project\Index.cshtml" />
+    <Content Include="Views\ProjectStat\Index.cshtml" />
+    <Content Include="Views\Client\Create.cshtml" />
+    <Content Include="Views\Client\Delete.cshtml" />
+    <Content Include="Views\Client\Edit.cshtml" />
+    <Content Include="Views\Client\Index.cshtml" />
     <Content Include="Views\Skils\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
