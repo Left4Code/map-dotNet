@@ -1,0 +1,77 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+<button id="change-chart">Change to Classic</button>
+<div id="chart_div" style="width:900px;height:500px">
+ 
+</div>
+
+
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+<script>
+    // globar variable for hold chart data
+    var chartData;
+    google.load("visualization", "1", { packages: ['corechart', 'bar'] });
+              
+                // Here We will fill chartData
+              
+                $(document).ready(function () {
+               
+                    $.ajax({
+                        url: "/ProjectStat/GetChartData",
+                        data: "",
+                        dataType: "json",
+                        type: "POST",
+                        contentType: "application/json; chartset=utf-8",
+                          success: function (data) {
+                              chartData = data;
+                              console.log(chartData);
+                        },
+                        error: function () {
+                            alert("Error loading data! Please try again.");
+                        }
+                    }).done(function () {
+                        // after complete loading data
+                        google.setOnLoadCallback(drawMaterialChart);
+                        drawMaterialChart();
+                     
+                    });
+
+                
+                 
+                });
+                var chartDiv = document.getElementById('chart_div');
+                var button = document.getElementById('change-chart');
+
+     function drawMaterialChart() {
+         var data = google.visualization.arrayToDataTable(chartData);
+         var options = {
+             title: "Company Revenue",
+             pointSize: 5
+         };
+                    var materialChart = new google.charts.Bar(chartDiv);
+                    materialChart.draw(data,options);
+                    button.innerText = 'Change to Classic';
+                    button.onclick = drawChart;
+                }
+
+                function drawChart() {
+                    console.log('ss')
+                    var data = google.visualization.arrayToDataTable(chartData);
+
+                    var options = {
+                        title: "Company Revenue",
+                        pointSize: 5
+                    };
+
+                    var barChart = new google.visualization.ColumnChart(chartDiv);
+                    barChart.draw(data, options);
+                    button.innerText = 'Change to Material';
+                    button.onclick = drawMaterialChart;
+
+                }
+
+</script>

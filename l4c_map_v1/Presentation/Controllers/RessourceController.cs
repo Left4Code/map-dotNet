@@ -16,7 +16,6 @@ namespace Presentation.Controllers
         // GET: Ressource
         public ActionResult Index()
         {
-
             HttpClient httpClient = new HttpClient();
             httpClient.BaseAddress = new Uri("http://localhost:18080");
             httpClient.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
@@ -30,7 +29,6 @@ namespace Presentation.Controllers
                 ViewBag.result = "error";
             }
             return View();
-
         }
 
         // GET: Ressource/Details/5

@@ -2,10 +2,16 @@
 
 @{
     ViewBag.Title = "Create";
+    var pourcentageMax = ViewBag.numberOfQuestion * 10;
+    var pourcentage = ViewBag.number * 20;
 }
 
-<h2>Create</h2>
+<h2>Passing test : @Model.test.name</h2>
+<div class="progress">
+    <div class="progress-bar progress-bar-green" role="progressbar" aria-valuenow="@pourcentage" aria-valuemax="@pourcentageMax" style="width:@pourcentage%">
 
+    </div>
+</div>
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()

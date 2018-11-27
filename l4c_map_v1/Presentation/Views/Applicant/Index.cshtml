@@ -3,8 +3,17 @@
     ViewBag.Title = "Applicants";
 }
 
-<h2>Index</h2>
+<h2>All Applicant</h2>
+@using (Html.BeginForm())
+{
 
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                Search By Name: @Html.TextBox("searchstring")
+                <input type="submit" value="Search" class="btn btn-danger" />
+            </div>
+        </div>
+}
     @if (Model != null)
     {
         foreach (var item in Model)

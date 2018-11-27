@@ -1,0 +1,68 @@
+﻿@model Presentation.Models.Client
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<hr />
+
+        <div class="box-body no-padding">
+            <div class="table-responsive">
+                <h3 class="box-title">
+                    Are you sure you want to delete this client ?
+                </h3>
+                <table class="table table-hover">
+                    <tr>
+
+                        <th>Category</th>
+
+                        <th>LastName</th>
+                        <th>Name</th>
+                        <th>Picture</th>
+
+
+                    </tr>
+
+                    <tr>
+
+
+                        @if (ViewBag.result.typeCategory.ToString() == "Public")
+                        {
+                            <td><span class="label label-success">@ViewBag.result.typeCategory</span></td>}
+                        @if (ViewBag.result.typeCategory.ToString() == "Private")
+                        {
+                            <td><span class="label label-danger">@ViewBag.result.typeCategory</span></td>
+                        }
+
+                        <td>
+                            @ViewBag.result.LastName
+                        </td>
+                        <td>
+                            @ViewBag.result.Name
+                        </td>
+                        <td>
+                            @{string path = "~/Content/Uploads/" + @ViewBag.result.Picture;}
+
+                            <img src="@Url.Content(path)" width="50" height="50" />
+
+                        </td>
+
+                    </tr>
+
+                </table>
+
+
+            </div>
+        </div>
+
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-pink" />
+                <button class="btn btn-blue" align="center">  @Html.ActionLink("Back to client list", "Index")</button>
+            </div>
+        }
+        </div>

@@ -7,7 +7,6 @@ namespace Presentation.Models
 {
     public class Specialty
     {
-
         public string Name { get; set; }
 
     }

@@ -3,15 +3,15 @@
 @{
     ViewBag.Title = "Add";
     var test = (Presentation.Models.TestVm)HttpContext.Current.Session["testSelected"];
-    var pourcentage_bar = ViewBag.numberOfQuestion * 10;
+    var pourcentage_bar = ViewBag.numberOfQuestion * 20;
 }
 
 <h2>Adding Question to @test.name</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Question n=@ViewBag.numberOfQuestion (max 5)</h4>
         <div class="progress">
