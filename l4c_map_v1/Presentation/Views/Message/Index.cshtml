@@ -1,0 +1,362 @@
+﻿@model Presentation.Models.MessageVM
+
+@{
+    ViewBag.Title = "Index";
+}
+
+ <!-- Content Wrapper. Contains page content -->
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Mailbox
+        </h1>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="breadcrumb-item active">Mailbox</li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-lg-3 col-12">
+                <a href="compose.html" class="btn btn-success btn-block btn-shadow margin-bottom">Compose</a>
+                <div class="box">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Folders</h3>
+                        <div class="box-tools">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="box-body mailbox-nav">
+                        <ul class="nav nav-pills flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="javascript:void(0)">
+                                    <i class="ion ion-ios-email-outline"></i> Inbox
+                                    <span class="label label-success pull-right">12</span>
+                                </a>
+                            </li>
+                            <li class="nav-item"><a class="nav-link" href="javascript:void(0)"><i class="ion ion-paper-airplane"></i> Sent</a></li>
+                            <li class="nav-item"><a class="nav-link" href="javascript:void(0)"><i class="ion ion-email-unread"></i> Drafts</a></li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="javascript:void(0)"><i class="ion ion-star"></i>  Starred <span class="label label-warning pull-right">14</span></a>
+                            </li>
+                            <li class="nav-item"><a class="nav-link" href="javascript:void(0)"><i class="ion ion-trash-a"></i> Trash</a></li>
+                        </ul>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /. box -->
+                <div class="box">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Labels</h3>
+                        <div class="box-tools">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="box-body mailbox-nav">
+                        <ul class="nav nav-pills flex-column">
+                            <li class="nav-item"><a class="nav-link" href="#"><i class="fa fa-circle-o text-red"></i> Important</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#"><i class="fa fa-circle-o text-yellow"></i> Promotions</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#"><i class="fa fa-circle-o text-light-blue"></i> Social</a></li>
+                        </ul>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+            </div>
+            <!-- /.col -->
+            <div class="col-lg-9 col-12">
+                <div class="box box-solid bg-dark">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Inbox</h3>
+                        <div class="box-tools pull-right">
+                            <div class="has-feedback">
+                                <input type="text" class="form-control input-sm" placeholder="Search Mail">
+                            </div>
+                        </div>
+                        <!-- /.box-tools -->
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="mailbox-controls">
+                            <!-- Check all button -->
+                            <button type="button" class="btn btn-default btn-sm checkbox-toggle">
+                                <i class="ion ion-android-checkbox-outline-blank"></i>
+                            </button>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default btn-sm"><i class="ion ion-trash-a"></i></button>
+                                <button type="button" class="btn btn-default btn-sm"><i class="ion ion-reply"></i></button>
+                                <button type="button" class="btn btn-default btn-sm"><i class="ion ion-share"></i></button>
+                            </div>
+                            <!-- /.btn-group -->
+                            <div class="btn-group">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                        <i class="ion ion-flag margin-r-5"></i>
+                                        <span class="caret"></span>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="#">Action</a>
+                                        <a class="dropdown-item" href="#">Another action</a>
+                                        <a class="dropdown-item" href="#">Something else here</a>
+                                    </div>
+                                </div>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                        <i class="ion ion-folder margin-r-5"></i>
+                                        <span class="caret"></span>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="#">Action</a>
+                                        <a class="dropdown-item" href="#">Another action</a>
+                                        <a class="dropdown-item" href="#">Something else here</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.btn-group -->
+                            <button type="button" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
+                            <div class="pull-right">
+                                1-50/200
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-left"></i></button>
+                                    <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-right"></i></button>
+                                </div>
+                                <!-- /.btn-group -->
+                            </div>
+                            <!-- /.pull-right -->
+                        </div>
+                        <div class="mailbox-messages">
+                            <div class="table-responsive">
+                                <table class="table table-hover no-border">
+                                    <tbody>
+                                        <tr>
+                                            <td><input type="checkbox"></td>
+                                            <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
+                                            <td class="mailbox-name">Jacob</td>
+                                            <td class="mailbox-subject">
+                                                <a href="read-mail.html"><b>Lorem Ipsum</b> - There are many variations of Ipsum available...</a>
+                                            </td>
+                                            <td class="mailbox-attachment"></td>
+                                            <td class="mailbox-date">3 mins ago</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox"></td>
+                                            <td class="mailbox-star"><a href="#"><i class="fa fa-star-o text-yellow"></i></a></td>
+                                            <td class="mailbox-name">Mason</td>
+                                            <td class="mailbox-subject">
+                                                <a href="read-mail.html"><b>Lorem Ipsum</b> - There are many variations of Ipsum available...</a>
+                                            </td>
+                                            <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
+                                            <td class="mailbox-date">14 mins ago</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox"></td>
+                                            <td class="mailbox-star"><a href="#"><i class="fa fa-star-o text-yellow"></i></a></td>
+                                            <td class="mailbox-name">William</td>
+                                            <td class="mailbox-subject">
+                                                <a href="read-mail.html"><b>Lorem Ipsum</b> - There are many variations of Ipsum available...</a>
+                                            </td>
+                                            <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
+                                            <td class="mailbox-date">15 hours ago</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox"></td>
+                                            <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
+                                            <td class="mailbox-name">Jayden</td>
+                                            <td class="mailbox-subject">
+                                                <a href="read-mail.html"><b>Lorem Ipsum</b> - There are many variations of Ipsum available...</a>
+                                            </td>
+                                            <td class="mailbox-attachment"></td>
+                                            <td class="mailbox-date">25 hours ago</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox"></td>
+                                            <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
+                                            <td class="mailbox-name">Noah</td>
+                                            <td class="mailbox-subject">
+                                                <a href="read-mail.html"><b>Lorem Ipsum</b> - There are many variations of Ipsum available...</a>
+                                            </td>
+                                            <td class="mailbox-attachment"></td>
+                                            <td class="mailbox-date">3 mins ago</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox"></td>
+                                            <td class="mailbox-star"><a href="#"><i class="fa fa-star-o text-yellow"></i></a></td>
+                                            <td class="mailbox-name">Michael</td>
+                                            <td class="mailbox-subject">
+                                                <a href="read-mail.html"><b>Lorem Ipsum</b> - There are many variations of Ipsum available...</a>
+                                            </td>
+                                            <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
+                                            <td class="mailbox-date">14 mins ago</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox"></td>
+                                            <td class="mailbox-star"><a href="#"><i class="fa fa-star-o text-yellow"></i></a></td>
+                                            <td class="mailbox-name">Ethan</td>
+                                            <td class="mailbox-subject">
+                                                <a href="read-mail.html"><b>Lorem Ipsum</b> - There are many variations of Ipsum available...</a>
+                                            </td>
+                                            <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
+                                            <td class="mailbox-date">15 hours ago</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox"></td>
+                                            <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
+                                            <td class="mailbox-name">Alexander</td>
+                                            <td class="mailbox-subject">
+                                                <a href="read-mail.html"><b>Lorem Ipsum</b> - There are many variations of Ipsum available...</a>
+                                            </td>
+                                            <td class="mailbox-attachment"></td>
+                                            <td class="mailbox-date">25 hours ago</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox"></td>
+                                            <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
+                                            <td class="mailbox-name">Aiden</td>
+                                            <td class="mailbox-subject">
+                                                <a href="read-mail.html"><b>Lorem Ipsum</b> - There are many variations of Ipsum available...</a>
+                                            </td>
+                                            <td class="mailbox-attachment"></td>
+                                            <td class="mailbox-date">3 mins ago</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox"></td>
+                                            <td class="mailbox-star"><a href="#"><i class="fa fa-star-o text-yellow"></i></a></td>
+                                            <td class="mailbox-name">Daniel</td>
+                                            <td class="mailbox-subject">
+                                                <a href="read-mail.html"><b>Lorem Ipsum</b> - There are many variations of Ipsum available...</a>
+                                            </td>
+                                            <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
+                                            <td class="mailbox-date">14 mins ago</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox"></td>
+                                            <td class="mailbox-star"><a href="#"><i class="fa fa-star-o text-yellow"></i></a></td>
+                                            <td class="mailbox-name">Anthony</td>
+                                            <td class="mailbox-subject">
+                                                <a href="read-mail.html"><b>Lorem Ipsum</b> - There are many variations of Ipsum available...</a>
+                                            </td>
+                                            <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
+                                            <td class="mailbox-date">15 hours ago</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox"></td>
+                                            <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
+                                            <td class="mailbox-name">Matthew</td>
+                                            <td class="mailbox-subject">
+                                                <a href="read-mail.html"><b>Lorem Ipsum</b> - There are many variations of Ipsum available...</a>
+                                            </td>
+                                            <td class="mailbox-attachment"></td>
+                                            <td class="mailbox-date">25 hours ago</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox"></td>
+                                            <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
+                                            <td class="mailbox-name">Elijah</td>
+                                            <td class="mailbox-subject">
+                                                <a href="read-mail.html"><b>Lorem Ipsum</b> - There are many variations of Ipsum available...</a>
+                                            </td>
+                                            <td class="mailbox-attachment"></td>
+                                            <td class="mailbox-date">3 mins ago</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox"></td>
+                                            <td class="mailbox-star"><a href="#"><i class="fa fa-star-o text-yellow"></i></a></td>
+                                            <td class="mailbox-name">Joshua</td>
+                                            <td class="mailbox-subject">
+                                                <a href="read-mail.html"><b>Lorem Ipsum</b> - There are many variations of Ipsum available...</a>
+                                            </td>
+                                            <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
+                                            <td class="mailbox-date">14 mins ago</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox"></td>
+                                            <td class="mailbox-star"><a href="#"><i class="fa fa-star-o text-yellow"></i></a></td>
+                                            <td class="mailbox-name">Liam</td>
+                                            <td class="mailbox-subject">
+                                                <a href="read-mail.html"><b>Lorem Ipsum</b> - There are many variations of Ipsum available...</a>
+                                            </td>
+                                            <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
+                                            <td class="mailbox-date">15 hours ago</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox"></td>
+                                            <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
+                                            <td class="mailbox-name">Andrew</td>
+                                            <td class="mailbox-subject">
+                                                <a href="read-mail.html"><b>Lorem Ipsum</b> - There are many variations of Ipsum available...</a>
+                                            </td>
+                                            <td class="mailbox-attachment"></td>
+                                            <td class="mailbox-date">25 hours ago</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <!-- /.table -->
+                            </div>
+                        </div>
+                        <!-- /.mail-box-messages -->
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        <div class="mailbox-controls">
+                            <!-- Check all button -->
+                            <button type="button" class="btn btn-default btn-sm checkbox-toggle">
+                                <i class="ion ion-android-checkbox-outline-blank"></i>
+                            </button>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default btn-sm"><i class="ion ion-trash-a"></i></button>
+                                <button type="button" class="btn btn-default btn-sm"><i class="ion ion-reply"></i></button>
+                                <button type="button" class="btn btn-default btn-sm"><i class="ion ion-share"></i></button>
+                            </div>
+                            <!-- /.btn-group -->
+                            <div class="btn-group">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                        <i class="ion ion-flag margin-r-5"></i>
+                                        <span class="caret"></span>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="#">Action</a>
+                                        <a class="dropdown-item" href="#">Another action</a>
+                                        <a class="dropdown-item" href="#">Something else here</a>
+                                    </div>
+                                </div>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                        <i class="ion ion-folder margin-r-5"></i>
+                                        <span class="caret"></span>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="#">Action</a>
+                                        <a class="dropdown-item" href="#">Another action</a>
+                                        <a class="dropdown-item" href="#">Something else here</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.btn-group -->
+                            <button type="button" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
+                            <div class="pull-right">
+                                1-50/200
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-left"></i></button>
+                                    <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-right"></i></button>
+                                </div>
+                                <!-- /.btn-group -->
+                            </div>
+                            <!-- /.pull-right -->
+                        </div>
+                    </div>
+                </div>
+                <!-- /. box -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- /.content -->
+<!-- /.content-wrapper -->
+

@@ -29,5 +29,15 @@ namespace Presentation.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<Presentation.Models.ApplicantVm> ApplicantVms { get; set; }
+
+        public System.Data.Entity.DbSet<Presentation.Models.UserVm> UserVms { get; set; }
+
+        public System.Data.Entity.DbSet<Presentation.Models.Credential> Credentials { get; set; }
+
+        public System.Data.Entity.DbSet<Presentation.Models.TestVm> TestVms { get; set; }
+
+        public System.Data.Entity.DbSet<Presentation.Models.QuestionVm> QuestionVms { get; set; }
     }
 }

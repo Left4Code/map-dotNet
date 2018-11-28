@@ -13,7 +13,5 @@ namespace Presentation.Models
 
         public DateTime? DateEnd { get; set; }
         public String StateDemande { get; set; }
-
-        public int? idresponsable { get; set; }
     }
 }

@@ -3,101 +3,123 @@
 @{
     ViewBag.Title = "Details";
 }
-
 <h2>Details</h2>
 
-<div>
-    <h4>Ressource</h4>
-    <hr />
-    <table class="table">
-        <tr>
-            <th>
-                Name
-            </th>
-            <th>
-                Last Name
-            </th>
-            <th>
-                Salary
-            </th>
-            <th>
-                Started working
-            </th>
-            <th>
-                Working end
-            </th>
-            <th>
-                Score
-            </th>
-            <th>
-                Availability
-            </th>
-            <th>
-                Seniority
-            </th>
-            <th>
-                Specialty
-            </th>
-            <th>
-                Contract type
-            </th>
-            <th>
-               Skills
-            </th>
-            <th>
-                Actions
-            </th>
-        </tr>
+<div class="row">
+    <div class="col-12">
+        <div class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title">Ressources list</h3>
+                <div class="box-tools">
+                    <div class="input-group input-group-sm" style="width: 150px;">
+                        <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+                        <div class="input-group-btn">
+                            <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body no-padding">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <tr>
+                            <th>
+                                Name
 
-  
-            <tr>
-                <td>
-                    @ViewBag.result.Name
-                </td>
-                <td>
-                    @ViewBag.result.LastName
-                </td>
-                <td>
-                   @ViewBag.result.cost
-                </td>
-                <td>
-                    @ViewBag.result.dateDebut.ToShortDateString()
-                </td>
-                <td>
-                    @ViewBag.result.dateFin.ToShortDateString()
-                </td>
-                <td>
-                    @ViewBag.result.note
-                </td>
-                <td>
-                    @ViewBag.result.cv
-                </td>
-                <td>
-                   @ViewBag.result.seniority
-                </td>
-                <td>
-                    @ViewBag.result.specialty
-                </td>
-                <td>
-                   @ViewBag.result.typeContrat
-                </td>
+                            </th>
+                            <th>
+                                Salary
+                            </th>
+                            <th>
+                                Started working
+                            </th>
+                            <th>
+                                Working end
+                            </th>
+                            <th>
+                                Score
+                            </th>
+                            <th>
+                                Availability
+                            </th>
+                            <th>
+                                Seniority
+                            </th>
+                            <th>
+                                Specialty
+                            </th>
+                            <th>
+                                Contract type
+                            </th>
+                            <th>Skills</th>
+                        </tr>
+                        <tr>
+                            <td>@ViewBag.result.name @ViewBag.result.lastname</td>
+                            <td>@ViewBag.result.cost DT </td>
+                            <td><span class="text-muted"><i class="fa fa-clock-o"></i> @ViewBag.result.dateDebut.ToShortDateString()</span> </td>
+                            <td><span class="text-muted"><i class="fa fa-clock-o"></i> @ViewBag.result.dateFin.ToShortDateString()</span> </td>
 
-                <td>
-                    @Html.DropDownListFor(model=>ViewBag, new SelectList(ViewBag.result.skills,"idSkills","name"))
-                </td>
-                <td>
-                    @Html.ActionLink("Delete", "Delete", "Ressource", new { id = @ViewBag.result.id }, null)
+                            <td>@ViewBag.result.note</td>
+                            @if (ViewBag.result.cv != "Available")
+                            {
+                                <td>
+                                    <span class="label label-danger">@ViewBag.result.cv</span>
+                                </td>
+                            }
+                            else
+                            {
+                                <td>
+                                    <span class="label label-success">@ViewBag.result.cv</span>
+                                </td>
+
+                            }
+
+                            <td>@ViewBag.result.seniority</td>
+                            <td>@ViewBag.result.specialty</td>
+
+                            <td>@ViewBag.result.typeContrat</td>
+                            <td>
+
+                                @foreach (var item in ViewBag.result.skills)
+                                {
+                                    <span style="width:75px" class="btn btn-success">@item.name</span><br />
+                                }
+                            </td>
+                            <td>
+                                <button id="delete" value=@ViewBag.result.id type="button" class="btn btn-danger "><i class="ion ion-trash-a"></i></button>
+                        </tr>
 
 
-
-
-
-
-                </td>
-
-            </tr>
-
-    </table>
+                    </table>
+                </div>
+            </div>
+            <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+    </div>
 </div>
+@section Scripts{
+<script type="text/javascript">
 
+    $('#delete').click(function () {
+        id = $('#delete').val();
+        $('#delete').closest('tr').remove();
+        $.ajax({
+            type: "POST",
+            url: 'http://localhost:50717/Ressource/Delete',
+            data: { 'id': id },
+            success: function (data) {
+                if (data.status) {
+                    $('#delete').parentsUntil("tr").hide();
 
+                }
+            },
+            error: function () {
+                alert('Failed');
+            }
+        })
+    });
+
+</script>
+    }

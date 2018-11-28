@@ -12,7 +12,7 @@ namespace Domain.entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public test()
         {
-            files = new HashSet<file>();
+            //files = new HashSet<file>();
         }
 
         [Key]
@@ -31,11 +31,11 @@ namespace Domain.entities
         [StringLength(255)]
         public string specialty { get; set; }
 
-        public int? idResponsable { get; set; }
+        //public int? idResponsable { get; set; }
 
-        public virtual responsable responsable { get; set; }
+        //public virtual responsable responsable { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<file> files { get; set; }
+        
+        //public virtual ICollection<file> files { get; set; }
     }
 }

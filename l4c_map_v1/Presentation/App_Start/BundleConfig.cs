@@ -32,12 +32,22 @@ namespace Presentation
                       "~/Content/bootstrap-extend.css",
                       "~/Content/morris.css",
                       "~/Content/master_style.css",
-                      "~/Content/_all-skins.css"
+                      "~/Content/_all-skins.css",
+                      "~/Content/bootstrap.min.css",
+                      "~/Content/document/animation.css",
+                      "~/Content/document/fontello.css",
+                      "~/Content/document/fontello-codes.css",
+                      "~/Content/document/fontello-embedded.css",
+                      "~/Content/document/fontello-ie7.css",
+                      "~/Content/document/fontello-ie7-codes.css"
                 ));
             bundles.Add(new ScriptBundle("~/bundles/template").Include(
-                      "~/Scripts/jquery.js",
+                     
+                      "~/Scripts/jquery-3.3.1.js",
+					  "~/Scripts/jquery-3.3.1.min.js",
+					  "~/Scripts/bootstrap.js",
+                       "~/Scripts/bootstrap.min.js",
                       "~/Scripts/popper.min.js",
-                      "~/Scripts/bootstrap.js",
                       "~/Scripts/echarts-en.min.js",
                       "~/Scripts/echarts-liquidfill.min.js",
                       "~/Scripts/ecStat.min.js",
@@ -48,6 +58,7 @@ namespace Presentation
                       "~/Scripts/template.js",
                       "~/Scripts/dashboard.js",
                       "~/Scripts/demo.js"
+
                 ));
         }
     }

@@ -50,12 +50,12 @@ namespace Data
                 .Property(e => e.country)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<applicant>()
+            /*modelBuilder.Entity<applicant>()
                 .HasMany(e => e.sponsors)
                 .WithRequired(e => e.applicant)
                 .HasForeignKey(e => e.idApplicant)
                 .WillCascadeOnDelete(false);
-
+            */
             modelBuilder.Entity<client>()
                 .Property(e => e.logo)
                 .IsUnicode(false);
@@ -91,19 +91,19 @@ namespace Data
                 .Property(e => e.specialty)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<demand>()
+            /*modelBuilder.Entity<demand>()
                 .HasMany(e => e.meetings)
                 .WithRequired(e => e.demand)
                 .WillCascadeOnDelete(false);
-
+            */
             modelBuilder.Entity<demand_time_off>()
                 .Property(e => e.stateDemandTimeOff)
                 .IsUnicode(false);
 
-            //modelBuilder.Entity<demand_time_off>()
-            //    .HasMany(e => e.time_off)
-            //    .WithRequired(e => e.demand_time_off)
-            //    .WillCascadeOnDelete(false);
+            modelBuilder.Entity<demand_time_off>()
+                .HasMany(e => e.time_off)
+                .WithRequired(e => e.demand_time_off)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<document>()
                 .Property(e => e.documentType)
@@ -133,7 +133,7 @@ namespace Data
             modelBuilder.Entity<file>()
                 .HasMany(e => e.demands)
                 .WithOptional(e => e.file)
-                .HasForeignKey(e => e.idFile);
+                /*.HasForeignKey(e => e.idFile)*/;
 
             modelBuilder.Entity<file>()
                 .HasMany(e => e.documents)
@@ -223,8 +223,8 @@ namespace Data
 
             modelBuilder.Entity<responsable>()
                 .HasMany(e => e.arrivals)
-                .WithOptional(e => e.responsable)
-                .HasForeignKey(e => e.responsable_id);
+                /*.WithOptional(e => e.responsable)
+                .HasForeignKey(e => e.responsable_id)*/;
 
             modelBuilder.Entity<responsable>()
                 .HasMany(e => e.employement_letter)
@@ -256,8 +256,8 @@ namespace Data
 
             modelBuilder.Entity<responsable>()
                 .HasMany(e => e.tests)
-                .WithOptional(e => e.responsable)
-                .HasForeignKey(e => e.idResponsable);
+                //.WithOptional(e => e.responsable)
+                /*.HasForeignKey(e => e.idResponsable)*/;
 
             modelBuilder.Entity<response>()
                 .Property(e => e.contenu)
@@ -353,10 +353,10 @@ namespace Data
                 .Property(e => e.specialty)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<test>()
+            /*modelBuilder.Entity<test>()
                 .HasMany(e => e.files)
                 .WithMany(e => e.tests)
-                .Map(m => m.ToTable("file_test", "map").MapLeftKey("listeTest_idTest").MapRightKey("File_id"));
+                .Map(m => m.ToTable("file_test", "map").MapLeftKey("listeTest_idTest").MapRightKey("File_id"));*/
 
             modelBuilder.Entity<user>()
                 .Property(e => e.lastname)
@@ -382,10 +382,10 @@ namespace Data
                 .Property(e => e.username)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<user>()
+           /* modelBuilder.Entity<user>()
                 .HasOptional(e => e.applicant)
                 .WithRequired(e => e.user);
-
+            
             modelBuilder.Entity<user>()
                 .HasOptional(e => e.client)
                 .WithRequired(e => e.user);
@@ -396,7 +396,7 @@ namespace Data
 
             modelBuilder.Entity<user>()
                 .HasOptional(e => e.ressource)
-                .WithRequired(e => e.user);
+                .WithRequired(e => e.user);*/
         }
     }
 }

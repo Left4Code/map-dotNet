@@ -5,7 +5,7 @@
 <h2>Index</h2>
 <div id="calender"></div>
 
-<div id="myModal" class="modal fade in" role="dialog">
+<div id="myModal" class="modal fade show" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -28,7 +28,7 @@
     </div>
 </div>
 
-<div id="myModalSave" class="modal fade in" role="dialog">
+<div id="myModalSave" class="modal fade show" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -149,7 +149,7 @@
 
                         }
                     },
-                    eventLimit: true,
+                    eventLimit: false,
                     events: events,
                     eventClick: function (calEvent, jsEvent, view) {
                         selectedEvent = calEvent;
@@ -225,7 +225,7 @@
                 }
             })
             $('#dtp1,#dtp2').datetimepicker({
-                format: 'DD/MM/YYYY HH:mm A'
+                format: 'DD/MM/YYYY'
             });
 
             function openAddEditForm() {
@@ -235,7 +235,7 @@
                     $('#txtEnd').val(selectedEvent.end != null ? moment(selectedEvent.end).subtract(1, "days").format('DD/MM/YYYY HH:mm A') : '');
                 }
                 $('#myModal').modal('hide');
-                $('#myModalSave').modal();
+                $('#myModalSave').modal('show');
             }
             $('#btnSave').click(function () {
                 //Validation/

@@ -12,7 +12,7 @@ namespace Domain.entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public arrival()
         {
-            applicants = new HashSet<applicant>();
+            //applicants = new HashSet<applicant>();
         }
 
         [Key]
@@ -22,12 +22,12 @@ namespace Domain.entities
         public DateTime? arrivalDate { get; set; }
 
         public int flightNumber { get; set; }
-
+        /*
         public int? responsable_id { get; set; }
-
+        
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<applicant> applicants { get; set; }
 
-        public virtual responsable responsable { get; set; }
+        public virtual responsable responsable { get; set; }*/
     }
 }
