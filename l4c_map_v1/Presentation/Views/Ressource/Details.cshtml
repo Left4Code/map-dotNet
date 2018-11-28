@@ -57,8 +57,8 @@
                         <tr>
                             <td>@ViewBag.result.name @ViewBag.result.lastname</td>
                             <td>@ViewBag.result.cost DT </td>
-                            <td><span class="text-muted"><i class="fa fa-clock-o"></i> @ViewBag.result.dateDebut.ToShortDateString()</span> </td>
-                            <td><span class="text-muted"><i class="fa fa-clock-o"></i> @ViewBag.result.dateFin.ToShortDateString()</span> </td>
+                            <td>@ViewBag.result.dateDebut.ToShortDateString() </td>
+                            <td>@ViewBag.result.dateFin.ToShortDateString() </td>
 
                             <td>@ViewBag.result.note</td>
                             @if (ViewBag.result.cv != "Available")

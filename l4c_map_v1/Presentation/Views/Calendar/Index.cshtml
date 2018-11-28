@@ -96,7 +96,6 @@
                                 description: "Demande de congé",
                                 start: moment(v.DateBegin),
                                 end: v.DateEnd != null ? moment(v.DateEnd).add(1, "days") : null,
-                                color: '',
                                 allDay: true,
                                 state: v.StateDemande
                             });
@@ -119,32 +118,33 @@
                         left: 'prev,next today',
                         center: 'title',
                         right: 'month,basicWeek,basicDay,agenda'
-                    }, eventRender: function (event, element) {
-                        element.css('text-align', 'center');
-                        element.css('color', 'yellow');
-                        if (event.state == "Accepted") {
+                    }, eventAfterRender: function (event, element,view) {
+                        if (event.state == "Accepted" ) {
+                            element.find('.fc-title').html(event.title = "Demande de congé acceptée");
 
-
-                            element.find('.fc-title').append(event.title = "Congé accepté");
-
+                            element.find('.fc-title').css('color','black');
                             event.editable = false;
                             event.click = false;
                             element.css('background-color', '#00FF00');
-
+                            eventTextColor = "black";
+                           
                             // element.css('pointer-events', 'none');
 
                         } else if (event.state == "Waiting") {
                             event.editable = true;
-                            element.find('.fc-title').append(event.title = "Demande de congé en attente"
-);
+                            element.find('.fc-title').html(event.title = "Demande de congé en attente");
+                            element.find('.fc-title').css('color', 'black');
+
 
                             element.css('background-color', '#FFFF00');
                         } else if (event.state == "Denied") {
                             event.editable = false;
                             event.click = false;
+                            element.find('.fc-title').css('color', 'black');
+
                             element.css('background-color', '#FF0000');
 
-                            element.find('.fc-title').append(event.title = "Congé refusé");
+                            element.find('.fc-title').html(event.title = "Demande de congé réfusée");
 
 
                         }

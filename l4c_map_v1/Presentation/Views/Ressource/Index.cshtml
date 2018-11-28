@@ -3,13 +3,6 @@
 @{
     ViewBag.Title = "Index";
 }
-
-
-
-
-
-
-
 <div class="row">
     <div class="col-12">
         <div class="box">
@@ -66,14 +59,14 @@
 
                             Session["email"] = @item.businessSector;
 
-                            string path = "~/images/" + @item.picture;
+                            string path = "~/Content/Uploads/" + @item.picture;
 
                             <tbody>
-                            
+
                                 <tr>
 
                                     <td class="box ribbon-wrapper">
-                                        <div >
+                                        <div>
                                             <div class="ribbon bg-danger">@item.specialty</div>
                                             <img src="@Url.Content(path)" style="image-orientation: -90deg" class="profile-user-img rounded-circle  img-fluid mx-auto d-block" />
                                         </div>
@@ -100,22 +93,27 @@
                                     }
 
                                     <td>@item.seniority</td>
-                                   
-                                    @{ int ss = @item.note * 20; 
-                                    <td> <div class="progress progress-sm">
-                                            <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" 
-                                                 aria-valuenow="775" aria-valuemin="0" aria-valuemax="5" style="width:@ss%">
+
+                                    @{ int ss = @item.note * 20;
+                                        <td>
+                                            <div class="progress progress-sm">
+                                                <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
+                                                     aria-valuenow="775" aria-valuemin="0" aria-valuemax="5" style="width:@ss%">
+                                                </div>
                                             </div>
-                                        </div></td>
+                                        </td>
                                     }
 
-                                    <td id="conges">
+                                    <td id="as">
 
                                         @foreach (var demande in item.listeDemandesTimeOff)
                                         {
-
-                                            if (demande.StateDemande == "Waiting")
+                                            if ((DateTime.Now - demande.DateEnd.Value).TotalDays < 0)
                                             {
+
+
+                                                if (demande.StateDemande == "Waiting")
+                                                {
                                                 <div class="col-lg-3" id=@demande.idDemandeTimeOff>
                                                     <div class="dropdown" id="dropdown">
                                                         <button id="bt1" class="btn dropdown-toggle btn-primary" type="button" data-toggle="dropdown">
@@ -132,18 +130,20 @@
                                                     <br><br>
                                                 </div>
 
-                                            }
-                                            else
-                                            {
+                                                }
+                                                else
+                                                {<div class="col-lg-3" id=as@demande.idDemandeTimeOff></div>
 
+                                                }
                                             }
+                                        else {
                                         }
-
+                                        }
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-danger-outline" data-toggle="tooltip" data-original-title="Delete" id="delete" value=@item.id><i class="ti-trash" aria-hidden="true"></i></button>
+                                        <button id="delete" type="button" class="btn btn-danger" value=@item.id><i class="ion ion-trash-a"></i></button>
 
-                                        <button type="button" class="btn btn-success " id="details" value=@item.id >
+                                        <button type="button" class="btn btn-success " id="details" value=@item.id>
                                             <i class="ion ion-share">
 
                                             </i>
@@ -154,7 +154,7 @@
                                 </tr>
                             </tbody>
 
-                        }
+                                        }
 
                         <tfoot>
                             <tr>
@@ -185,15 +185,15 @@
     <script>
 
         $(document).ready(function(){
-           
-                if ( $.trim($('#conges').html()).length === 0 )
-                    $('#conges').html('<button class="btn btn-warning"> None </button>');
-            
+
+            //if ( $.trim($('div[id^="as"]').html()).length === 0 )
+            //    $('div[id^="as"]').html('<button class="btn btn-warning"> None </button>');
+
             $('button[id^="bt1"]').click(function(){
                 $(this).parent().addClass('show');
                 var x = $(this).parent();
                 $(x).children('div').eq(0).addClass('show');
-                
+
             });
             $(document).click(function(){
                 $('button[id^="bt1"]').parent().removeClass('show');
@@ -209,20 +209,31 @@
 
             obj.StateDemande = $('span[id^="_"]').html();
             var value = new Date(parseInt((obj.DateEnd).replace(/(^.*\()|([+-].*$)/g, '')) );
+            console.log(value.getMonth());
+            if(value.getMonth()==11 || value.getMonth()==0)
+            {
+                value.setMonth(value.getMonth()+2 );
+            }else 
             value.setMonth(value.getMonth()+1);
             var dat2 =   value.getDate() +"/" +value.getMonth()+"/" + value.getFullYear();
+
             
-            console.log("month"+value.getMonth());
 
             var value = new Date(parseInt((obj.DateBegin).replace(/(^.*\()|([+-].*$)/g, '')) );
-            value.setMonth(value.getMonth()+1);
+            console.log(value.getMonth());
+
+            if(value.getMonth()==11 || value.getMonth()==0)
+            {
+                value.setMonth(value.getMonth()+2);
+            }else 
+                value.setMonth(value.getMonth()+1);
             var dat1 =  value.getDate()+"/" +value.getMonth()+"/" + value.getFullYear();
             console.log(dat2+ " , "+dat1)
 
 
-            obj.DateEnd=dat2; 
-            obj.DateBegin=dat1; 
-           
+            obj.DateEnd=dat2;
+            obj.DateBegin=dat1;
+
 
             console.log(obj);
             $('span[id^="_"]').closest('div[id^="'+obj.idDemandeTimeOff+'"]').hide();
@@ -272,6 +283,7 @@
                 success: function (data) {
                     if (data.status) {
                         $('#delete').parentsUntil("tr").hide();
+
                     }
                 },
                 error: function () {

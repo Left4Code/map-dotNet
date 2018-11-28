@@ -30,6 +30,6 @@ namespace Presentation.Models
         public virtual List<demand_time_offVM> listeDemandesTimeOff { get; set; }
 
         public string username { get; set; }
-        public string password { get; set; }
+        public string Password { get; set; }
     }
 }

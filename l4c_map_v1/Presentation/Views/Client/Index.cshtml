@@ -27,7 +27,7 @@
                             <th>Actions</th>
 
                         </tr>
-                    @foreach (var item in ViewBag.result)
+                    @foreach (Presentation.Models.Client item in ViewBag.result)
                     {
                         <tr>
                            
@@ -39,13 +39,13 @@
                            }
                            
                             <td>
-                                @item.LastName
+                                @item.lastname
                             </td>
                             <td>
-                                @item.Name
+                                @item.name
                             </td>
                             <td>
-                                @{string path = "~/Content/Uploads/" + @item.Picture;}
+                                @{string path = "~/Content/Uploads/" + @item.picture;}
 
                                 <img src="@Url.Content(path)" width="50" height="50" />
                               
