@@ -8,92 +8,61 @@ using System.Threading.Tasks;
 
 namespace Service.Pattern
 {
-    public abstract class Service<TEntity> : IService<TEntity> where TEntity : class
+    public abstract class Service<T> : IService<T> where T : class
     {
-        #region Private Fields
-        IUnitOfWork utwk;
-        #endregion Private Fields
-
-        #region Constructor
-        protected Service(IUnitOfWork utwk)
+         IUnitOfWork utk;
+        protected Service(IUnitOfWork utk)
         {
-            this.utwk = utwk;
+            this.utk = utk;
         }
-        #endregion Constructor
-
-
-
-        public virtual void Add(TEntity entity)
+        public void Add(T entity)
         {
-            ////_repository.Add(entity);
-            utwk.GetRepositoryBase<TEntity>().Add(entity);
+            utk.GetRepositoryBase<T>().Add(entity);
         }
-
-        public virtual void Update(TEntity entity)
-        {
-            //_repository.Update(entity);
-            utwk.GetRepositoryBase<TEntity>().Update(entity);
-        }
-
-        public virtual void Delete(TEntity entity)
-        {
-            //   _repository.Delete(entity);
-            utwk.GetRepositoryBase<TEntity>().Delete(entity);
-        }
-
-        public virtual void Delete(Expression<Func<TEntity, bool>> where)
-        {
-            // _repository.Delete(where);
-            utwk.GetRepositoryBase<TEntity>().Delete(where);
-        }
-
-        public virtual TEntity GetById(long id)
-        {
-            //  return _repository.GetById(id);
-            return utwk.GetRepositoryBase<TEntity>().GetById(id);
-        }
-
-        public virtual IEnumerable<TEntity> GetAll()
-        {
-            //return utwk.GetRepositoryBase<TEntity>().Get();
-            //return _repository.GetById(id);
-            //  return utwk.getRepository<TEntity>().GetById(id);
-            return null;
-        }
-
-        public virtual IEnumerable<TEntity> GetMany(Expression<Func<TEntity, bool>> filter = null, Expression<Func<TEntity, bool>> orderBy = null)
-        {
-            //  return _repository.GetAll();
-            return utwk.GetRepositoryBase<TEntity>().GetMany(filter, orderBy);
-        }
-
-        public virtual TEntity Get(Expression<Func<TEntity, bool>> where)
-        {
-            //return _repository.Get(where);
-            return utwk.GetRepositoryBase<TEntity>().Get(where);
-        }
-
-
 
         public void Commit()
         {
-            try
-            {
-                utwk.Commit();
-            }
-            catch (Exception ex)
-            {
-
-                throw;
-            }
+            utk.Commit();
         }
 
+        public void Delete(T entity)
+        {
+            utk.GetRepositoryBase<T>().Delete(entity);
+        }
+
+        public void Delete(Expression<Func<T, bool>> condition)
+        {
+            utk.GetRepositoryBase<T>().Delete(condition);
+        }
 
         public void Dispose()
         {
-            utwk.Dispose();
+            utk.Dispose();
         }
 
+        public T Get(Expression<Func<T, bool>> condition)
+        {
+            return utk.GetRepositoryBase<T>().Get(condition);
+        }
 
+        public T GetById(string id)
+        {
+            return utk.GetRepositoryBase<T>().GetById(id);
+        }
+
+        public T GetById(long id)
+        {
+            return utk.GetRepositoryBase<T>().GetById(id);
+        }
+
+        public IEnumerable<T> GetMany(Expression<Func<T, bool>> condition = null, Expression<Func<T, bool>> orderBy = null)
+        {
+            return utk.GetRepositoryBase<T>().GetMany(condition, orderBy);
+        }
+
+        public void Update(T entity)
+        {
+            utk.GetRepositoryBase<T>().Update(entity);
+        }
     }
 }

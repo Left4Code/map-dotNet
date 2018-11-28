@@ -7,22 +7,19 @@ using System.Threading.Tasks;
 
 namespace Service.Pattern
 {
-    public interface IService<T>:IDisposable
-    where T : class
+    public interface IService<T> : IDisposable where T :class
     {
         void Add(T entity);
-        void Update(T entity);
+        void Delete(Expression<Func<T, bool>> condition);
         void Delete(T entity);
-        void Delete(Expression<Func<T, bool>> where);
+        T Get(Expression<Func<T, bool>> condition);
         T GetById(long id);
-        // T GetById(string id);
-        IEnumerable<T> GetMany(Expression<Func<T, bool>> where = null, Expression<Func<T, bool>> orderBy = null);
-        T Get(Expression<Func<T, bool>> where);
-        IEnumerable<T> GetAll();
-      
+        T GetById(string id);
+        // GetMany() ou getMany(param)
+        IEnumerable<T> GetMany(Expression<Func<T, bool>> condition = null,
+            Expression<Func<T, bool>> orderBy = null);
+        void Update(T entity);
         void Commit();
-
-
+        //void Dispose(); hidden
     }
-    
 }
