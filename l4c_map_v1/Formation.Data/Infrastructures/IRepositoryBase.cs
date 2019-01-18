@@ -19,6 +19,5 @@ namespace Data.Infrastructure
         IEnumerable<T> GetMany(Expression<Func<T, bool>> condition = null,
             Expression<Func<T, bool>> orderBy = null);
         void Update(T entity);
-        //IEnumerable<T> GetAll();
     }
 }
