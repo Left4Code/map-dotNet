@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Profile";
+    var user = (Domain.entities.user)HttpContext.Current.Session["user"];
 }
 @if (Model != null)
 {
@@ -12,6 +13,10 @@
                 <div class="box-body box-profile">
                     <img src="@Url.Content(path)" class="profile-user-img rounded-circle img-fluid mx-auto d-block" />
                     <h3>@Model.lastname @Model.name</h3>
+                    @if (user.role.Equals("Responsable") && Model.applicantState.Equals("Waiting"))
+                    {
+                        <a href="@Url.Action("Accept","Applicant",Model)" class="text-success">Accept</a>
+                    }
                     @if (Model.applicantState.Equals("Waiting"))
                     {
                         <p>Register as <span class="badge badge-cyan">Applicant</span> State : <span class="badge badge-warning">@Model.applicantState</span></p>
@@ -52,6 +57,10 @@
                 <ul class="nav nav-tabs">
                     <li><a class="active" href="#information" data-toggle="tab">Information</a></li>
                     <li><a href="#test" data-toggle="tab">Test</a></li>
+                    @if(Model.arrival != null)
+                    {
+                        <li><a href="#arrival" data-toggle="tab">Arrival</a></li>
+                    }
                 </ul>
                 <div class="tab-content">
                     <div class="active tab-pane" id="information">
@@ -70,7 +79,7 @@
                                         else
                                         {
                                             <p>Register as <span class="badge badge-cyan">Applicant</span> State : <span class="badge badge-success">@Model.applicantState</span></p>
-                                        }
+                                        }                                        
                                         <span class="badge badge-dark">Speciality :</span>
 
                                         @if (Model.demand.specialty.Equals(""))
@@ -125,26 +134,41 @@
                         <div class="box box-outline-gray bg-light">
                             <div class="media-list media-list-divided media-list-hover">
                                 @{
-                                   
+                                    if (user.role.Equals("Applicant") || user.role.Equals("Responsable"))
+                                    {
                                         foreach (var passed in Model.testpassed)
                                         {
-                                            @Html.Partial("_DisplayInfoPassed", passed);                     
+                                            @Html.Partial("_DisplayInfoPassed", passed);
                                         }
-                                        foreach (var test in Model.tests)
+                                        if (user.role.Equals("Applicant"))
                                         {
-                                            @Html.Partial("_DisplayInfo", test);
+                                            foreach (var test in Model.tests)
+                                            {
+                                                @Html.Partial("_DisplayInfo", test);
+                                            }
                                         }
-                                    
+                                    }
                                 }
                                 
                             </div>
                         </div>
-                    </div>              
+                    </div>   
+                    @if(Model.arrival != null)
+                    {
+                        <div class="tab-pane" id="arrival">
+                            <div class="box box-outline-gray bg-light">
+                                <div class="media-list media-list-divided media-list-hover">
+                                    @Html.Partial("_DisplayArrival", Model.arrivalvm)
+                                </div>
+                            </div>
+                        </div>
+                    }
                 </div>
             </div>
         </div>
     </div>
-}else
+}
+else
 {
     <p>Not Connected ! Please Login ...</p>
 }

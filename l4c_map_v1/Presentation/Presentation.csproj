@@ -187,6 +187,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ApplicantController.cs" />
+    <Compile Include="Controllers\ArrivalController.cs" />
     <Compile Include="Controllers\CalendarController.cs" />
     <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -205,7 +206,7 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicantVm.cs" />
-    <Compile Include="Models\Client.cs" />
+    <Compile Include="Models\ArrivalVm.cs" />
     <Compile Include="Models\Credential.cs" />
     <Compile Include="Models\demand_time_offVM.cs" />
     <Compile Include="Models\IdentityModels.cs" />

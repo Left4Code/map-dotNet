@@ -15,6 +15,7 @@ using static Domain.entities.applicant;
 
 namespace Presentation.Controllers
 {
+    [HandleError]
     public class ApplicantController : Controller
     {
         // GET: Applicant
@@ -41,7 +42,10 @@ namespace Presentation.Controllers
                         role = applicant.role,
                         username = applicant.username,
                         picture = applicant.picture,
-                        id = applicant.id                        
+                        id = applicant.id ,
+                        password = applicant.password,
+                        arrival = applicant.arrival,
+                        demand = applicant.demand                        
                     });
                 }
             }
@@ -157,7 +161,7 @@ namespace Presentation.Controllers
         public new ActionResult Profile(ApplicantVm applicantvm)
         {
             var user = (user)Session["user"];
-            if (user.role.Equals("Responsable"))
+            if (user != null && user.role.Equals("Responsable"))
             {
                 user.id = applicantvm.id;
             }      
@@ -185,6 +189,14 @@ namespace Presentation.Controllers
                         demand = applicant.demand,
                         arrival = applicant.arrival                
                     };
+                    ArrivalVm arrivalvm = new ArrivalVm()
+                    {
+                        arrivalDate = avm.arrival.arrivalDate ,
+                        idArrival = avm.arrival.idArrival,
+                        flightNumber = avm.arrival.flightNumber
+                        
+                    };
+                    avm.arrivalvm = arrivalvm;
                     Client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                     HttpResponseMessage response_test = Client.GetAsync("/l4c_map-v2-web/rest/test/").Result;
                     if (response_test.IsSuccessStatusCode)
@@ -248,6 +260,36 @@ namespace Presentation.Controllers
                     return View(avm);
                 }
             }           
+            return RedirectToAction("Error","Shared");
+        }
+        [HttpGet]
+        public ActionResult Accept(ApplicantVm avm)
+        {
+            applicant applicant = new applicant()
+            {
+                id = avm.id,
+                applicantState = "Applicant_Being_Recruted",
+                username = avm.username,
+                role = avm.role,
+                picture = avm.picture,
+                age = avm.age,
+                arrival = avm.arrival,
+                chanceOfSuccess = avm.chanceOfSuccess,
+                country = avm.country.ToString(),
+                demand = avm.demand,
+                lastname = avm.lastname,
+                name = avm.name,
+                password = avm.password
+            };
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri("http://localhost:18080");
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            client.PutAsJsonAsync<applicant>("/l4c_map-v2-web/rest/applicant/", applicant).ContinueWith((postTask) => postTask.Result.EnsureSuccessStatusCode());
+            return RedirectToAction("Profile", "Applicant");
+        }
+        [HttpPost]
+        public ActionResult Accept()
+        {
             return View();
         }
     }

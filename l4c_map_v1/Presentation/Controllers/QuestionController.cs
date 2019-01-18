@@ -11,6 +11,7 @@ using System.Web.Mvc;
 
 namespace Presentation.Controllers
 {
+    [HandleError]
     public class QuestionController : Controller
     {
         // GET: Question
