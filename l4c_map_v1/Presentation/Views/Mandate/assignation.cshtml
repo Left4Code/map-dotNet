@@ -1,0 +1,26 @@
+﻿@model Presentation.Models.RessourceVm
+<style>
+    #box{
+        display:flex;   
+        flex-direction: column;
+        align-items: center;
+        width: 200px;
+        border:1px solid red;
+    }
+    #box img{
+        height:80px;
+        width:120px;
+        border-radius: 3px
+    }
+</style>
+<div id="box">
+    <img src="../images/profile.png" alt="profile" />
+    <h3>@Model.name</h3>
+    <p>
+        @foreach (var skill in Model.skills)
+        {
+          <span> @skill.name </span> 
+        }
+    </p>
+    <button class="alert-success">Assign</button>
+</div>
