@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "PigisteVsEmployee";
+}
+
+@{
+    var myChart = new Chart(width: 500, height: 400, theme: ChartTheme.Blue)
+        .AddTitle("number of Freelancers vs Employees")
+        .AddSeries(
+
+            name: "number of Freelancers vs Employees",
+            xValue: new[] { "employee", "Freenlancers"},
+            yValues: new[] {@ViewBag.nbEmp,@ViewBag.nbPigiste } )
+        .Write().ToWebImage();
+}
+
+
+
+
+

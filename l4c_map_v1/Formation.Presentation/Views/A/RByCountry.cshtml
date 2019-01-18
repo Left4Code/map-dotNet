@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "RByCountry";
+
+}
+
+@{
+    var myChart = new Chart(width: 500, height: 400, theme: ChartTheme.Green)
+        .AddTitle("number of employes per project country (actual projects)")
+        .AddSeries(
+
+            name: "nombre employé par pays",
+            xValue: @ViewBag.pays,
+            xField : "pays",
+            yFields : "nombre",
+            axisLabel : "p",
+            yValues: @ViewBag.nb)
+        .Write().ToWebImage();
+}
+     

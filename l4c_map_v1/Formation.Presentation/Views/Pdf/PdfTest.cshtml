@@ -1,0 +1,31 @@
+﻿@model IEnumerable<int>
+
+<Pdf xmlns="Aspose.Pdf" DestinationType="FitPage">
+    <Section>
+        <Text Alignment="Left"><Segment Color="Blue">activity rate : </Segment><Segment >@ViewBag.rate </Segment></Text>
+        <text><Segment>---</Segment></text>
+        <Text Alignment="Left"><Segment Color="Blue">LastName : </Segment><Segment>@ViewBag.Ressource.LastName </Segment></Text>
+        <text><Segment>---</Segment></text>
+        <Text Alignment="Left"><Segment Color="Blue">Name : </Segment><Segment>@ViewBag.Ressource.Name </Segment></Text>
+        <text><Segment>---</Segment></text>
+        <Text Alignment="Left"><Segment Color="Blue">DateBegin : </Segment><Segment>@ViewBag.Ressource.dateDebut </Segment></Text>
+        <text><Segment>---</Segment></text>
+        <Text Alignment="Left"><Segment Color="Blue">DateEnd : </Segment><Segment>@ViewBag.Ressource.dateFin </Segment></Text>
+        <text><Segment>---</Segment></text>
+        <Text Alignment="Left"><Segment Color="Blue">mandates : </Segment></Text>
+        <text><Segment>---</Segment></text>
+         @foreach (Presentation.Models.MandateVM mandate in @ViewBag.mandates)
+        {
+        @:<Text Alignment="center"><Segment Color="grey">--------------------------------------------------------------------------------------- </Segment></Text>
+        @:<text><Segment>---</Segment></text>
+        @:<Text Alignment="Left"><Segment Color="red">date begin mandate : </Segment><Segment>@mandate.dateBegin.ToString() </Segment></Text>
+        @:<text><Segment>---</Segment></text>
+        @:<Text Alignment="Left"><Segment Color="red">date end mandate : </Segment><Segment>@mandate.dateEnd </Segment></Text>
+        @:<text><Segment>---</Segment></text>
+        @:<Text Alignment="Left"><Segment Color="red">project name : </Segment><Segment>@mandate.project.name</Segment></Text>
+        @:<text><Segment>---</Segment></text>
+        @:<Text Alignment="Left"><Segment Color="red">country : </Segment><Segment>@mandate.project.adresse</Segment></Text>
+        }
+        
+    </Section>
+</Pdf>

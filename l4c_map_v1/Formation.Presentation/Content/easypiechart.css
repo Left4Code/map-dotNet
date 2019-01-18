@@ -1,0 +1,36 @@
+﻿body {
+}
+.container{
+
+    top: 50%;
+    left: 50%;
+    width: 1200px;
+
+}
+.container .box{
+    width: 25%;
+    float: left;
+    background-color: #ffffe6;
+    
+
+}
+.container .box h2{
+    text-align: center;
+    color: #373737;
+    
+}
+.container .box .chart{
+    position: relative;
+    width: 180px;
+    height: 180px;
+    margin: auto;
+    text-align: center;
+    font-size: 30px;
+    line-height: 180px;
+
+}
+.container .box canvas{
+    position: absolute;
+    top: 0;
+    left: 0;
+}

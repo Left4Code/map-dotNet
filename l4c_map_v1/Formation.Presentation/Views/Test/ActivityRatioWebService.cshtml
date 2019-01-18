@@ -1,0 +1,74 @@
+﻿
+
+
+
+
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script>
+    (function() {
+
+        var chart = new CanvasJS.Chart("chartContainer", {
+            animationEnabled: true,
+            animationDuration: 4000,
+            title: {
+                text: "monthly activity progress"
+            },
+            axisX: {
+                title: "Months"
+            },
+            axisY: {
+                title: "Activity Percentage",
+                suffix: "%"
+            },
+            data: [{
+                type: "line",
+                name: "monthly activity progress",
+                connectNullData: true,
+                //nullDataLineDashType: "solid",
+                xValueType: "dateTime",
+                xValueFormatString: "YYYY MMMM",
+                //yValueFormatString: "#,##0##\"%\"",
+                dataPoints: [
+                    { x: @ViewBag.data[0].m, y: @ViewBag.data[0].y},
+                    { x: @ViewBag.data[1].m, y: @ViewBag.data[1].y},
+                    { x: @ViewBag.data[2].m, y: @ViewBag.data[2].y},
+                    { x: @ViewBag.data[3].m, y: @ViewBag.data[3].y},
+                    { x: @ViewBag.data[4].m, y: @ViewBag.data[4].y},
+                    { x: @ViewBag.data[5].m, y: @ViewBag.data[5].y},
+                    { x: @ViewBag.data[6].m, y: @ViewBag.data[6].y},
+                    { x: @ViewBag.data[7].m, y: @ViewBag.data[7].y},
+                    { x: @ViewBag.data[8].m, y: @ViewBag.data[8].y},
+                    { x: @ViewBag.data[9].m, y: @ViewBag.data[9].y},
+                    { x: @ViewBag.data[10].m, y: @ViewBag.data[10].y}
+                   
+                ]
+            }]
+            
+        });
+chart.render();
+
+
+    })();
+</script>
+
+<i id="back" class="fa fa-arrow-circle-left" style="font-size:36px" onclick="clickback()"></i>
+
+<div id="chartContainer" style="height: 400px; width: 80%;"></div>
+<script>
+    function clickback() {
+    $.ajax({
+        url: '@Url.Action("partialV", "A")',
+        data: {},
+        type: 'POST',
+        success: function (data) {
+            //$("#d").html('<span>ff</span>');
+            $(".content").html(data);
+
+           // $("#divContent").attr('id', 'a');
+            console.log('hh');
+            console.log(data);
+        }
+    });
+}
+</script>
+

@@ -1,0 +1,25 @@
+﻿
+<input type="button" id="btnSearch" class="btn btn-warning" style="height:35px;width:120px" value="Search" onclick="clickbtn()" />
+<label>Name:</label><input type="text" id="txtName" name="txtName" />
+<div id="d">
+    <div id="divContent">aaa</div>    
+</div>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<script>
+    function clickbtn() {
+    $.ajax({
+        url: '@Url.Action("TestAjax", "tojraba")',
+        data: { Name: $("#txtName").val() },
+        type: 'POST',
+        success: function (data) {
+            //$("#d").html('<span>ff</span>');
+            $("#d").html(data);
+           // $("#divContent").attr('id', 'a');
+            console.log('hh');
+            console.log(data);
+        }
+    });
+}
+</script>
+

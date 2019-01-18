@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewBag.Title = "testWebService";
+}
+
+<h2>testWebService</h2>
+@foreach (var link in (List<KeyValuePair<Presentation.Models.RessourceVM, string>>)ViewBag.Resources)
+{
+    <span> @link.Key.Name</span>
+    <span> @link.Key.LastName</span>
+    <span> @link.Key.id</span>
+    <span> @link.Value</span>
+
+}
+    

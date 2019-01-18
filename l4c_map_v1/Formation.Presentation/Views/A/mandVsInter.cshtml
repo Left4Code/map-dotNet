@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewBag.Title = "mandVsInter";
+}
+
+@{
+    var myChart = new Chart(width: 500, height: 400, theme: ChartTheme.Yellow)
+        .AddTitle("number of persons in mandate vs inter-Mandate (now)")
+        .AddSeries(
+
+            name: "number of persons in mandate vs inter-Mandate",
+            xValue: new[] { "Person in Mandate", "Persons in Inter-mandate" },
+            yValues: new[] { @ViewBag.nbPM, @ViewBag.nbPIM})
+        .Write().ToWebImage();
+}

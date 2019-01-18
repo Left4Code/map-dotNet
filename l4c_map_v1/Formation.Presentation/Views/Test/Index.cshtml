@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    var VBdataP = (List<Presentation.Controllers.Obj>)ViewBag.dataP;
+}
+
+<h2>Index</h2>
+
+@ViewBag.prof;
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<script>
+window.onload = function() {
+
+var chart = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,
+	title: {
+		text: "monthly activity progress"
+	},
+	axisX: {
+		title: "Months"
+	},
+	axisY: {
+	    title: "Activity Percentage",
+		suffix: "%"
+	},
+	data: [{
+		type: "line",
+		name: "monthly activity progress",
+		connectNullData: true,
+		//nullDataLineDashType: "solid",
+		xValueType: "dateTime",
+		xValueFormatString: "YYYY MMMM",
+		yValueFormatString: "#,##0.##\"%\"",
+		dataPoints: [
+            { x: @ViewBag.dataP[0].m, y: @ViewBag.dataP[0].y},
+            { x: @ViewBag.dataP[1].m, y: @ViewBag.dataP[1].y},
+            { x: @ViewBag.dataP[2].m, y: @ViewBag.dataP[2].y}
+		]
+	}]
+});
+chart.render();
+
+
+}
+</script>
+<div id="chartContainer" style="height: 400px; width: 80%;"></div>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
