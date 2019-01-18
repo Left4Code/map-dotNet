@@ -1,0 +1,361 @@
+﻿@{ 
+    var user = (Domain.entities.user)HttpContext.Current.Session["user"];
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>@ViewBag.Title </title>
+    @Styles.Render("~/Content/template")
+
+</head>
+<body class="hold-transition skin-blue-light sidebar-mini">
+    <div class="wrapper">
+        <header class="main-header">
+            <!-- Logo -->
+            <a href="index-2.html" class="logo">
+                <!-- mini logo for sidebar mini 50x50 pixels -->
+                <b class="logo-mini">
+                    <span class="light-logo"><img src="../../images/logo-light.png" alt="logo"></span>
+                    <span class="dark-logo"><img src="../../images/logo-dark.png" alt="logo"></span>
+                </b>
+                <!-- logo for regular state and mobile devices -->
+                <span class="logo-lg">
+                    <img src="../../images/logo-light-text.png" alt="logo" class="light-logo">
+                    <img src="../../images/logo-dark-text.png" alt="logo" class="dark-logo">
+                </span>
+            </a>
+            <!-- Header Navbar -->
+            <nav class="navbar navbar-static-top">
+                <!-- Sidebar toggle button-->
+                <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                    <i class="icon-th-list"></i>
+                </a>
+
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+
+                        <li class="search-box">
+                            <a class="nav-link hidden-sm-down" href="javascript:void(0)"><i class="icon-search"></i></a>
+                            <form class="app-search" style="display: none;">
+                                <input type="text" class="form-control" placeholder="Search &amp; enter"> <a class="srh-btn"><i class="ti-close"></i></a>
+                            </form>
+                        </li>
+
+                        <!-- Messages -->
+                        <li class="dropdown messages-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="icon-mail-alt"></i>
+                            </a>
+                            <ul class="dropdown-menu scale-up">
+                                <li class="header bg-primary text-white">You have 5 messages</li>
+                                <li>
+                                    <!-- inner menu: contains the actual data -->
+                                    <ul class="menu inner-content-div">
+                                        <!-- start message -->
+                                        <li>
+                                            <a href="javascript:;">
+                                                <div class="pull-left">
+                                                    <img src="../../images/user2-160x160.jpg" class="rounded-circle" alt="User Image">
+                                                </div>
+                                                <div class="mail-contnet">
+                                                    <h4>
+                                                        Lorem Ipsum
+                                                        <small><i class="fa fa-clock-o"></i> 15 mins</small>
+                                                    </h4>
+                                                    <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <!-- end message -->
+                                    </ul>
+                                </li>
+                                <li class="footer"><a href="javascript:;" class="bg-primary text-white">See all e-Mails</a></li>
+                            </ul>
+                        </li>
+                        <!-- End Message -->
+                        <!-- Notifications -->
+                        <li class="dropdown notifications-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="icon-bell-alt"></i>
+                            </a>
+                            <ul class="dropdown-menu scale-up">
+                                <li class="header bg-primary text-white">You have 7 notifications</li>
+                                <li>
+                                    <!-- inner menu: contains the actual data -->
+                                    <ul class="menu inner-content-div">
+                                        <li>
+                                            <a href="javascript:;">
+                                                <i class="fa fa-users text-aqua"></i> Curabitur id eros quis nunc suscipit blandit.
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;">
+                                                <i class="fa fa-warning text-yellow"></i> Duis malesuada justo eu sapien elementum, in semper diam posuere.
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;">
+                                                <i class="fa fa-users text-red"></i> Donec at nisi sit amet tortor commodo porttitor pretium a erat.
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;">
+                                                <i class="fa fa-shopping-cart text-green"></i> In gravida mauris et nisi
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;">
+                                                <i class="fa fa-user text-red"></i> Praesent eu lacus in libero dictum fermentum.
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;">
+                                                <i class="fa fa-user text-red"></i> Nunc fringilla lorem
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;">
+                                                <i class="fa fa-user text-red"></i> Nullam euismod dolor ut quam interdum, at scelerisque ipsum imperdiet.
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="footer"><a href="javascript:;" class="bg-primary text-white">View all</a></li>
+                            </ul>
+                        </li>
+                        <!-- Control Sidebar Toggle Button -->
+                        <li>
+                            <a href="#" data-toggle="control-sidebar"><i class="icon-cog"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Left side column. contains the logo and sidebar -->
+        <aside class="main-sidebar">
+            <!-- sidebar -->
+            <section class="sidebar">
+                <!-- Sidebar user panel -->
+                <div class="user-panel">
+                    <div class="ulogo">
+                        <a href="index-2.html">
+                            <!-- logo for regular state and mobile devices -->
+                            <span class="text-white"><b>Levio </b>Admin</span>
+                        </a>
+                    </div>
+
+                    @if (Session["user"] != null)
+                    {
+                        
+                        string path = "~/images/" + user.picture;
+                        <div class="image">
+                            @if (user.role.Equals("Responsable"))
+                            {
+                                <img src="../images/default.png" class="rounded-circle" alt="User Image">
+                            }
+                            else
+                            {
+                                <img src="@Url.Content(path)" class="rounded-circle" alt="User Image">
+                            }                      
+                        </div>
+                        <div class="info text-white">
+                            <p>@user.name @user.lastname</p>
+                            @if (!user.role.Equals("Responsable"))
+                            {
+                                <a href="@Url.Action("Profile","Applicant")" class="link text-white" data-toggle="tooltip" title="" data-original-title="Settings"><i class="icon-cog" style="font-size:25px"></i></a>
+                            }
+                            <a></a>
+                            <a href="@Url.Action("LogOut","User")" class="link text-white" data-toggle="tooltip" title="" data-original-title="Logout"><i class="icon-logout" style="font-size:20px"></i></a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="image">
+                            <img src="../images/default.png" class="rounded-circle" alt="User Image">
+                        </div>
+                        <div class="info text-white">
+                            <p>Admin Session</p>                        
+                            <a href="@Url.Action("Login","User")" class="link text-white" data-toggle="tooltip" title="" data-original-title="Login"><i class="icon-login" style="font-size:25px"></i></a>
+                        </div>
+                    }
+                </div>
+                <!-- sidebar menu -->                 
+                <ul class="sidebar-menu" data-widget="tree">
+             
+                    <li class="treeview active">
+                        <a href="javascript:;">
+
+                            <i class="icon-th"></i>
+                            <span>Dashboard</span>
+                            <span class="pull-right-container">
+                            </span>
+                        </a>
+                    </li>
+                    <!-----------------------------------BLOCK------------------------------------------------->
+                    <!-- Lahné talka example taa partie taa crud wala ay zok om haja theb taamlha -->
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="icon-sliders"></i>
+                            <span>App</span>
+                            <span class="pull-right-container">
+                                <i class="icon-right-open-mini" style="font-size:20px"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="pages/app/app-chat.html">Chat app</a></li>
+                        </ul>
+                    </li>
+                     <!-- toufa lahné -->
+                    <!----------------------------------------------------------------------------------------->
+                    <!-----------------------------------BLOCK------------------------------------------------->
+                    <!-- Lahné talka example taa partie taa crud wala ay zok om haja theb taamlha -->
+
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="icon-mail-alt"></i> <span>Mailbox</span>
+                            <span class="pull-right-container">
+                                <i class="icon-right-open-mini" style="font-size:20px"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="pages/mailbox/mailbox.html">Inbox</a></li>
+                        </ul>
+                    </li>
+                    <!-- toufa lahné -->
+                    <!----------------------------------------------------------------------------------------->
+                    <!-----------------------------------BLOCK------------------------------------------------->
+                    @if (user != null && (user.role.Equals("Responsable") || user.role.Equals("Applicant")))
+                    {
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="icon-globe"></i> <span>INTERNATIONAL</span>
+                                <span class="pull-right-container">
+                                    <i class="icon-right-open-mini" style="font-size:20px"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="@Url.Action("Index","Applicant")">All applicant</a></li>
+                                <li><a href="@Url.Action("Index","Test")">Tests</a></li>
+                            </ul>                    
+                        </li>
+                    }
+
+                    @if (user != null && user.role.Equals("Responsable"))
+                    {
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="icon-comment"></i> <span>REQUEST MANAGEMENT</span>
+                                <span class="pull-right-container">
+                                    <i class="icon-right-open-mini" style="font-size:20px"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="pages/mailbox/mailbox.html">Inbox</a></li>
+                            </ul>
+                        </li>
+                    }
+                    @if (user != null && ((user.role.Equals("Responsable") || user.role.Equals("Ressource"))))
+                    {
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="icon-person"></i> <span>RESSOURCE</span>
+                                <span class="pull-right-container">
+                                    <i class="icon-right-open-mini" style="font-size:20px"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="pages/mailbox/mailbox.html">Inbox</a></li>
+                            </ul>
+                        </li>
+                    }
+                    @if (user != null && (user.role.Equals("Responsable") || user.role.Equals("Client")))
+                    {
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="icon-briefcase"></i> <span>PROJECT/CLIENT</span>
+                                <span class="pull-right-container">
+                                    <i class="icon-right-open-mini" style="font-size:20px"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="pages/mailbox/mailbox.html">Inbox</a></li>
+                            </ul>
+                        </li>
+                    }
+                    @if (user != null && (user.role.Equals("Responsable") || user.role.Equals("Ressource")))
+                    {
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="icon-doc-text"></i> <span>MANDATE</span>
+                                <span class="pull-right-container">
+                                    <i class="icon-right-open-mini" style="font-size:20px"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="pages/mailbox/mailbox.html">Inbox</a></li>
+                            </ul>
+                        </li>
+                    }    
+
+                }
+                </ul>            
+            </section>
+        </aside>
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <h1>
+                    Levio Dashboard
+                    <small>Control panel</small>
+                </h1>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="javascript:;"><img src="../../images/svg/baseline-dashboard-24px.svg" /> Home</a></li>
+                    <li class="breadcrumb-item active">Dashboard</li>
+                </ol>
+            </section>
+            <section class="content">
+                <!-- Main content -->
+                @RenderBody()
+                <!-- /.content -->
+            </section>
+        </div>
+        <!-- /.content-wrapper -->
+
+        <footer class="main-footer">
+            <div class="pull-right d-none d-sm-inline-block">
+            </div>
+            &copy; 2018 <a href="javascript:;">Left 4 Code Team</a>. All Rights Reserved.
+        </footer>
+
+        <!-- Control Sidebar -->
+        <!-- /.control-sidebar-menu -->
+
+    </div>
+    <!-- /.tab-pane -->
+    <!-- Stats tab content -->
+    <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
+    <!-- /.tab-pane -->
+    <!-- Settings tab content -->
+    <!-- /.control-sidebar -->
+    <!-- Add the sidebar's background. This div must be placed immediately after the control sidebar -->
+    <div class="control-sidebar-bg"></div>
+
+    <!-- ./wrapper -->
+
+
+
+@Scripts.Render("~/bundles/template")
+@RenderSection("scripts", required: false)
+
+</body>
+                
+</html>

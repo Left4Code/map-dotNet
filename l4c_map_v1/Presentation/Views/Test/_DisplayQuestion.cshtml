@@ -1,0 +1,22 @@
+﻿@model Presentation.Models.QuestionVm
+
+
+<div class="form-group">
+    @Html.LabelFor(model => model.correct, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        <p>@Model.task</p>
+        <label class="text-primary">Response 1 :</label> <label class="text-fade">@Model.syn1</label>
+        <br />
+        <label class="text-primary">Response 2 :</label> <label class="text-fade">@Model.syn2</label>
+        <br />
+        <label class="text-primary">Response 3 :</label> <label class="text-fade">@Model.syn3</label>
+        <div class="form-group">
+            <span class="bg-success d-inline-block text-center p-1 w-150">Your choice :</span>
+            <div class="col-md-10">
+                @Html.EnumDropDownListFor(model => model.numberChosed, new { htmlAttributes = new { @class = "btn dropdown-toggle btn-primary" } })
+                @Html.ValidationMessageFor(model => model.numberChosed, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+</div>
+

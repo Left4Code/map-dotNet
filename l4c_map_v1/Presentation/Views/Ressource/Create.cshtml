@@ -1,0 +1,254 @@
+﻿@using Presentation.Models;
+@model RessourceSkills
+
+<head>
+
+
+   
+</head>
+
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Ressource</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.ressource.name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ressource.name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ressource.name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.Label("Last name", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ressource.lastname, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ressource.lastname, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Email", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ressource.lastname, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ressource.businessSector, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Cost", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ressource.cost, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ressource.cost, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Started working", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ressource.dateDebut, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ressource.dateDebut, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("End of contract", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ressource.dateFin, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ressource.dateFin, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.Label("Seniority", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ressource.seniority, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ressource.seniority, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Specialty", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ressource.specialty, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ressource.specialty, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+    
+
+        <div class="form-group">
+            @Html.Label("Contrat type", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.ressource.typeContrat,
+                  new List<SelectListItem> {
+                       new SelectListItem { Value = "Employee" , Text = "Employee" },
+                       new SelectListItem { Value = "Freelancer" , Text = "Freelancer" }
+                    },
+                new { @class = "form-control" })
+            </div>
+        </div>
+   
+            <input type="button" value="Add skill" id="ss"  class="btn btn-info" />
+        <table style="margin-left:15px">
+            <tr>
+                <td>
+                    Name
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.skills.name, new { htmlAttributes = new { @class = "form-control" } })
+
+
+                </td>
+            </tr>
+            <tr>
+                <td>Experience</td>
+                <td>
+                    @Html.EditorFor(model => model.skills.experience, new { htmlAttributes = new { @class = "form-control" } })
+                </td>
+            </tr>
+            <tr>
+                <td>Degree</td>
+                <td>
+                    @Html.EditorFor(model => model.skills.degree, new { htmlAttributes = new { @class = "form-control" } })
+                </td>
+            </tr>
+            <tr>
+                <td>Specialty</td>
+                <td>
+                    @Html.EditorFor(model => model.skills.specialty, new { htmlAttributes = new { @class = "form-control" } })
+                </td>
+            </tr>
+        </table>
+        <br /><br />
+        <div id="otherskills">
+
+
+        </div><br />
+
+        <div id="otherskills1">
+
+
+        </div><br />
+
+        <div id="otherskills2">
+
+
+        </div><br />
+
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+}
+<script id="edittemplate" type="text/template">
+    @Html.Partial("_Skill")
+</script>
+<script id="edittemplate1" type="text/template">
+    @Html.Partial("_Skill1")
+</script>
+<script id="edittemplate2" type="text/template">
+    @Html.Partial("_Skill2")
+</script>
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+@section scripts{
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+
+<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"> </script>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $("#ressource_specialty").autocomplete({
+
+            source: function (request, response) {
+
+                $.ajax({
+
+                    url: "/Ressource/Specs",
+
+                    type: "POST",
+
+                    dataType: "json",
+
+                    data: { keyword: request.term },
+
+                    success: function (data) {
+
+                        response($.map(data, function (item) {
+
+                            return { label: item.Name, value: item.Name };
+
+                        }))
+
+                    },
+
+                    error: function () {
+
+                        alert('something went wrong !');
+
+                    }
+
+                })
+
+            },
+
+            messages: {
+
+                noResults: "", results: ""
+
+            }
+
+        });
+
+    })
+
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        var i = 0;
+        $('#ss').click(function () {
+           
+            if (i == 0) {
+                var edittemplate = $('#edittemplate').html();
+                $('#otherskills').html(edittemplate);
+                return ++i;
+            } else if (i == 1) {
+                var edittemplate = $('#edittemplate1').html();
+                $('#otherskills1').html(edittemplate);
+                 return ++i;
+
+            } else if (i == 2) {
+                var edittemplate = $('#edittemplate2').html();
+                $('#otherskills2').html(edittemplate);
+                return ++i;
+
+            }
+
+        });
+    });
+
+</script>}
