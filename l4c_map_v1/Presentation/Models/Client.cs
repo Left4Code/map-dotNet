@@ -28,14 +28,14 @@ namespace Presentation.Models
 
 
 
-        public string LastName { get; set; }
+        public string lastname { get; set; }
 
     
-        public string Name { get; set; }
+        public string name { get; set; }
 
 
   
-        public string Picture { get; set; }
+        public string picture { get; set; }
 
 
 
@@ -48,7 +48,7 @@ namespace Presentation.Models
         public string role { get; set; }
 
     
-        public string UserName { get; set; }
+        public string username { get; set; }
 
 
 

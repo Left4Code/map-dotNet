@@ -1,0 +1,111 @@
+﻿@model Presentation.Models.RequestVM
+
+@{
+    ViewBag.Title = "Create";
+}
+
+
+@using (Html.BeginForm(FormMethod.Post))
+{
+
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="box">
+        <div class="box-header with-border">
+            <h3 class="box-title">Create Request</h3>
+        </div>
+        <div class="box-body">
+            <!-- Date dd/mm/yyyy -->
+            <div class="form-group">
+                <label>Price :</label>
+
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <i class="fa fa-money"></i>
+                        </div>
+                    </div>
+                    @Html.EditorFor(model => model.cout, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.cout, "", new { @class = "text-danger" })
+                </div>
+                <!-- /.input group -->
+            </div>
+            <!-- /.form group -->
+            <!-- Date mm/dd/yyyy -->
+            <div class="form-group">
+                <label>Start Date:</label>
+
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <i class="fa fa-calendar"></i>
+                        </div>
+                    </div>
+                    @Html.EditorFor(model => model.dateBegin, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.dateBegin, "", new { @class = "text-danger" })
+                </div>
+                <!-- /.input group -->
+            </div>
+            <!-- /.form group -->
+            <!-- phone mask -->
+            <div class="form-group">
+                <label>End Date:</label>
+
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <i class="fa fa-calendar"></i>
+                        </div>
+                    </div>
+                    @Html.EditorFor(model => model.dateEnd, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.dateEnd, "", new { @class = "text-danger" })
+                </div>
+                <!-- /.input group -->
+            </div>
+            <!-- /.form group -->
+            <!-- phone mask -->
+            <div class="form-group">
+                <label>Status:</label>
+
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <i class="fa fa-thumb-tack"></i>
+                        </div>
+                    </div>
+                    @Html.EditorFor(model => model.status, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.status, "", new { @class = "text-danger" })
+                </div>
+                <!-- /.input group -->
+            </div>
+            <!-- /.form group -->
+            <!-- IP mask -->
+  
+            </div>
+            <!-- /.form group -->
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-2">
+                <input type="submit" class="btn btn-block btn-rounded btn-success" value="Edit" class="btn btn-default" />
+            </div>
+        </div>
+        </div>
+        <!-- /.box-body -->
+     
+
+
+
+}
+
+
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/template/assets/vendor_components/select2/dist/js/select2.full.js"></script>
+
+}
+

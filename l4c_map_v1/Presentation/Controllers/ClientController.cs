@@ -43,7 +43,7 @@ namespace Presentation.Controllers
 
         public ActionResult Create(Client cl, HttpPostedFileBase File)
         {
-            cl.Picture = File.FileName;
+            cl.picture = File.FileName;
 
             cl.role = "Client";
             HttpClient client = new HttpClient();
@@ -95,7 +95,7 @@ namespace Presentation.Controllers
         {
            
   
-            cl.Picture = File.FileName;
+            cl.picture = File.FileName;
             HttpClient client = new HttpClient();
           
             client.BaseAddress = new Uri("http://localhost:18080/l4c_map-v2-web/");

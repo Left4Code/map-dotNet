@@ -2,14 +2,19 @@
 @{
     ViewBag.Title = "Index";
 }
+
+<head>
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="~/Scripts/google.js"></script>
+  
+
+</head>
 <button id="change-chart">Change to Classic</button>
 <div id="chart_div" style="width:900px;height:500px">
- 
 </div>
 
 
-<script src="~/Scripts/jquery-1.10.2.js"></script>
-<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
 <script>
     // globar variable for hold chart data
@@ -36,6 +41,7 @@
                     }).done(function () {
                         // after complete loading data
                         google.setOnLoadCallback(drawMaterialChart);
+
                         drawMaterialChart();
                      
                     });
@@ -59,7 +65,7 @@
                 }
 
                 function drawChart() {
-                    console.log('ss')
+                    console.log('ss');
                     var data = google.visualization.arrayToDataTable(chartData);
 
                     var options = {

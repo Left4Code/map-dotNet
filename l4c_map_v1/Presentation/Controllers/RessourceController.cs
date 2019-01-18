@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
+using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 
@@ -16,19 +17,26 @@ namespace Presentation.Controllers
         // GET: Ressource
         public ActionResult Index()
         {
-            HttpClient httpClient = new HttpClient();
-            httpClient.BaseAddress = new Uri("http://localhost:18080");
-            httpClient.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-            HttpResponseMessage response = httpClient.GetAsync("l4c_map-v2-web/rest/badis/0").Result;
-            if (response.IsSuccessStatusCode)
+            user user = (user)Session["user"];
+            if (user != null && user.role.Equals("Responsable"))
             {
-                ViewBag.result = response.Content.ReadAsAsync<IEnumerable<Ressource>>().Result;
+                HttpClient httpClient = new HttpClient();
+                httpClient.BaseAddress = new Uri("http://localhost:18080");
+                httpClient.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+                HttpResponseMessage response = httpClient.GetAsync("l4c_map-v2-web/rest/badis/0").Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    ViewBag.result = response.Content.ReadAsAsync<IEnumerable<Ressource>>().Result;
+                }
+                else
+                {
+                    ViewBag.result = "error";
+                }
+                return View();
             }
             else
-            {
-                ViewBag.result = "error";
-            }
-            return View();
+                 return RedirectToAction("Error", "Shared");
+
         }
 
         // GET: Ressource/Details/5
@@ -84,11 +92,13 @@ namespace Presentation.Controllers
 
         // POST: Ressource/Create
         [HttpPost]
-        public ActionResult Create(RessourceSkills res)
+        public ActionResult Create(RessourceSkills res, HttpPostedFileBase File)
         {
+
             int ids = nbrSKills();
 
             Ressource rs = res.ressource;
+            rs.picture = File.FileName;
             rs.skills = new List<Skills>();
             if (res.skills1 != null)
             {
@@ -114,18 +124,24 @@ namespace Presentation.Controllers
                 res.skills.idSkills = ids + 1;
                 rs.skills.Add(res.skills);
             }
+            if (File.ContentLength > 0)
+            {
+                var path = System.IO.Path.Combine(Server.MapPath("~/Content/Uploads/"), File.FileName);
+                File.SaveAs(path);
+                
+            }
 
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri("http://localhost:18080");
             StringContent content = new StringContent(JsonConvert.SerializeObject(rs), UTF8Encoding.UTF8, "application/json");
             rs.username = res.ressource.name;
-            rs.password = "12345678";
+            rs.Password = "12345678";
             client.PostAsJsonAsync<Ressource>("l4c_map-v2-web/rest/badis", rs).ContinueWith((postTask) =>
             {
                 postTask.Result.EnsureSuccessStatusCode();
                 System.Console.WriteLine(postTask.Result.ToString());
             });
-            return RedirectToAction("Index");
+            return RedirectToAction("Index","Ressource");
         }
 
         // GET: Ressource/Edit/5

@@ -1,0 +1,114 @@
+﻿@model IEnumerable<Presentation.Models.MandateVM>
+
+@{
+    ViewBag.Title = "Mandates";
+}
+
+<h2>Index</h2>
+@if (ViewBag.notif > 0)
+{
+    <div class="alert alert-warning alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button> vous avez des  mandats qui vont finir @Html.ActionLink("Voir", "EndingMandate");
+    </div>
+}
+<p onload="notifyMe()">
+    @Html.ActionLink("Create New", "Create")
+</p>
+<div class="box">
+    
+    <div class="box-body">
+        <div class="table-responsive">
+            <table id="example" class="table table-bordered table-hover display nowrap margin-top-10 w-p100">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.mandatepk.idProject)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.mandatepk.idRessource)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.cost)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.dateBegin)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.dateEnd)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.duration)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.mandateType)
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in ViewBag.result)
+            {
+                    <tr>
+                        <td>
+                            @item.mandatepk.idProject
+                        </td>
+                        <td>
+                            @item.mandatepk.idRessource
+                        </td>
+
+                        <td>
+                            @item.cost
+                        </td>
+                        <td>
+                            @item.dateBegin
+                        </td>
+                        <td>
+                            @item.dateEnd
+                        </td>
+                        <td>
+                            @item.duration
+                        </td>
+                        <td>
+                            @item.mandateType
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { p = item.mandatepk.idProject, r = item.mandatepk.idRessource }) |
+                            @Html.ActionLink("Details", "Details", new { p = item.mandatepk.idProject, r = item.mandatepk.idRessource }) |
+
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </div>
+</div>
+<script>
+    function notifyMe() {
+        // Let's check if the browser supports notifications
+        if (!("Notification" in window)) {
+            alert("This browser does not support desktop notification");
+        }
+
+  // Let's check whether notification permissions have already been granted
+  else if (Notification.permission === "granted")
+        {
+            // If it's okay let's create a notification
+            var notification = new Notification("Your Donation has been enregistred successfully!");
+        }
+
+        // Otherwise, we need to ask the user for permission
+        else if (Notification.permission !== "denied")
+        {
+            Notification.requestPermission(function(permission) {
+                // If the user accepts, let's create a notification
+                if (permission === "granted")
+                {
+                    var notification = new Notification("Hi there!");
+                }
+            });
+        }
+
+        // At last, if the user has denied notifications, and you
+        // want to be respectful there is no need to bother them any more.
+    }
+</script>

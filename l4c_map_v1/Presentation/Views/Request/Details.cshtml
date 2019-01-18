@@ -1,0 +1,72 @@
+﻿@model Presentation.Models.RequestVM
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+<div class="box">
+    <div class="box-header with-border">
+        <h3 class="box-title">RequestVM</h3>
+
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.idRequest)
+            </dt>
+
+            <dd>
+                @ViewBag.result.idRequest
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.cout)
+            </dt>
+
+            <dd>
+                @ViewBag.result.cout
+            </dd>
+
+            <dt>
+                dateBegin
+            </dt>
+
+            <dd>
+                @ViewBag.result.dateBegin
+            </dd>
+
+            <dt>
+                dateEnd
+            </dt>
+
+            <dd>
+                @ViewBag.result.dateEnd
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.status)
+            </dt>
+
+            <dd>
+                @ViewBag.result.status
+            </dd>
+
+        </dl>
+
+
+
+
+        <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="" data-original-title="Collapse">
+                <i class="fa fa-minus"></i>
+            </button>
+            <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="" data-original-title="Remove">
+                <i class="fa fa-times"></i>
+            </button>
+        </div>
+    </div>
+  
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id =   @ViewBag.result.idRequest}) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

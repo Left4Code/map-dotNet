@@ -35,13 +35,13 @@
                         }
 
                         <td>
-                            @ViewBag.result.LastName
+                            @ViewBag.result.lastname
                         </td>
                         <td>
-                            @ViewBag.result.Name
+                            @ViewBag.result.name
                         </td>
                         <td>
-                            @{string path = "~/Content/Uploads/" + @ViewBag.result.Picture;}
+                            @{string path = "~/Content/Uploads/" + @ViewBag.result.picture;}
 
                             <img src="@Url.Content(path)" width="50" height="50" />
 

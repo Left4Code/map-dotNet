@@ -1,0 +1,73 @@
+﻿@model IEnumerable<Presentation.Models.MandateVM>
+
+@{
+    ViewBag.Title = "Historical Mandate";
+}
+
+<h2>Mandate Archive</h2>
+<div class="box">
+
+    <div class="box-body">
+        <div class="table-responsive">
+            <table id="example" class="table table-bordered table-hover display nowrap margin-top-10 w-p100">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.mandatepk.idProject)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.mandatepk.idRessource)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.cost)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.dateBegin)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.dateEnd)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.duration)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.mandateType)
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in ViewBag.result)
+            {
+                    <tr>
+                        <td>
+                            @item.mandatepk.idProject
+                        </td>
+                        <td>
+                            @item.mandatepk.idRessource
+                        </td>
+
+                        <td>
+                            @item.cost
+                        </td>
+                        <td>
+                            @item.dateBegin
+                        </td>
+                        <td>
+                            @item.dateEnd
+                        </td>
+                        <td>
+                            @item.duration
+                        </td>
+                        <td>
+                            @item.mandateType
+                        </td>
+                        <td>
+                            @Html.ActionLink("Details", "Details", new { p = item.mandatepk.idProject, r = item.mandatepk.idRessource })
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </div>
+</div>

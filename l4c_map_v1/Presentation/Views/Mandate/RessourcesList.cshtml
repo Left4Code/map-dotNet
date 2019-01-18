@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Presentation.Models.RessourceVm>
+
+@{
+    ViewBag.Title = "RessourcesList";
+}
+
+<h2>Ressources with required skills :</h2>
+<style>
+    #container {
+        display: flex;
+        justify-content: flex-start;
+    }
+
+    #box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 200px;
+    }
+
+        #box img {
+            height: 80px;
+            width: 120px;
+            border-radius: 3px;
+        }
+</style>
+
+        <div id="container">
+
+            @foreach (var item in ViewBag.result)
+            {
+
+
+                <div id="box">
+                    <img src="../images/profile.png" alt="profile" />
+                    <h3>@item.name</h3>
+                    <p>
+                        @foreach (var skill in item.skills)
+                {
+                            <span> @skill.name ,</span>
+                        }
+                    </p>
+                    <button class="alert-success">@Html.ActionLink("Assign", "Create",new {r= item.id ,p = 1 } )</button> 
+                    <button class="alert-success">@Html.ActionLink("Mandates", "RessourceDetails", new { id = item.id})</button> 
+                </div>
+            }
+        </div>
